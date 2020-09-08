@@ -1,0 +1,496 @@
+﻿@model AccountVM
+@{
+    ViewData["Title"] = "@(" + Model.User.UserName + ") | Perivallo";
+}
+
+<main id="profile">
+    <section id="profile-cover">
+        <div class="profile-cover-wrapper">
+            @if (Model.User.Cover == null)
+            {
+                <img src="~/img/cover.png" alt="Cover">
+            }
+            else
+            {
+                <img src="~/img/@Model.User.Cover" alt="Cover">
+            }
+        </div>
+    </section>
+    <section id="profile-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="left-side-wrapper">
+                        <div class="profile-avatar">
+                            @if (Model.User.Cover == null)
+                            {
+                                <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                            }
+                            else
+                            {
+                                <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="right-side-wrapper">
+                        <div class="head">
+                            <h2 class="username">@Model.User.UserName</h2>
+                            <div class="actions">
+                                <button type="button" class="action-btn follow-button">Follow</button>
+                                <div class="profile-dropdown">
+                                    <div class="profile-dropdown-button">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </div>
+                                    <div class="profile-dropdown-menu">
+                                        <div class="dropdown-content">
+                                            @if (User.Identity.Name != Model.User.UserName)
+                                            {
+                                                <a href="#" class="profile-dropdown-item">
+                                                    <div class="media">
+                                                        <i class="fas fa-ban"></i>
+                                                        <div class="media-content">
+                                                            <h3>Block</h3>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="profile-dropdown-item" data-toggle="modal" data-target="#user-modal" data-userid="3">
+                                                    <div class="media">
+                                                        <i class="far fa-flag"></i>
+                                                        <div class="media-content">
+                                                            <h3>Report</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" class="profile-dropdown-item">
+                                                    <div class="media">
+                                                        <i class="far fa-bookmark"></i>
+                                                        <div class="media-content">
+                                                            <h3>Saved</h3>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (User.Identity.Name == Model.User.UserName)
+                                {
+                                    <div class="profile-settings-button" data-toggle="modal"
+                                         data-target="#settings-modal">
+                                        <i class="fas fa-cog"></i>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                        <div class="stats">
+                            <span>@ViewBag.PostCount Posts</span>
+                            <span><a href="#">12K Followers</a></span>
+                            <span><a href="#">104 Following</a></span>
+                        </div>
+                        <div class="bio">
+                            <h4>@Model.User.Name</h4>
+                            @if (Model.User.About != null)
+                            {
+                                <p>
+                                    @Model.User.About
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 separator">
+                    <div class="followed-by-wrapper">
+                        <div class="box-heading">
+                            <h4>Followed By</h4>
+                            <!-- <div class="followed-by-dropdown">
+                                <div class="fbd-collapse-button">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </div>
+                                <div class="fbd-menu">
+                                    <div class="fbd-content">
+                                        <a class="fbd-item" href="#">
+                                            <div class="media">
+                                                <i class="fas fa-tag"></i>
+                                                <div class="media-content">
+                                                    <h3>Tagged</h3>
+                                                    <small>Photos tagged in.</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="fb-cards-list">
+                            <div class="fb-card">
+                                <div class="fb-item">
+                                    <img src="img/profile-placeholder.png" alt="">
+                                    <div class="text-content">
+                                        <a class="username" href="#">_farid__aliyev_</a>
+                                        <span>48 mutual friend(s)</span>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button type="button" class="action-btn follow-button">Follow</button>
+                                    </div>
+                                </div>
+                                <div class="fb-item">
+                                    <img src="img/profile-placeholder.png" alt="">
+                                    <div class="text-content">
+                                        <a class="username" href="#">_farid__aliyev_</a>
+                                        <span>48 mutual friend(s)</span>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button type="button" class="action-btn follow-button">Follow</button>
+                                    </div>
+                                </div>
+                                <div class="fb-item">
+                                    <img src="img/profile-placeholder.png" alt="">
+                                    <div class="text-content">
+                                        <a class="username" href="#">_farid__aliyev_</a>
+                                        <span>48 mutual friend(s)</span>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button type="button" class="action-btn follow-button">Follow</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="photos-wrapper">
+                        <div class="box-heading">
+                            <h4>Photos</h4>
+                            <div class="photos-dropdown">
+                                <div class="pd-collapse-button">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </div>
+                                <div class="pd-menu">
+                                    <div class="pd-content">
+                                        <a class="pd-item" href="#">
+                                            <div class="media">
+                                                <i class="fas fa-tag"></i>
+                                                <div class="media-content">
+                                                    <h3>Tagged</h3>
+                                                    <small>Photos tagged in.</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="photos">
+                            @{ int photoCount = 0;}
+                            @foreach (Post item in Model.Posts)
+                            {
+                                @if (item.PostImages != null)
+                                {
+                                    photoCount++;
+                                    @foreach (PostImage pi in item.PostImages)
+                                    {
+                                        <img style="height: 86px!important" src="~/img/@pi.Image" alt="">
+                                    }
+                                }
+                            }
+                            @if (photoCount == 0)
+                            {
+                                <h5 style="font-weight: normal">This user hasn't posted any photos yet.</h5>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    @if (Model.Posts.Count() > 0)
+                    {
+                        <div class="profile-timeline-heading">
+                            <h4>Posts</h4>
+                            <div class="button-wrapper">
+                                <a asp-controller="Account" asp-action="Index" asp-route-username="@Model.User.UserName" class="action-btn">Recent</a>
+                                <a asp-controller="Account" asp-action="Oldest" asp-route-username="@Model.User.UserName" class="action-btn post-order-active">Oldest</a>
+                            </div>
+                        </div>
+                        @foreach (Post item in Model.Posts)
+                        {
+                            <div class="feed-post">
+                                <div class="content-wrapper">
+                                    <div class="post-card-header">
+                                        <div class="user-block">
+                                            <a class="pPL" asp-controller="Account" asp-action="Index" asp-route-username="@item.User.UserName">
+                                                <div class="profile-pic">
+                                                    @if (item.User.Avatar != null)
+                                                    {
+                                                        <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                                    }
+
+                                                </div>
+                                            </a>
+                                            <div class="user-info">
+                                                <span>
+                                                    <a asp-controller="Account" asp-action="Index" asp-route-username="@item.User.UserName" class="username">@item.User.UserName</a>
+                                                    @if (item.PostTaggedUsers.Count() > 0)
+                                                    {
+                                                        <span>, with</span>
+                                                        @foreach (PostTaggedUser ptu in Model.PostTaggedUsers)
+                                                        {
+                                                            if (ptu.PostId == item.Id)
+                                                            {
+                                                                <span>@@</span><a asp-controller="Account" asp-action="Index" asp-route-username="@ptu.User.UserName" class="tagged-user">@ptu.User.UserName</a>
+                                                            }
+                                                        }
+                                                    }
+                                                    @if (item.Location != null)
+                                                    {
+                                                        <span>, in</span> <span class="post-location">@item.Location</span>
+                                                    }
+
+                                                </span>
+                                                <span class="time">@item.Date</span>
+                                            </div>
+                                        </div>
+                                        <div class="post-dropdown">
+                                            <div class="button">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </div>
+                                            <div class="post-dropdown-menu">
+                                                <div class="dropdown-content">
+                                                    @if (User.Identity.Name == item.User.UserName)
+                                                    {
+                                                        <a href="#" class="post-dropdown-item">
+                                                            <div class="media">
+                                                                <i class="far fa-trash-alt"></i>
+                                                                <div class="media-content">
+                                                                    <h3>Delete</h3>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="post-dropdown-item" data-toggle="modal"
+                                                             data-target="#post-modal" data-postid="@item.Id">
+                                                            <div class="media">
+                                                                <i class="far fa-flag"></i>
+                                                                <div class="media-content">
+                                                                    <h3>Report</h3>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="post-card-body">
+                                        @if (item.Text != null)
+                                        {
+                                            <div class="post-text">
+                                                <p>
+                                                    @item.Text
+                                                </p>
+                                                @if (item.Link != null)
+                                                {
+                                                    <a href="@item.Link">@item.Link</a>
+                                                }
+
+                                            </div>
+                                        }
+                                        @if (item.PostImages.Count() > 0)
+                                        {
+                                            @if (item.PostImages.Count() == 1)
+                                            {
+                                                <div class="post-image">
+                                                    <a href="#">
+                                                        <img src="~/img/@item.PostImages.ElementAt(0).Image" alt="">
+                                                    </a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+
+                                                <div class="owl-carousel owl-theme post-owl-carousel">
+                                                    @foreach (PostImage pi in item.PostImages)
+                                                    {
+                                                        <div class="item">
+                                                            <div class="post-image">
+                                                                <a href="#">
+                                                                    <img src="~/img/@pi.Image" alt="">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="post-card-footer">
+                                        <div class="actions">
+                                            <div class="like">
+                                                <i class="far fa-heart prelike"></i>
+                                                <i class="fas fa-heart liked"></i>
+                                            </div>
+                                            <div class="comment">
+                                                <a href="#">
+                                                    <i class="far fa-comment"></i>
+                                                </a>
+                                            </div>
+                                            <div class="bookmark">
+                                                <i class="far fa-bookmark prebookmark"></i>
+                                                <i class="fas fa-bookmark bookmarked"></i>
+                                            </div>
+                                        </div>
+                                        <div class="post-info">
+                                            <div class="likers-group">
+                                                <img src="img/profile-placeholder.png" alt="">
+                                                <img src="img/profile-placeholder.png" alt="">
+                                            </div>
+                                            <div class="likers-text">
+                                                <p>
+                                                    <a href="#">Milly</a>
+                                                    ,
+                                                    <a href="#">David</a>
+                                                </p>
+                                                <p>and 23 more liked this</p>
+                                            </div>
+                                            <div class="social-count">
+                                                <div class="likes-count">
+                                                    <i class="far fa-heart"></i>
+                                                    <span>27</span>
+                                                </div>
+                                                <div class="comments-count">
+                                                    <i class="far fa-comment"></i>
+                                                    <span>3</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        @if (Model.User.UserName != User.Identity.Name)
+                        {
+                            <div class="no-posts">
+                                <i class="fas fa-history"></i>
+                                <h6>This user has no recent activity.</h6>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="no-posts">
+                                <i class="fas fa-history"></i>
+                                <h6>You haven't shared any posts yet.</h6>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    @if (User.Identity.Name == Model.User.UserName)
+    {
+        <div id="settings-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Settings</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="setting-button">
+                                        <a asp-controller="Account" asp-action="Settings" asp-route-username="@User.Identity.Name">Edit Profile</a>
+                                    </div>
+                                    <div class="setting-button">
+                                        <a asp-controller="Account" asp-action="Logout">Log Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div id="post-modal" class="modal fade report-modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-danger">Report Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-wrapper">
+                                        <input type="text" placeholder="Tell us the reason...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pm-send">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="user-modal" class="modal fade report-modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-danger">Report Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-wrapper">
+                                        <input type="text" placeholder="Tell us the reason...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary um-send">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</main>
+

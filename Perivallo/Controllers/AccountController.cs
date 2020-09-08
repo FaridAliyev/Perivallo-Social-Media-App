@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Perivallo.DAL;
+using Perivallo.Helpers;
 using Perivallo.Models;
 using Perivallo.ViewModels;
 
@@ -14,12 +20,41 @@ namespace Perivallo.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
+        private readonly AppDbContext _db;
+        private readonly IHostingEnvironment _env;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager,AppDbContext db, IHostingEnvironment env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _db = db;
+            _env = env;
         }
+
+        [Authorize]
+        [Route("{username}")]
+        public async Task<IActionResult> Index(string username)
+        {
+            if (string.IsNullOrEmpty(username))
+            {
+                return NotFound();
+            }
+            User user = await _userManager.FindByNameAsync(username);
+            if (user==null||user.Deleted)
+            {
+                return NotFound();
+            }
+            AccountVM model = new AccountVM()
+            {
+                User = user,
+                Posts = _db.Posts.Include(p => p.User).Include(p=>p.PostTaggedUsers).Include(p => p.PostImages).Where(p => p.UserId == user.Id).OrderByDescending(p => p.Id),
+                PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User)
+            };
+            int postCount = _db.Posts.Where(p => p.User == user).Count();
+            ViewBag.PostCount = postCount;
+            return View(model);
+        }
+
         public IActionResult Register()
         {
             return View();
@@ -124,6 +159,102 @@ namespace Perivallo.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
+        }
+
+        [Authorize]
+        //[Route("{username}/[action]")]
+        public async Task<IActionResult> Settings(string username)
+        {
+            if (string.IsNullOrEmpty(username))
+            {
+                return NotFound();
+            }
+            User user = await _userManager.FindByNameAsync(username);
+            if (user==null)
+            {
+                return NotFound();
+            }
+            if (user != await _userManager.GetUserAsync(User))
+            {
+                return NotFound();
+            }
+            UserVM userVM = new UserVM()
+            {
+                Name=user.Name,
+                Username=user.UserName,
+                Email=user.Email,
+                Avatar=user.Avatar,
+                Cover=user.Cover,
+                About=user.About,
+                Private=user.Private
+            };
+            return View(userVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Settings(UserVM user, IFormFile avatar, IFormFile cover)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (avatar!=null)
+            {
+                if (!avatar.isImage())
+                {
+                    ModelState.AddModelError(string.Empty, "Please pick a file matching the format!");
+                    return View(user);
+                }
+                currentUser.Avatar = await avatar.SaveImg(_env.WebRootPath, "img");
+            }
+            if (cover!=null)
+            {
+                if (!cover.isImage())
+                {
+                    ModelState.AddModelError(string.Empty, "Please pick a file matching the format!");
+                    return View(user);
+                }
+                currentUser.Cover = await cover.SaveImg(_env.WebRootPath, "img");
+            }
+            
+            currentUser.Name = user.Name;
+            currentUser.Email = user.Email;
+            currentUser.About = user.About;
+            currentUser.Private = user.Private;
+            currentUser.UserName = user.Username;
+            if (user.Password!=null)
+            {
+                currentUser.PasswordHash = _userManager.PasswordHasher.HashPassword(currentUser, user.Password);
+            }
+            await _userManager.UpdateAsync(currentUser);
+            await _signInManager.SignInAsync(currentUser, true);
+            return RedirectToAction("Index",new { username=currentUser.UserName });
+        }
+
+        [Authorize]
+        [Route("{username}/[action]")]
+        public async Task<IActionResult> Oldest(string username)
+        {
+            if (string.IsNullOrEmpty(username))
+            {
+                return NotFound();
+            }
+            User user = await _userManager.FindByNameAsync(username);
+            if (user == null || user.Deleted)
+            {
+                return NotFound();
+            }
+            AccountVM model = new AccountVM()
+            {
+                User = user,
+                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Where(p => p.UserId == user.Id),
+                PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User)
+            };
+            int postCount = _db.Posts.Where(p => p.User == user).Count();
+            ViewBag.PostCount = postCount;
+            return View(model);
         }
     }
 }

@@ -125,7 +125,7 @@ $(document).ready(function () {
 
     $('#publish').keyup(function () {
         if ($(this).val().trim() == "") {
-            if ($('#publish-input').val() == "" && $('#link').trim().val() == "") {
+            if ($('#publish-input').val() == "" && $('#link').val().trim() == "") {
                 $('.publish-button').attr("disabled", true);
                 $('.publish-button').css('opacity', '0.4');
             }
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
     $('#link').keyup(function () {
         if ($(this).val().trim() == "") {
-            if ($('#publish-input').val() == "" && $('#publish').trim().val() == "") {
+            if ($('#publish-input').val() == "" && $('#publish').val().trim() == "") {
                 $('.publish-button').attr("disabled", true);
                 $('.publish-button').css('opacity', '0.4');
             }
@@ -217,7 +217,7 @@ $(document).ready(function () {
     });
 
     $('.hidden-preview .publish-remove').click(function () {
-        $('#publish-input').val(null);
+        $('#publish-input').val("");
         if ($('#publish').val() != "" || $('#link').val() != "") {
             $('.publish-button').removeAttr("disabled");
             $('.publish-button').css('opacity', '1');

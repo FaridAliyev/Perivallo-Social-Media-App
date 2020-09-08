@@ -20,10 +20,10 @@ namespace Perivallo.Models
         public bool Private { get; set; }
         public bool Deleted { get; set; }
         public DateTime RegDate { get; set; }
-        [NotMapped]
-        public IFormFile AvatarPhoto { get; set; }
-        [NotMapped]
-        public IFormFile CoverPhoto { get; set; }
+        public ICollection<Post> Posts { get; set; }
+        public ICollection<PostTaggedUser> PostTaggedUsers { get; set; }
+        public virtual ICollection<Friend> FriendFroms { get; set; }
+        public virtual ICollection<Friend> FriendTos { get; set; }
         public User()
         {
             Private = false;

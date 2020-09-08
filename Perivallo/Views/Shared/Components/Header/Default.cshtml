@@ -1,0 +1,199 @@
+﻿@model NavbarVM
+
+<nav id="navbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="logo">
+                    <a asp-controller="Home" asp-action="Index">Perivallo</a>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="search-bar">
+                    <form>
+                        <div class="form-group justify-content-center">
+                            <div class="search-field-wrapper">
+                                <input type="text" class="search-field" id="nav-search" placeholder="Search">
+                                <ul class="search-results-list">
+                                    <li class="search-results-item">
+                                        <a href="#">
+                                            <div class="result-wrapper">
+                                                <div class="profile-pic">
+                                                    <img src="~/img/profile-placeholder.png" alt="Profile">
+                                                </div>
+                                                <div class="text">
+                                                    <h6 class="username">_farid__aliyev_</h6>
+                                                    <p class="name">Farid Aliyev</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="search-results-item">
+                                        <a href="#">
+                                            <div class="result-wrapper">
+                                                <div class="profile-pic">
+                                                    <img src="img/profile-placeholder.png" alt="Profile">
+                                                </div>
+                                                <div class="text">
+                                                    <h6 class="username">_farid__aliyev_</h6>
+                                                    <p class="name">Farid Aliyev</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="see-all-item">
+                                        <button type="submit" class="see-all">
+                                            See All <i class="fas fa-angle-double-right see-all-icon"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                                <span class="search-icon"><i class="fas fa-search"></i></span>
+                                <span class="clear-icon"><i class="fas fa-times"></i></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="search-bar-mb">
+                    <a href="#">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="nav-items">
+                    <ul class="navigation">
+                        @{string controller = @ViewContext.RouteData.Values["controller"].ToString();}
+                        @if (controller == "Home")
+                        {
+                            <li class="nav-item active-nav-item">
+                                <a asp-controller="Home" asp-action="Index">
+                                    <i class="fas fa-home nav-item-icon"></i>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="Index">
+                                    <i class="fas fa-home nav-item-icon"></i>
+                                </a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="#">
+                                <i class="fas fa-envelope nav-item-icon"></i>
+                                <!-- <i class="fas fa-circle new-icon"></i> -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="notification">
+                                <i class="fas fa-bell nav-item-icon"></i>
+                                <!-- <i class="fas fa-circle new-icon"></i> -->
+                            </a>
+                            <ul class="notification-dropdown">
+                                <li class="follow-request-item">
+                                    <div class="follow-request-wrapper">
+                                        <div class="request-caption">
+                                            <h6>Follow Requests</h6>
+                                        </div>
+                                        <div class="request-body">
+                                            <a href="#">
+                                                <img src="img/profile-placeholder.png" alt="Profile">
+                                            </a>
+                                            <a href="#" class="username">_farid__aliyev_</a>
+                                            <div class="action-buttons">
+                                                <button type="button"
+                                                        class="confirm-button action-btn">
+                                                    Confirm
+                                                </button>
+                                                <button type="button"
+                                                        class="ignore-button action-btn">
+                                                    Ignore
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="request-body">
+                                            <a href="#">
+                                                <img src="img/profile-placeholder.png" alt="Profile">
+                                            </a>
+                                            <a href="#" class="username">_farid__aliyev_</a>
+                                            <div class="action-buttons">
+                                                <button type="button"
+                                                        class="confirm-button action-btn">
+                                                    Confirm
+                                                </button>
+                                                <button type="button"
+                                                        class="ignore-button action-btn">
+                                                    Ignore
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="notification-item">
+                                    <a href="#">
+                                        <div class="notification-wrapper">
+                                            <div class="noti-profile-pic">
+                                                <img src="img/profile-placeholder.png" alt="Profile">
+                                            </div>
+                                            <div class="text">
+                                                <h6 class="username">_farid__aliyev_</h6>
+                                                <p class="action">liked your photo</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-item">
+                                    <a href="#">
+                                        <div class="notification-wrapper">
+                                            <div class="noti-profile-pic">
+                                                <img src="img/profile-placeholder.png" alt="Profile">
+                                            </div>
+                                            <div class="text">
+                                                <h6 class="username">_farid__aliyev_</h6>
+                                                <p class="action">liked your photo</p>
+                                            </div>
+                                            <!-- <div class="image">
+                            <img src="img/profile-placeholder.png" alt="">
+                        </div> -->
+                                            <!-- <div class="button-wrapper">
+                            <button type="button" class="follow-button action-btn">Follow</button>
+                            <button type="button" class="following-button action-btn">Following</button>
+                            <button type="button" class="requested-button action-btn">Requested</button>
+                        </div> -->
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="see-all-item">
+                                    <a href="#" class="see-all">
+                                        See All <i class="fas fa-angle-double-right see-all-icon"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="triangle"></div>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Index" asp-route-username="@User.Identity.Name">
+                                <div class="profile-pic">
+                                    @if (Model.User.Avatar != null)
+                                    {
+                                        <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                    }
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="nav-res-btn">
+                        <i class="fas fa-bars collapse-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

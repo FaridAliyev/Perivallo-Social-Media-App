@@ -3049,7 +3049,15 @@ body {
   font-size: 16px;
 }
 
-#profile #profile-content .container .row .profile-timeline-heading .button-wrapper button {
+#profile #profile-content .container .row .profile-timeline-heading .button-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#profile #profile-content .container .row .profile-timeline-heading .button-wrapper a {
+  display: block;
+  margin-left: 5px;
   border: 1px solid transparent;
   width: 90px;
   font-size: 0.8rem;
@@ -3060,9 +3068,10 @@ body {
   border-width: 1px;
   color: #363636;
   padding: 9px 9px;
+  text-decoration: none;
 }
 
-#profile #profile-content .container .row .profile-timeline-heading .button-wrapper button:not(.post-order-active):hover {
+#profile #profile-content .container .row .profile-timeline-heading .button-wrapper a:not(.post-order-active):hover {
   border-color: #b5b5b5;
   color: #363636;
 }
@@ -3107,7 +3116,7 @@ body {
   padding: 0 10px;
 }
 
-#profile #profile-content .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info .username {
+#profile #profile-content .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .username {
   line-height: 1.1;
   font-size: 1rem;
   font-weight: 500;
@@ -3117,8 +3126,27 @@ body {
   transition: color 0.3s;
 }
 
-#profile #profile-content .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info .username:hover {
+#profile #profile-content .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .username:hover {
   color: black;
+}
+
+#profile #profile-content .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .tagged-user {
+  line-height: 1.1;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #393a4f;
+  text-decoration: none;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  font-weight: 600;
+}
+
+#profile #profile-content .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .tagged-user:hover {
+  color: black;
+}
+
+#profile #profile-content .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .post-location {
+  font-weight: 600;
 }
 
 #profile #profile-content .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info .time {
@@ -3387,6 +3415,61 @@ body {
   margin: 0 5px;
 }
 
+#profile #profile-content .container .row .private-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#profile #profile-content .container .row .private-profile i {
+  font-size: 60px;
+}
+
+#profile #profile-content .container .row .private-profile h6 {
+  margin: 0;
+  margin-top: 10px;
+  color: #4a4a4a;
+  font-size: 30px;
+}
+
+#profile #profile-content .container .row .private-profile p {
+  margin: 0;
+  color: #999;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+#profile #profile-content .container .row .no-posts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#profile #profile-content .container .row .no-posts i {
+  font-size: 60px;
+}
+
+#profile #profile-content .container .row .no-posts h6 {
+  margin: 0;
+  margin-top: 10px;
+  color: #4a4a4a;
+  font-size: 30px;
+}
+
 #profile #profile-followers .container .row .box-heading {
   width: 100%;
   padding: 8px;
@@ -3599,7 +3682,7 @@ body {
   padding: 0 10px;
 }
 
-#post-details .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info .username {
+#post-details .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .username {
   line-height: 1.1;
   font-size: 1rem;
   font-weight: 500;
@@ -3609,8 +3692,27 @@ body {
   transition: color 0.3s;
 }
 
-#post-details .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info .username:hover {
+#post-details .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .username:hover {
   color: black;
+}
+
+#post-details .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .tagged-user {
+  line-height: 1.1;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #393a4f;
+  text-decoration: none;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  font-weight: 600;
+}
+
+#post-details .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .tagged-user:hover {
+  color: black;
+}
+
+#post-details .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info span .post-location {
+  font-weight: 600;
 }
 
 #post-details .container .row .feed-post .content-wrapper .post-card-header .user-block .user-info .time {
@@ -4798,7 +4900,7 @@ body {
 #settings .container .row .settings-wrapper .general-settings .settings-panel .settings-form-wrapper .settings-form .row .field {
   border-radius: 6px;
   border: 1px solid #e0e0e0;
-  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
 }
 
 #settings .container .row .settings-wrapper .general-settings .settings-panel .settings-form-wrapper .settings-form .row .field label {
@@ -4952,7 +5054,6 @@ body {
 #settings .container .row .settings-wrapper .security-settings .settings-panel .settings-form-wrapper .settings-form .row .field {
   border-radius: 6px;
   border: 1px solid #e0e0e0;
-  margin-bottom: 0.75rem;
 }
 
 #settings .container .row .settings-wrapper .security-settings .settings-panel .settings-form-wrapper .settings-form .row .field label {
@@ -5021,6 +5122,7 @@ body {
 
 #settings .container .row .settings-wrapper .security-settings .settings-panel .settings-form-wrapper .settings-form .row .switch-field {
   padding-bottom: 10px;
+  margin-top: 0.75rem;
 }
 
 #settings .container .row .settings-wrapper .security-settings .settings-panel .settings-form-wrapper .settings-form .row .switch-field .switch-block {
@@ -5666,6 +5768,9 @@ body {
     width: 150px;
   }
   #profile #profile-info .container .row .right-side-wrapper .stats {
+    text-align: center;
+  }
+  #profile #profile-info .container .row .right-side-wrapper .bio h4 {
     text-align: center;
   }
   #settings .container .row .settings-wrapper {

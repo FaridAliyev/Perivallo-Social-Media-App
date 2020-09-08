@@ -1,7 +1,403 @@
-﻿
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Perivallo";
 }
 
-<h2>Index</h2>
+<div class="app-overlay"></div>
 
+<!-- main start -->
+
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="compose-card">
+                    <div class="header">
+                        <div class="content-wrapper">
+                            <i class="fas fa-pencil-alt pen-icon"></i>
+                            <span>Publish</span>
+                            <div class="close-publish"><i class="fas fa-times"></i></div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="compose">
+                                <div class="compose-form">
+                                    @if (Model.User.Avatar != null)
+                                    {
+                                        <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                    }
+                                    <div class="control">
+                                        <textarea asp-for="@Model.Post.Text" id="publish" class="publish" rows="3"
+                                                  placeholder="Write something about you..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="location-suboption">
+                                    <div class="location-wrapper">
+                                        <input asp-for="@Model.Post.Location" placeholder="Where are you now?">
+                                        <div class="icon">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                        <div class="close-icon">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="link-suboption">
+                                    <div class="link-wrapper">
+                                        <input asp-for="@Model.Post.Link" id="link" placeholder="Enter the link URL">
+                                        <div class="icon">
+                                            <i class="fas fa-link"></i>
+                                        </div>
+                                        <div class="close-icon">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tag-suboption">
+                                    <div class="tag-wrapper">
+                                        <select class="js-example-basic-multiple" name="tags"
+                                                multiple="multiple">
+                                            @foreach (User item in Model.Users)
+                                            {
+                                                if (item.UserName != User.Identity.Name)
+                                                {
+                                                    <option value="@item.Id">@item.UserName</option>
+                                                }
+                                            }
+                                        </select>
+                                        <div class="close-icon">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compose-options">
+                                <div class="compose-option">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Media</span>
+                                    <input name="PostFiles" id="publish-input" type="file" accept="image/*" multiple>
+                                </div>
+                                <div class="compose-option tag-option">
+                                    <i class="fas fa-at"></i>
+                                    <span>Tag friends</span>
+                                </div>
+                                <div class="compose-option location-option">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Location</span>
+                                </div>
+                                <div class="compose-option link-option">
+                                    <i class="fas fa-link"></i>
+                                    <span>Link</span>
+                                </div>
+                            </div>
+                            <div class="hidden-preview">
+                                <div class="preview-wrapper">
+                                    <h6>Your selected images will appear here</h6>
+                                </div>
+                                <div class="owl-carousel owl-theme publish-owl-carousel">
+
+                                </div>
+                                <div class="remove-button-wrapper">
+                                    <button type="button" class="btn btn-danger publish-remove mt-3">Remove All</button>
+                                </div>
+                            </div>
+                            <div class="publish-wrapper">
+                                <button type="submit" class="publish-button" disabled>Publish</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="welcoming-card">
+        <div class="content-wrapper">
+            <div class="logo-wrapper">
+                <img src="img/logo-blue.png" alt="">
+            </div>
+            <div class="text">
+                <h1>Welcome To Perivallo!</h1>
+                <p>To start with, add some friends to see their activities</p>
+            </div>
+        </div>
+    </div> -->
+                @foreach (Post item in Model.Posts)
+                {
+                    <div class="feed-post">
+                        <div class="content-wrapper">
+                            <div class="post-card-header">
+                                <div class="user-block">
+                                    <a class="pPL" asp-controller="Account" asp-action="Index" asp-route-username="@item.User.UserName">
+                                        <div class="profile-pic">
+                                            @if (item.User.Avatar != null)
+                                            {
+                                                <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                            }
+                                            
+                                        </div>
+                                    </a>
+                                    <div class="user-info">
+                                        <span>
+                                            <a asp-controller="Account" asp-action="Index" asp-route-username="@item.User.UserName" class="username">@item.User.UserName</a>
+                                            @if (item.PostTaggedUsers.Count() > 0)
+                                            {
+                                                <span>, with</span>
+                                                @foreach (PostTaggedUser ptu in item.PostTaggedUsers)
+                                                {
+                                                    <span>@@</span><a asp-controller="Account" asp-action="Index" asp-route-username="@ptu.User.UserName" class="tagged-user">@ptu.User.UserName</a>
+                                                }
+                                            }
+                                            @if (item.Location!=null)
+                                             {
+                                                <span>, in</span> <span class="post-location">@item.Location</span>
+                                             }
+                                            
+                                        </span>
+                                        <span class="time">@item.Date</span>
+                                    </div>
+                                </div>
+                                <div class="post-dropdown">
+                                    <div class="button">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </div>
+                                    <div class="post-dropdown-menu">
+                                        <div class="dropdown-content">
+                                            @if (User.Identity.Name == item.User.UserName)
+                                            {
+                                                <a href="#" class="post-dropdown-item">
+                                                    <div class="media">
+                                                        <i class="far fa-trash-alt"></i>
+                                                        <div class="media-content">
+                                                            <h3>Delete</h3>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <div class="post-dropdown-item" data-toggle="modal"
+                                                     data-target="#post-modal" data-postid="@item.Id">
+                                                    <div class="media">
+                                                        <i class="far fa-flag"></i>
+                                                        <div class="media-content">
+                                                            <h3>Report</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-card-body">
+                                @if (item.Text != null)
+                                {
+                                    <div class="post-text">
+                                        <p>
+                                            @item.Text
+                                        </p>
+                                        @if (item.Link != null)
+                                        {
+                                            <a href="@item.Link">@item.Link</a>
+                                        }
+
+                                    </div>
+                                }
+                                @if (item.PostImages.Count() > 0)
+                                {
+                                    @if (item.PostImages.Count() == 1)
+                                    {
+                                        <div class="post-image">
+                                            <a href="#">
+                                                <img src="~/img/@item.PostImages.ElementAt(0).Image" alt="">
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+
+                                        <div class="owl-carousel owl-theme post-owl-carousel">
+                                            @foreach (PostImage pi in item.PostImages)
+                                            {
+                                                <div class="item">
+                                                    <div class="post-image">
+                                                        <a href="#">
+                                                            <img src="~/img/@pi.Image" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                }
+
+
+                            </div>
+                            <div class="post-card-footer">
+                                <div class="actions">
+                                    <div class="like">
+                                        <i class="far fa-heart prelike"></i>
+                                        <i class="fas fa-heart liked"></i>
+                                    </div>
+                                    <div class="comment">
+                                        <a href="#">
+                                            <i class="far fa-comment"></i>
+                                        </a>
+                                    </div>
+                                    <div class="bookmark">
+                                        <i class="far fa-bookmark prebookmark"></i>
+                                        <i class="fas fa-bookmark bookmarked"></i>
+                                    </div>
+                                </div>
+                                <div class="post-info">
+                                    <div class="likers-group">
+                                        <img src="img/profile-placeholder.png" alt="">
+                                        <img src="img/profile-placeholder.png" alt="">
+                                    </div>
+                                    <div class="likers-text">
+                                        <p>
+                                            <a href="#">Milly</a>
+                                            ,
+                                            <a href="#">David</a>
+                                        </p>
+                                        <p>and 23 more liked this</p>
+                                    </div>
+                                    <div class="social-count">
+                                        <div class="likes-count">
+                                            <i class="far fa-heart"></i>
+                                            <span>27</span>
+                                        </div>
+                                        <div class="comments-count">
+                                            <i class="far fa-comment"></i>
+                                            <span>3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-4 sidebar-res">
+                <div class="sidebar">
+                    <div class="profile-card">
+                        <div class="profile-wrapper">
+                            <a asp-controller="Account" asp-action="Index" asp-route-username="@Model.User.UserName">
+                                <div class="profile-pic">
+                                    @if (Model.User.Avatar != null)
+                                    {
+                                        <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                    }
+                                </div>
+                            </a>
+                            <div class="user-info">
+                                <a asp-controller="Account" asp-action="Index" asp-route-username="@Model.User.UserName" class="username">@Model.User.UserName</a>
+                                <p class="name">@Model.User.Name</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suggest-card">
+                        <div class="suggest-card-header">
+                            <h4>Suggested Friends</h4>
+                        </div>
+                        <div class="suggest-card-body">
+                            <div class="add-friend-block">
+                                <img src="img/profile-placeholder.png" alt="Profile picture">
+                                <div class="page-meta">
+                                    <span>Sadiq Əliyev</span>
+                                    <span>3 mutual friend(s)</span>
+                                </div>
+                                <div class="add-friend">
+                                    <button type="button" class="follow-button action-btn">Follow</button>
+                                </div>
+                            </div>
+                            <div class="add-friend-block">
+                                <img src="img/profile-placeholder.png" alt="Profile picture">
+                                <div class="page-meta">
+                                    <span>Sadiq Əliyev</span>
+                                    <span>3 mutual friend(s)</span>
+                                </div>
+                                <div class="add-friend">
+                                    <button type="button" class="follow-button action-btn">Follow</button>
+                                </div>
+                            </div>
+                            <div class="add-friend-block">
+                                <img src="img/profile-placeholder.png" alt="Profile picture">
+                                <div class="page-meta">
+                                    <span>Sadiq Əliyev</span>
+                                    <span>3 mutual friend(s)</span>
+                                </div>
+                                <div class="add-friend">
+                                    <button type="button" class="follow-button action-btn">Follow</button>
+                                </div>
+                            </div>
+                            <div class="add-friend-block">
+                                <img src="img/profile-placeholder.png" alt="Profile picture">
+                                <div class="page-meta">
+                                    <span>Sadiq Əliyev</span>
+                                    <span>3 mutual friend(s)</span>
+                                </div>
+                                <div class="add-friend">
+                                    <button type="button" class="follow-button action-btn">Follow</button>
+                                </div>
+                            </div>
+                            <div class="add-friend-block">
+                                <img src="img/profile-placeholder.png" alt="Profile picture">
+                                <div class="page-meta">
+                                    <span>Kamil Zeynallı</span>
+                                    <span>3 mutual friend(s)</span>
+                                </div>
+                                <div class="add-friend">
+                                    <button type="button" class="follow-button action-btn">Follow</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <span>© @DateTime.Now.Year PERIVALLO FROM FARID ALIYEV</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="post-modal" class="modal fade report-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Report Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="Tell us the reason...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary pm-send">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- main end -->

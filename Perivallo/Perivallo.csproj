@@ -5,6 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200906202440_AddedFriendTable.cs" />
+    <Compile Remove="Migrations\20200906202440_AddedFriendTable.Designer.cs" />
+    <Compile Remove="Migrations\20200906202813_AddedFriendTable.cs" />
+    <Compile Remove="Migrations\20200906202813_AddedFriendTable.Designer.cs" />
+    <Compile Remove="Migrations\20200906205907_AddedFriendsTable.cs" />
+    <Compile Remove="Migrations\20200906205907_AddedFriendsTable.Designer.cs" />
+    <Compile Remove="Migrations\20200906211047_AddedFriendsTable.cs" />
+    <Compile Remove="Migrations\20200906211047_AddedFriendsTable.Designer.cs" />
+    <Compile Remove="Migrations\20200906212133_AddedFriendsTable.cs" />
+    <Compile Remove="Migrations\20200906212133_AddedFriendsTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\partials\_variables.scss" />
+    <None Include="wwwroot\css\style.css.map" />
+    <None Include="wwwroot\css\style.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />

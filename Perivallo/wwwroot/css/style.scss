@@ -2291,7 +2291,10 @@ body {
                         font-size: 16px;
                     }
                     .button-wrapper {
-                        button {
+                        display: flex;
+                        a {
+                            display: block;
+                            margin-left: 5px;
                             border: 1px solid transparent;
                             width: 90px;
                             font-size: 0.8rem;
@@ -2301,6 +2304,7 @@ body {
                             border-width: 1px;
                             color: #363636;
                             padding: 9px 9px;
+                            text-decoration: none;
                             &:not(.post-order-active):hover {
                                 border-color: #b5b5b5;
                                 color: #363636;
@@ -2337,15 +2341,32 @@ body {
                                 }
                                 .user-info {
                                     padding: 0 10px;
-                                    .username {
-                                        line-height: 1.1;
-                                        font-size: 1rem;
-                                        font-weight: 500;
-                                        color: #393a4f;
-                                        text-decoration: none;
-                                        transition: color 0.3s;
-                                        &:hover {
-                                            color: black;
+                                    span {
+                                        .username {
+                                            line-height: 1.1;
+                                            font-size: 1rem;
+                                            font-weight: 500;
+                                            color: #393a4f;
+                                            text-decoration: none;
+                                            transition: color 0.3s;
+                                            &:hover {
+                                                color: black;
+                                            }
+                                        }
+                                        .tagged-user {
+                                            line-height: 1.1;
+                                            font-size: 1rem;
+                                            font-weight: 500;
+                                            color: #393a4f;
+                                            text-decoration: none;
+                                            transition: color 0.3s;
+                                            font-weight: 600;
+                                            &:hover {
+                                                color: black;
+                                            }
+                                        }
+                                        .post-location {
+                                            font-weight: 600;
                                         }
                                     }
                                     .time {
@@ -2557,6 +2578,40 @@ body {
                         }
                     }
                 }
+                .private-profile{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    i{
+                        font-size: 60px;
+                    }
+                    h6{
+                        margin: 0;
+                        margin-top: 10px;
+                        color: #4a4a4a;
+                        font-size: 30px;
+                    }
+                    p{
+                        margin: 0;
+                        color: #999;
+                        margin-top: 10px;
+                        font-size: 0.9rem;
+                    }
+                }
+                .no-posts{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    i{
+                        font-size: 60px;
+                    }
+                    h6{
+                        margin: 0;
+                        margin-top: 10px;
+                        color: #4a4a4a;
+                        font-size: 30px;
+                    }
+                }
             }
         }
     }
@@ -2733,15 +2788,32 @@ body {
                             }
                             .user-info {
                                 padding: 0 10px;
-                                .username {
-                                    line-height: 1.1;
-                                    font-size: 1rem;
-                                    font-weight: 500;
-                                    color: #393a4f;
-                                    text-decoration: none;
-                                    transition: color 0.3s;
-                                    &:hover {
-                                        color: black;
+                                span {
+                                    .username {
+                                        line-height: 1.1;
+                                        font-size: 1rem;
+                                        font-weight: 500;
+                                        color: #393a4f;
+                                        text-decoration: none;
+                                        transition: color 0.3s;
+                                        &:hover {
+                                            color: black;
+                                        }
+                                    }
+                                    .tagged-user {
+                                        line-height: 1.1;
+                                        font-size: 1rem;
+                                        font-weight: 500;
+                                        color: #393a4f;
+                                        text-decoration: none;
+                                        transition: color 0.3s;
+                                        font-weight: 600;
+                                        &:hover {
+                                            color: black;
+                                        }
+                                    }
+                                    .post-location {
+                                        font-weight: 600;
                                     }
                                 }
                                 .time {
@@ -3655,7 +3727,7 @@ body {
                                     .field {
                                         border-radius: 6px;
                                         border: 1px solid #e0e0e0;
-                                        margin-bottom: 0.75rem;
+                                        margin-top: 0.75rem;
                                         label {
                                             margin: 0;
                                             text-transform: uppercase;
@@ -3767,7 +3839,7 @@ body {
                                     .field {
                                         border-radius: 6px;
                                         border: 1px solid #e0e0e0;
-                                        margin-bottom: 0.75rem;
+                                        
                                         label {
                                             margin: 0;
                                             text-transform: uppercase;
@@ -3819,6 +3891,7 @@ body {
                                     }
                                     .switch-field {
                                         padding-bottom: 10px;
+                                        margin-top: 0.75rem;
                                         .switch-block {
                                             display: flex;
                                             align-items: center;
@@ -4421,6 +4494,11 @@ body {
                         }
                         .stats {
                             text-align: center;
+                        }
+                        .bio{
+                            h4{
+                                text-align: center;
+                            }
                         }
                     }
                 }
