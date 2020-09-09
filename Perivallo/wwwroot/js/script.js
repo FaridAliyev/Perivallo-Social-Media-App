@@ -58,12 +58,36 @@ $(document).ready(function () {
     //     }
     // });
 
+    $('#nav-search').next().css('border-width', '0px');
     $('#nav-search').keyup(function () {
         if ($(this).val().length > 0) {
             $('.clear-icon').fadeIn(100);
         }
         else {
             $('.clear-icon').fadeOut(100);
+        }
+        let field = $(this);
+        let term = field.val();
+        if (term == "") {
+            field.next().empty();
+            field.next().css('border-width', '0px');
+        }
+        if (term.length > 0) {
+            $.ajax({
+                url: "/Home/Search?term=" + term,
+                type: "Get",
+                cache: true,
+                success: function (response) {
+                    if (response.trim() != "") {
+                        field.next().css('border-width', '1px');
+                    }
+                    else {
+                        field.next().css('border-width', '0px');
+                    }
+                    field.next().empty();
+                    field.next().append(response);
+                }
+            });
         }
     });
 
@@ -87,6 +111,8 @@ $(document).ready(function () {
     $('.clear-icon').click(function () {
         $('#nav-search').val("");
         $('#nav-search').focusout();
+        $('#nav-search').next().empty();
+        $('#nav-search').next().css('border-width', '0px');
         $(this).fadeOut(100);
     });
 
@@ -251,12 +277,46 @@ $(document).ready(function () {
 
     // posts
 
-    $('.prelike,.prebookmark').click(function () {
+    $('.prelike').click(function () {
+        let likebtn = $(this);
+        let likedPostId = likebtn.data('postid');
+        $.ajax({
+            url: "/Home/PostLike?id=" + likedPostId,
+            type: "Get",
+            cache: true,
+            success: function (response) {
+                if (response != 0) {
+                    likebtn.next().show();
+                    likebtn.hide();
+                    likebtn.parent().parent().next().children().eq(2).children().eq(0).children().eq(1).text(response);
+                }
+            }
+        });
+    });
+
+    $('.liked').click(function () {
+        let dislikebtn = $(this);
+        let dislikedPostId = dislikebtn.data('postid');
+        $.ajax({
+            url: "/Home/PostDislike?id=" + dislikedPostId,
+            type: "Get",
+            cache: true,
+            success: function (response) {
+                if (response != -1) {
+                    dislikebtn.prev().show();
+                    dislikebtn.hide();
+                    dislikebtn.parent().parent().next().children().eq(2).children().eq(0).children().eq(1).text(response);
+                }
+            }
+        });
+    });
+
+    $('.prebookmark').click(function () {
         $(this).next().show();
         $(this).hide();
     });
 
-    $('.liked, .bookmarked').click(function () {
+    $('.bookmarked').click(function () {
         $(this).prev().show();
         $(this).hide();
     });

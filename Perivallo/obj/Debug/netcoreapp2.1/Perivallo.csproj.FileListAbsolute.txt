@@ -34,3 +34,6 @@ E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\Index.cshtml.g
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\Oldest.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\Settings.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Validation.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_UserSearch.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Search\Index.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Search\Filter.cshtml.g.cs

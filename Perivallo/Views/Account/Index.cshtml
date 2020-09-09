@@ -1,6 +1,7 @@
 ﻿@model AccountVM
+@using System.Globalization
 @{
-    ViewData["Title"] = "@("+Model.User.UserName+ ") | Perivallo";
+    ViewData["Title"] = "@(" + Model.User.UserName + ") | Perivallo";
 }
 
 <main id="profile">
@@ -22,7 +23,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="left-side-wrapper">
                         <div class="profile-avatar">
-                            @if (Model.User.Cover == null)
+                            @if (Model.User.Avatar == null)
                             {
                                 <img src="~/img/profile-placeholder.png" alt="Profile Picture">
                             }
@@ -84,7 +85,6 @@
                                          data-target="#settings-modal">
                                         <i class="fas fa-cog"></i>
                                     </div>
-
                                 }
                             </div>
                         </div>
@@ -203,7 +203,7 @@
                                     }
                                 }
                             }
-                            @if (photoCount==0)
+                            @if (photoCount == 0)
                             {
                                 <h5 style="font-weight: normal">This user hasn't posted any photos yet.</h5>
                             }
@@ -236,7 +236,6 @@
                                                     {
                                                         <img src="~/img/profile-placeholder.png" alt="Profile Picture">
                                                     }
-
                                                 </div>
                                             </a>
                                             <div class="user-info">
@@ -259,7 +258,10 @@
                                                     }
 
                                                 </span>
-                                                <span class="time">@item.Date</span>
+                                                @{CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+                                                    string dt = item.Date.ToString("MMMM dd yyyy, ") + item.Date.ToString("t", culture);
+                                                }
+                                                <span class="time">@dt</span>
                                             </div>
                                         </div>
                                         <div class="post-dropdown">
@@ -268,7 +270,7 @@
                                             </div>
                                             <div class="post-dropdown-menu">
                                                 <div class="dropdown-content">
-                                                    @if (User.Identity.Name == item.User.UserName)
+                                                    @if (User.Identity.Name == item.User.UserName||Model.CurrentUserRole=="Admin" || Model.CurrentUserRole == "Moderator")
                                                     {
                                                         <a href="#" class="post-dropdown-item">
                                                             <div class="media">
@@ -279,7 +281,7 @@
                                                             </div>
                                                         </a>
                                                     }
-                                                    else
+                                                    @if(User.Identity.Name != item.User.UserName)
                                                     {
                                                         <div class="post-dropdown-item" data-toggle="modal"
                                                              data-target="#post-modal" data-postid="@item.Id">
@@ -340,8 +342,26 @@
                                     <div class="post-card-footer">
                                         <div class="actions">
                                             <div class="like">
-                                                <i class="far fa-heart prelike"></i>
-                                                <i class="fas fa-heart liked"></i>
+                                                @{ bool liked = false;}
+                                                
+                                                    @foreach (PostLike pl in item.PostLikes)
+                                                    {
+                                                        @if (pl.User.UserName == User.Identity.Name)
+                                                        {
+                                                            liked = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                    @if (liked)
+                                                    {
+                                                        <i class="far fa-heart prelike" data-postid="@item.Id" style="display:none;"></i>
+                                                        <i class="fas fa-heart liked" data-postid="@item.Id" style="display:block;"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="far fa-heart prelike" data-postid="@item.Id" style="display:block;"></i>
+                                                        <i class="fas fa-heart liked" data-postid="@item.Id" style="display:none;"></i>
+                                                    }
                                             </div>
                                             <div class="comment">
                                                 <a href="#">
@@ -369,7 +389,7 @@
                                             <div class="social-count">
                                                 <div class="likes-count">
                                                     <i class="far fa-heart"></i>
-                                                    <span>27</span>
+                                                    <span>@item.PostLikes.Count()</span>
                                                 </div>
                                                 <div class="comments-count">
                                                     <i class="far fa-comment"></i>

@@ -32,7 +32,7 @@ namespace Perivallo.Controllers
         }
 
         [Authorize]
-        [Route("{username}")]
+        [Route("p/{username}")]
         public async Task<IActionResult> Index(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -44,11 +44,13 @@ namespace Perivallo.Controllers
             {
                 return NotFound();
             }
+            User currentUser = await _userManager.GetUserAsync(User);
             AccountVM model = new AccountVM()
             {
                 User = user,
-                Posts = _db.Posts.Include(p => p.User).Include(p=>p.PostTaggedUsers).Include(p => p.PostImages).Where(p => p.UserId == user.Id).OrderByDescending(p => p.Id),
-                PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User)
+                Posts = _db.Posts.Include(p => p.User).Include(p=>p.PostTaggedUsers).Include(p=>p.PostLikes).Include(p => p.PostImages).Where(p => p.UserId == user.Id).OrderByDescending(p => p.Id),
+                PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
+                CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
             };
             int postCount = _db.Posts.Where(p => p.User == user).Count();
             ViewBag.PostCount = postCount;
@@ -162,7 +164,6 @@ namespace Perivallo.Controllers
         }
 
         [Authorize]
-        //[Route("{username}/[action]")]
         public async Task<IActionResult> Settings(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -234,7 +235,7 @@ namespace Perivallo.Controllers
         }
 
         [Authorize]
-        [Route("{username}/[action]")]
+        [Route("p/oldest/{username}")]
         public async Task<IActionResult> Oldest(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -246,15 +247,35 @@ namespace Perivallo.Controllers
             {
                 return NotFound();
             }
+            User currentUser = await _userManager.GetUserAsync(User);
             AccountVM model = new AccountVM()
             {
                 User = user,
                 Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Where(p => p.UserId == user.Id),
-                PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User)
+                PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
+                CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
             };
             int postCount = _db.Posts.Where(p => p.User == user).Count();
             ViewBag.PostCount = postCount;
             return View(model);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> RemoveCover()
+        {
+            User user = await _userManager.GetUserAsync(User);
+            user.Cover = null;
+            await _userManager.UpdateAsync(user);
+            return RedirectToAction("Settings", "Account", new { username = user.UserName });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> RemoveAvatar()
+        {
+            User user = await _userManager.GetUserAsync(User);
+            user.Avatar = null;
+            await _userManager.UpdateAsync(user);
+            return RedirectToAction("Settings", "Account", new { username = user.UserName });
         }
     }
 }

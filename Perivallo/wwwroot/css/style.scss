@@ -193,7 +193,6 @@ body {
                                 }
                             }
                             .search-results-list {
-                                display: none;
                                 max-height: 350px;
                                 overflow: auto;
                                 position: absolute;
@@ -3388,6 +3387,37 @@ body {
             }
         }
         .s-row {
+            .empty-search-wrapper{
+                padding-top: 140px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .icon-wrapper{
+                    position: relative;
+                    .user-icon{
+                        font-size: 100px;
+                        color: #7a7a7a;
+                    }
+                    .magnifier-icon{
+                        position: absolute;
+                        font-size: 60px;
+                        top: 0;
+                        right: 0;
+                        color: #77a6df;
+                        animation: circleAround 2s linear infinite;
+                    }
+                }
+                .text{
+                    margin-top: 10px;
+                    h3{
+                        margin: 0;
+                        color: #4a4a4a;
+                        font-size: 26px;
+                        font-family: "Montserrat", sans-serif;
+                    }
+                }
+            }
             .search-results-count {
                 color: #999;
                 font-size: 1rem;
@@ -4818,4 +4848,9 @@ body {
         transform: scale(0);
         opacity: 0;
     }
+}
+
+@keyframes circleAround {
+    from { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
 }

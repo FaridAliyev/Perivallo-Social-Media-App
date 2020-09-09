@@ -216,7 +216,6 @@ body {
 }
 
 #navbar .container .row .search-bar form .form-group .search-field-wrapper .search-results-list {
-  display: none;
   max-height: 350px;
   overflow: auto;
   position: absolute;
@@ -4477,6 +4476,51 @@ body {
   transition: color 0.3s;
 }
 
+#search .container .s-row .empty-search-wrapper {
+  padding-top: 140px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#search .container .s-row .empty-search-wrapper .icon-wrapper {
+  position: relative;
+}
+
+#search .container .s-row .empty-search-wrapper .icon-wrapper .user-icon {
+  font-size: 100px;
+  color: #7a7a7a;
+}
+
+#search .container .s-row .empty-search-wrapper .icon-wrapper .magnifier-icon {
+  position: absolute;
+  font-size: 60px;
+  top: 0;
+  right: 0;
+  color: #77a6df;
+  -webkit-animation: circleAround 2s linear infinite;
+          animation: circleAround 2s linear infinite;
+}
+
+#search .container .s-row .empty-search-wrapper .text {
+  margin-top: 10px;
+}
+
+#search .container .s-row .empty-search-wrapper .text h3 {
+  margin: 0;
+  color: #4a4a4a;
+  font-size: 26px;
+  font-family: "Montserrat", sans-serif;
+}
+
 #search .container .s-row .search-results-count {
   color: #999;
   font-size: 1rem;
@@ -6021,6 +6065,28 @@ body {
     -webkit-transform: scale(0);
     transform: scale(0);
     opacity: 0;
+  }
+}
+
+@-webkit-keyframes circleAround {
+  from {
+    -webkit-transform: rotate(0deg) translateX(40px) rotate(0deg);
+            transform: rotate(0deg) translateX(40px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translateX(40px) rotate(-360deg);
+            transform: rotate(360deg) translateX(40px) rotate(-360deg);
+  }
+}
+
+@keyframes circleAround {
+  from {
+    -webkit-transform: rotate(0deg) translateX(40px) rotate(0deg);
+            transform: rotate(0deg) translateX(40px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translateX(40px) rotate(-360deg);
+            transform: rotate(360deg) translateX(40px) rotate(-360deg);
   }
 }
 /*# sourceMappingURL=style.css.map */

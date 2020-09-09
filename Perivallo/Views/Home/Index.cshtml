@@ -1,4 +1,5 @@
 ﻿@model HomeVM
+@using System.Globalization
 @{
     ViewData["Title"] = "Perivallo";
 }
@@ -153,14 +154,16 @@
                                                     <span>@@</span><a asp-controller="Account" asp-action="Index" asp-route-username="@ptu.User.UserName" class="tagged-user">@ptu.User.UserName</a>
                                                 }
                                             }
-                                            @if (item.Location!=null)
-                                             {
+                                            @if (item.Location != null)
+                                            {
                                                 <span>, in</span> <span class="post-location">@item.Location</span>
-                                             }
-                                            
+                                            }
                                         </span>
-                                        <span class="time">@item.Date</span>
-                                    </div>
+                                        @{CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+                                        string dt = item.Date.ToString("MMMM dd yyyy, ") + item.Date.ToString("t", culture);
+                                        }
+                                            <span class="time">@dt</span>
+                                        </div>
                                 </div>
                                 <div class="post-dropdown">
                                     <div class="button">
@@ -168,7 +171,7 @@
                                     </div>
                                     <div class="post-dropdown-menu">
                                         <div class="dropdown-content">
-                                            @if (User.Identity.Name == item.User.UserName)
+                                            @if (User.Identity.Name == item.User.UserName || Model.Role == "Admin" || Model.Role == "Moderator")
                                             {
                                                 <a href="#" class="post-dropdown-item">
                                                     <div class="media">
@@ -179,7 +182,7 @@
                                                     </div>
                                                 </a>
                                             }
-                                            else
+                                            @if (User.Identity.Name != item.User.UserName)
                                             {
                                                 <div class="post-dropdown-item" data-toggle="modal"
                                                      data-target="#post-modal" data-postid="@item.Id">
@@ -221,7 +224,6 @@
                                     }
                                     else
                                     {
-
                                         <div class="owl-carousel owl-theme post-owl-carousel">
                                             @foreach (PostImage pi in item.PostImages)
                                             {
@@ -242,8 +244,26 @@
                             <div class="post-card-footer">
                                 <div class="actions">
                                     <div class="like">
-                                        <i class="far fa-heart prelike"></i>
-                                        <i class="fas fa-heart liked"></i>
+                                        @{ bool liked = false;}
+
+                                        @foreach (PostLike pl in item.PostLikes)
+                                        {
+                                            @if (pl.UserId == Model.User.Id)
+                                            {
+                                                liked = true;
+                                                break;
+                                            }
+                                        }
+                                        @if (liked)
+                                        {
+                                            <i class="far fa-heart prelike" data-postid="@item.Id" style="display:none;"></i>
+                                            <i class="fas fa-heart liked" data-postid="@item.Id" style="display:block;"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="far fa-heart prelike" data-postid="@item.Id" style="display:block;"></i>
+                                            <i class="fas fa-heart liked" data-postid="@item.Id" style="display:none;"></i>
+                                        }
                                     </div>
                                     <div class="comment">
                                         <a href="#">
@@ -271,7 +291,7 @@
                                     <div class="social-count">
                                         <div class="likes-count">
                                             <i class="far fa-heart"></i>
-                                            <span>27</span>
+                                            <span>@item.PostLikes.Count()</span>
                                         </div>
                                         <div class="comments-count">
                                             <i class="far fa-comment"></i>
@@ -346,16 +366,6 @@
                                 <img src="img/profile-placeholder.png" alt="Profile picture">
                                 <div class="page-meta">
                                     <span>Sadiq Əliyev</span>
-                                    <span>3 mutual friend(s)</span>
-                                </div>
-                                <div class="add-friend">
-                                    <button type="button" class="follow-button action-btn">Follow</button>
-                                </div>
-                            </div>
-                            <div class="add-friend-block">
-                                <img src="img/profile-placeholder.png" alt="Profile picture">
-                                <div class="page-meta">
-                                    <span>Kamil Zeynallı</span>
                                     <span>3 mutual friend(s)</span>
                                 </div>
                                 <div class="add-friend">

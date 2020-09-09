@@ -1,4 +1,5 @@
 ﻿@model AccountVM
+@using System.Globalization;
 @{
     ViewData["Title"] = "@(" + Model.User.UserName + ") | Perivallo";
 }
@@ -22,7 +23,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="left-side-wrapper">
                         <div class="profile-avatar">
-                            @if (Model.User.Cover == null)
+                            @if (Model.User.Avatar == null)
                             {
                                 <img src="~/img/profile-placeholder.png" alt="Profile Picture">
                             }
@@ -90,8 +91,7 @@
                         </div>
                         <div class="stats">
                             <span>@ViewBag.PostCount Posts</span>
-                            <span><a href="#">12K Followers</a></span>
-                            <span><a href="#">104 Following</a></span>
+                            <span><a href="#">12K Friends</a></span>
                         </div>
                         <div class="bio">
                             <h4>@Model.User.Name</h4>
@@ -236,7 +236,6 @@
                                                     {
                                                         <img src="~/img/profile-placeholder.png" alt="Profile Picture">
                                                     }
-
                                                 </div>
                                             </a>
                                             <div class="user-info">
@@ -259,7 +258,10 @@
                                                     }
 
                                                 </span>
-                                                <span class="time">@item.Date</span>
+                                                @{CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+                                                    string dt = item.Date.ToString("MMMM dd yyyy, ") + item.Date.ToString("t", culture);
+                                                }
+                                                <span class="time">@dt</span>
                                             </div>
                                         </div>
                                         <div class="post-dropdown">
@@ -268,7 +270,7 @@
                                             </div>
                                             <div class="post-dropdown-menu">
                                                 <div class="dropdown-content">
-                                                    @if (User.Identity.Name == item.User.UserName)
+                                                    @if (User.Identity.Name == item.User.UserName || Model.CurrentUserRole == "Admin" || Model.CurrentUserRole == "Moderator")
                                                     {
                                                         <a href="#" class="post-dropdown-item">
                                                             <div class="media">
@@ -279,7 +281,7 @@
                                                             </div>
                                                         </a>
                                                     }
-                                                    else
+                                                    @if (User.Identity.Name != item.User.UserName)
                                                     {
                                                         <div class="post-dropdown-item" data-toggle="modal"
                                                              data-target="#post-modal" data-postid="@item.Id">

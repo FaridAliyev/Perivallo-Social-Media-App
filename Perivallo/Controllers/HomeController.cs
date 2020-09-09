@@ -30,14 +30,14 @@ namespace Perivallo.Controllers
         public async Task<IActionResult> Index()
         {
             User currentUser = await _userManager.GetUserAsync(User);
-            //List<Friend> friend = _db.Friends.Where(f => f.FriendFrom == currentUser || f.FriendTo == currentUser).ToList();
             HomeVM model = new HomeVM();
             if (User.Identity.IsAuthenticated)
             {
-                model.User = await _userManager.FindByNameAsync(User.Identity.Name);
+                model.User = currentUser;
             }
             model.Users = _db.Users;
-            model.Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Where(p => p.UserId == currentUser.Id).OrderByDescending(p => p.Id);
+            model.Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Include(p=>p.PostLikes).Where(p => p.UserId == currentUser.Id).OrderByDescending(p => p.Id);
+            model.Role = (await _userManager.GetRolesAsync(currentUser))[0];
             return View(model);
         }
 
@@ -88,6 +88,67 @@ namespace Perivallo.Controllers
             _db.Posts.Add(post);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Search(string term)
+        {
+            List<User> users = _userManager.Users.Where(u => u.Deleted == false).Take(20).ToList();
+            List<UserVM> model = new List<UserVM>();
+            foreach (User user in users)
+            {
+                if (user.UserName.ToLower().Contains(term.ToLower()) || user.Name.ToLower().Contains(term.ToLower()))
+                {
+                    model.Add(new UserVM
+                    {
+                        Name = user.Name,
+                        Username = user.UserName,
+                        Avatar=user.Avatar
+                    });
+                }
+            }
+            return PartialView("_UserSearch", model);
+        }
+
+        public async Task<int> PostLike(int? id)
+        {
+            if (id == null)
+            {
+                return 0;
+            }
+            Post post = await _db.Posts.FindAsync(id);
+            if (post == null)
+            {
+                return 0;
+            }
+            User currentUser = await _userManager.GetUserAsync(User);
+            PostLike postLike = new PostLike()
+            {
+                UserId = currentUser.Id,
+                PostId = (int)id
+            };
+            _db.PostLikes.Add(postLike);
+            await _db.SaveChangesAsync();
+            int newLikesCount = _db.PostLikes.Where(p => p.PostId == id).Count();
+            return newLikesCount;
+        }
+
+        public async Task<int> PostDislike(int? id)
+        {
+            if (id == null)
+            {
+                return -1;
+            }
+            Post post = await _db.Posts.FindAsync(id);
+            if (post == null)
+            {
+                return -1;
+            }
+            User currentUser = await _userManager.GetUserAsync(User);
+            PostLike postLike = _db.PostLikes.Where(p => p.UserId == currentUser.Id && p.PostId == id).FirstOrDefault();
+            _db.PostLikes.Remove(postLike);
+            await _db.SaveChangesAsync();
+            int newLikesCount = _db.PostLikes.Where(p => p.PostId == id).Count();
+            return newLikesCount;
         }
     }
 }

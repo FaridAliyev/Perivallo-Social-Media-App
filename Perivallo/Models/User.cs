@@ -22,8 +22,7 @@ namespace Perivallo.Models
         public DateTime RegDate { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<PostTaggedUser> PostTaggedUsers { get; set; }
-        public virtual ICollection<Friend> FriendFroms { get; set; }
-        public virtual ICollection<Friend> FriendTos { get; set; }
+        public ICollection<PostLike> PostLikes { get; set; }
         public User()
         {
             Private = false;

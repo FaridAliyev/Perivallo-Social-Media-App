@@ -1,0 +1,56 @@
+﻿@model IEnumerable<UserVM>
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<main id="search">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-12">
+                <div class="sp-search-wrapper">
+                    <form action="/Search/Filter">
+                        <input type="text" name="search" placeholder="Search..." autocomplete="off">
+                        <div class="s-search-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center s-row">
+            <div class="col-lg-6 col-12">
+                <span class="search-results-count">@Model.Count() result(s)</span>
+                @if (Model.Count() > 0)
+                {
+                    @foreach (UserVM item in Model)
+                    {
+                        <div class="search-res-card-wrapper">
+                            <div class="search-res-card">
+                                <div class="avatar-wrapper">
+                                    <a asp-controller="Account" asp-action="Index" asp-route-username="@item.Username">
+                                        @if (item.Avatar == null)
+                                        {
+                                            <img src="~/img/profile-placeholder.png" alt="Profile">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/img/@item.Avatar" alt="Profile">
+                                        }
+                                    </a>
+                                </div>
+                                <div class="search-res-meta">
+                                    <a asp-controller="Account" asp-action="Index" asp-route-username="@item.Username" class="username">@item.Username</a>
+                                    <p class="name">@item.Name</p>
+                                </div>
+                                <div class="button-wrapper">
+                                    <button type="button" class="action-btn follow-button">Follow</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</main>
+

@@ -10,6 +10,7 @@ namespace Perivallo.ViewModels
     {
         public User User { get; set; }
         public Post Post { get; set; }
+        public string Role { get; set; }
         public IEnumerable<User> Users { get; set; }
         public IEnumerable<Post> Posts { get; set; }
     }

@@ -16,5 +16,6 @@ namespace Perivallo.Models
         public virtual User User { get; set; }
         public ICollection<PostImage> PostImages { get; set; }
         public ICollection<PostTaggedUser> PostTaggedUsers { get; set; }
+        public ICollection<PostLike> PostLikes { get; set; }
     }
 }

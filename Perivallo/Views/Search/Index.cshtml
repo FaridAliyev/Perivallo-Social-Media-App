@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+}
+
+<main id="search">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-12">
+                <div class="sp-search-wrapper">
+                    <form action="/Search/Filter">
+                        <input type="text" name="search" placeholder="Search..." autocomplete="off">
+                        <div class="s-search-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center s-row">
+            <div class="col-lg-6 col-12">
+                <div class="empty-search-wrapper">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-users user-icon"></i>
+                        <i class="fas fa-search magnifier-icon"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Search for users...</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
