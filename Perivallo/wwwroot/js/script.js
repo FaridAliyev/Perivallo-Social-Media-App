@@ -288,7 +288,7 @@ $(document).ready(function () {
                 if (response != 0) {
                     likebtn.next().show();
                     likebtn.hide();
-                    likebtn.parent().parent().next().children().eq(2).children().eq(0).children().eq(1).text(response);
+                    likebtn.parent().parent().next().children().eq(0).children().eq(0).children().eq(1).text(response);
                 }
             }
         });
@@ -305,7 +305,7 @@ $(document).ready(function () {
                 if (response != -1) {
                     dislikebtn.prev().show();
                     dislikebtn.hide();
-                    dislikebtn.parent().parent().next().children().eq(2).children().eq(0).children().eq(1).text(response);
+                    dislikebtn.parent().parent().next().children().eq(0).children().eq(0).children().eq(1).text(response);
                 }
             }
         });

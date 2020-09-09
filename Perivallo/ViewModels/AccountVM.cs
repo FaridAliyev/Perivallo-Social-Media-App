@@ -12,5 +12,6 @@ namespace Perivallo.ViewModels
         public string CurrentUserRole { get; set; }
         public IEnumerable<Post> Posts { get; set; }
         public IEnumerable<PostTaggedUser> PostTaggedUsers { get; set; }
+        public IEnumerable<User> Friends { get; set; }
     }
 }

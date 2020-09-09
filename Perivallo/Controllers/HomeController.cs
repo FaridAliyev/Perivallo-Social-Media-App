@@ -35,9 +35,45 @@ namespace Perivallo.Controllers
             {
                 model.User = currentUser;
             }
+            List<User> friends = new List<User>();
+            foreach (Friend item in _db.Friends.Include(f=>f.FriendTo).Include(f=>f.FriendFrom).Where(f=>f.Accepted))
+            {
+                if (item.FriendFrom==currentUser)
+                {
+                    friends.Add(item.FriendTo);
+                }
+                else if (item.FriendTo == currentUser)
+                {
+                    friends.Add(item.FriendFrom);
+                }
+                friends.Add(currentUser);
+            }
+            List<Post> posts = new List<Post>();
+            foreach (User friend in friends)
+            {
+                posts.AddRange(_db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Include(p => p.PostLikes).Where(p => p.User == friend));
+            }
+            List<User> suggestedfriends = new List<User>();
+            bool isFriend = false;
+            foreach (User u in _db.Users.Include(u=>u.Posts))
+            {
+                isFriend = false;
+                foreach (User f in friends)
+                {
+                    if (u==f)
+                    {
+                        isFriend = true;
+                    }
+                }
+                if (!isFriend)
+                {
+                    suggestedfriends.Add(u);
+                }
+            }
             model.Users = _db.Users;
-            model.Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Include(p=>p.PostLikes).Where(p => p.UserId == currentUser.Id).OrderByDescending(p => p.Id);
+            model.Posts = posts.OrderByDescending(f=>f.Date);
             model.Role = (await _userManager.GetRolesAsync(currentUser))[0];
+            model.SuggestedUsers = suggestedfriends.OrderByDescending(s=>s.Posts.Count());
             return View(model);
         }
 
@@ -149,6 +185,52 @@ namespace Perivallo.Controllers
             await _db.SaveChangesAsync();
             int newLikesCount = _db.PostLikes.Where(p => p.PostId == id).Count();
             return newLikesCount;
+        }
+
+        public async Task<IActionResult> DeletePost(int? id,string returnUrl)
+        {
+            if (id==null)
+            {
+                return NotFound();
+            }
+            Post post = await _db.Posts.FindAsync(id);
+            if (post==null)
+            {
+                return NotFound();
+            }
+            User currentUser = await _userManager.GetUserAsync(User);
+            string currentUserRole = (await _userManager.GetRolesAsync(currentUser))[0];
+            if (post.User!=currentUser)
+            {
+                if (currentUserRole != "Admin" && currentUserRole!="Moderator")
+                {
+                    return NotFound();
+                }
+            }
+            foreach (PostLike pl in _db.PostLikes)
+            {
+                if (pl.PostId==post.Id)
+                {
+                    _db.PostLikes.Remove(pl);
+                }
+            }
+            foreach (PostImage pi in _db.PostImages)
+            {
+                if (pi.PostId==post.Id)
+                {
+                    _db.PostImages.Remove(pi);
+                }
+            }
+            foreach (PostTaggedUser ptu in _db.PostTaggedUsers)
+            {
+                if (ptu.PostId==post.Id)
+                {
+                    _db.PostTaggedUsers.Remove(ptu);
+                }
+            }
+            _db.Posts.Remove(post);
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
         }
     }
 }

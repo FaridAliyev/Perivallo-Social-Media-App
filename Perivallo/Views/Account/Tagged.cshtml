@@ -1,117 +1,15 @@
-﻿@model HomeVM
+﻿@model AccountVM
 @using System.Globalization
 @{
-    ViewData["Title"] = "Perivallo";
+    ViewData["Title"] = "Tagged Posts";
 }
 
-<div class="app-overlay"></div>
-
-<!-- main start -->
-
-<main id="main">
+<main id="posts">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-8 col-md-12">
-                <div class="compose-card">
-                    <div class="header">
-                        <div class="content-wrapper">
-                            <i class="fas fa-pencil-alt pen-icon"></i>
-                            <span>Publish</span>
-                            <div class="close-publish"><i class="fas fa-times"></i></div>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <form method="post" enctype="multipart/form-data">
-                            <div class="compose">
-                                <div class="compose-form">
-                                    @if (Model.User.Avatar != null)
-                                    {
-                                        <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
-                                    }
-                                    <div class="control">
-                                        <textarea asp-for="@Model.Post.Text" id="publish" class="publish" rows="3"
-                                                  placeholder="Write something..."></textarea>
-                                    </div>
-                                </div>
-                                <div class="location-suboption">
-                                    <div class="location-wrapper">
-                                        <input asp-for="@Model.Post.Location" placeholder="Where are you now?">
-                                        <div class="icon">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </div>
-                                        <div class="close-icon">
-                                            <i class="fas fa-times"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="link-suboption">
-                                    <div class="link-wrapper">
-                                        <input asp-for="@Model.Post.Link" id="link" placeholder="Enter the link URL">
-                                        <div class="icon">
-                                            <i class="fas fa-link"></i>
-                                        </div>
-                                        <div class="close-icon">
-                                            <i class="fas fa-times"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tag-suboption">
-                                    <div class="tag-wrapper">
-                                        <select class="js-example-basic-multiple" name="tags"
-                                                multiple="multiple">
-                                            @foreach (User item in Model.Users)
-                                            {
-                                                if (item.UserName != User.Identity.Name)
-                                                {
-                                                    <option value="@item.Id">@item.UserName</option>
-                                                }
-                                            }
-                                        </select>
-                                        <div class="close-icon">
-                                            <i class="fas fa-times"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="compose-options">
-                                <div class="compose-option">
-                                    <i class="fas fa-camera"></i>
-                                    <span>Media</span>
-                                    <input name="PostFiles" id="publish-input" type="file" accept="image/*" multiple>
-                                </div>
-                                <div class="compose-option tag-option">
-                                    <i class="fas fa-at"></i>
-                                    <span>Tag friends</span>
-                                </div>
-                                <div class="compose-option location-option">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>Location</span>
-                                </div>
-                                <div class="compose-option link-option">
-                                    <i class="fas fa-link"></i>
-                                    <span>Link</span>
-                                </div>
-                            </div>
-                            <div class="hidden-preview">
-                                <div class="preview-wrapper">
-                                    <h6>Your selected images will appear here</h6>
-                                </div>
-                                <div class="owl-carousel owl-theme publish-owl-carousel">
-
-                                </div>
-                                <div class="remove-button-wrapper">
-                                    <button type="button" class="btn btn-danger publish-remove mt-3">Remove All</button>
-                                </div>
-                            </div>
-                            <div class="publish-wrapper">
-                                <button type="submit" class="publish-button" disabled>Publish</button>
-                            </div>
-                        </form>
-                    </div>
+                <div class="posts-timeline-heading">
+                    <h4>Tagged Posts</h4>
                 </div>
                 @if (Model.Posts.Count() > 0)
                 {
@@ -140,9 +38,12 @@
                                                 @if (item.PostTaggedUsers.Count() > 0)
                                                 {
                                                     <span>, with</span>
-                                                    @foreach (PostTaggedUser ptu in item.PostTaggedUsers)
+                                                    @foreach (PostTaggedUser ptu in Model.PostTaggedUsers)
                                                     {
-                                                        <span>@@</span><a asp-controller="Account" asp-action="Index" asp-route-username="@ptu.User.UserName" class="tagged-user">@ptu.User.UserName</a>
+                                                        if (ptu.PostId == item.Id)
+                                                        {
+                                                            <span>@@</span><a asp-controller="Account" asp-action="Index" asp-route-username="@ptu.User.UserName" class="tagged-user">@ptu.User.UserName</a>
+                                                        }
                                                     }
                                                 }
                                                 @if (item.Location != null)
@@ -162,7 +63,7 @@
                                         </div>
                                         <div class="post-dropdown-menu">
                                             <div class="dropdown-content">
-                                                @if (User.Identity.Name == item.User.UserName || Model.Role == "Admin" || Model.Role == "Moderator")
+                                                @if (User.Identity.Name == item.User.UserName || Model.CurrentUserRole == "Admin" || Model.CurrentUserRole == "Moderator")
                                                 {
                                                     <a asp-controller="Home" asp-action="DeletePost" asp-route-id="@item.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="post-dropdown-item delete-post">
                                                         <div class="media">
@@ -229,6 +130,8 @@
                                             </div>
                                         }
                                     }
+
+
                                 </div>
                                 <div class="post-card-footer">
                                     <div class="actions">
@@ -283,108 +186,17 @@
                 }
                 else
                 {
-                    <div class="welcoming-card">
-                        <div class="content-wrapper">
-                            <div class="logo-wrapper">
-                                <img src="img/logo-blue.png" alt="">
-                            </div>
-                            <div class="text">
-                                <h1>Welcome To Perivallo!</h1>
-                                <p>To start with, add some friends to see their activities</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h3>No posts.</h3>
                 }
-            </div>
-            <div class="col-4 sidebar-res">
-                <div class="sidebar">
-                    <div class="profile-card">
-                        <div class="profile-wrapper">
-                            <a asp-controller="Account" asp-action="Index" asp-route-username="@Model.User.UserName">
-                                <div class="profile-pic">
-                                    @if (Model.User.Avatar != null)
-                                    {
-                                        <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
-                                    }
-                                </div>
-                            </a>
-                            <div class="user-info">
-                                <a asp-controller="Account" asp-action="Index" asp-route-username="@Model.User.UserName" class="username">@Model.User.UserName</a>
-                                <p class="name">@Model.User.Name</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="suggest-card">
-                        <div class="suggest-card-header">
-                            <h4>Suggested Friends</h4>
-                        </div>
-                        <div class="suggest-card-body">
-                            @foreach (User item in Model.SuggestedUsers)
-                            {
-                                <div class="add-friend-block">
-                                        @if (item.Avatar == null)
-                                        {
-                                            <img src="~/img/profile-placeholder.png" alt="Profile picture">
-                                        }
-                                        else
-                                        {
-                                            <img src="~/img/@item.Avatar" alt="Profile picture">
-                                        }
-                                        <div class="page-meta">
-                                            <a asp-controller="Account" asp-action="Index" asp-route-username="@item.UserName">@item.UserName</a>
-                                            <span>@item.Name</span>
-                                        </div>
-                                        <div class="add-friend">
-                                            <button type="button" class="follow-button action-btn">Add</button>
-                                        </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                    <div class="copyright">
-                        <span>© @DateTime.Now.Year PERIVALLO FROM FARID ALIYEV</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="post-modal" class="modal fade report-modal" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-danger">Report Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="input-wrapper">
-                                    <input type="text" placeholder="Tell us the reason...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary pm-send">Send</button>
-                </div>
             </div>
         </div>
     </div>
 </main>
 
-@section Scripts{ 
+@section Scripts{
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        
+
         $('.delete-post').click(function (e) {
             e.preventDefault();
             swal({
@@ -407,4 +219,3 @@
         })
     </script>
 }
-<!-- main end -->

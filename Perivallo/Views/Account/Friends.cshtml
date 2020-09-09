@@ -1,0 +1,148 @@
+﻿@model AccountVM
+@{
+    ViewData["Title"] = "Friends";
+}
+
+<main id="profile">
+    <section id="profile-cover">
+        <div class="profile-cover-wrapper">
+            @if (Model.User.Cover == null)
+            {
+                <img src="~/img/cover.png" alt="Cover">
+            }
+            else
+            {
+                <img src="~/img/@Model.User.Cover" alt="Cover">
+            }
+        </div>
+    </section>
+    <section id="profile-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="left-side-wrapper">
+                        <div class="profile-avatar">
+                            @if (Model.User.Avatar == null)
+                            {
+                                <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                            }
+                            else
+                            {
+                                <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="right-side-wrapper">
+                        <div class="head">
+                            <h2 class="username">@Model.User.UserName</h2>
+                            <div class="actions">
+                                <button type="button" class="action-btn follow-button">Follow</button>
+                                <div class="profile-dropdown">
+                                    <div class="profile-dropdown-button">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </div>
+                                    <div class="profile-dropdown-menu">
+                                        <div class="dropdown-content">
+                                            @if (User.Identity.Name != Model.User.UserName)
+                                            {
+                                                <a href="#" class="profile-dropdown-item">
+                                                    <div class="media">
+                                                        <i class="fas fa-ban"></i>
+                                                        <div class="media-content">
+                                                            <h3>Block</h3>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="profile-dropdown-item" data-toggle="modal" data-target="#user-modal" data-userid="3">
+                                                    <div class="media">
+                                                        <i class="far fa-flag"></i>
+                                                        <div class="media-content">
+                                                            <h3>Report</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" class="profile-dropdown-item">
+                                                    <div class="media">
+                                                        <i class="far fa-bookmark"></i>
+                                                        <div class="media-content">
+                                                            <h3>Saved</h3>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (User.Identity.Name == Model.User.UserName)
+                                {
+                                    <div class="profile-settings-button" data-toggle="modal"
+                                         data-target="#settings-modal">
+                                        <i class="fas fa-cog"></i>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="stats">
+                            <span>@ViewBag.PostCount Posts</span>
+                            <span><a asp-controller="Account" asp-action="Friends" asp-route-username="@Model.User.UserName">@ViewBag.FriendsCount Friends</a></span>
+                        </div>
+                        <div class="bio">
+                            <h4>@Model.User.Name</h4>
+                            @if (Model.User.About != null)
+                            {
+                                <p>
+                                    @Model.User.About
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="profile-followers">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="box-heading">
+                        <div class="text">
+                            <h3>Friends</h3>
+                        </div>
+                        @*<div class="heading-search">
+                            <input type="text" placeholder="Search Friends...">
+                            <div class="fsearch-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="row f-row">
+                @foreach (User item in Model.Friends)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <a asp-controller="Account" asp-action="Index" asp-route-username="@item.UserName" class="follower-item">
+                            <div class="avatar-wrapper">
+                                @if (item.Avatar == null)
+                                {
+                                    <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                }
+                                else
+                                {
+                                    <img src="~/img/@item.Avatar" alt="Profile Picture">
+                                }
+                            </div>
+                            <h3 class="username">@item.UserName</h3>
+                            <p class="name">@item.Name</p>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>

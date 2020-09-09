@@ -91,7 +91,7 @@
                         </div>
                         <div class="stats">
                             <span>@ViewBag.PostCount Posts</span>
-                            <span><a href="#">12K Friends</a></span>
+                            <span><a href="#">@ViewBag.FriendsCount Friends</a></span>
                         </div>
                         <div class="bio">
                             <h4>@Model.User.Name</h4>
@@ -177,12 +177,12 @@
                                 </div>
                                 <div class="pd-menu">
                                     <div class="pd-content">
-                                        <a class="pd-item" href="#">
+                                        <a class="pd-item" asp-controller="Account" asp-action="Tagged" asp-route-username="@Model.User.UserName">
                                             <div class="media">
                                                 <i class="fas fa-tag"></i>
                                                 <div class="media-content">
                                                     <h3>Tagged</h3>
-                                                    <small>Photos tagged in.</small>
+                                                    <small>Posts tagged in.</small>
                                                 </div>
                                             </div>
                                         </a>
@@ -230,7 +230,7 @@
                                                 <div class="profile-pic">
                                                     @if (item.User.Avatar != null)
                                                     {
-                                                        <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                                                        <img src="~/img/@item.User.Avatar" alt="Profile Picture">
                                                     }
                                                     else
                                                     {
@@ -356,18 +356,6 @@
                                             </div>
                                         </div>
                                         <div class="post-info">
-                                            <div class="likers-group">
-                                                <img src="img/profile-placeholder.png" alt="">
-                                                <img src="img/profile-placeholder.png" alt="">
-                                            </div>
-                                            <div class="likers-text">
-                                                <p>
-                                                    <a href="#">Milly</a>
-                                                    ,
-                                                    <a href="#">David</a>
-                                                </p>
-                                                <p>and 23 more liked this</p>
-                                            </div>
                                             <div class="social-count">
                                                 <div class="likes-count">
                                                     <i class="far fa-heart"></i>
@@ -421,7 +409,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="setting-button">
-                                        <a asp-controller="Account" asp-action="Settings" asp-route-username="@User.Identity.Name">Edit Profile</a>
+                                        <a asp-controller="Account" asp-action="Settings">Edit Profile</a>
                                     </div>
                                     <div class="setting-button">
                                         <a asp-controller="Account" asp-action="Logout">Log Out</a>
