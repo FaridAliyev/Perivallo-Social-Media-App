@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Perivallo.DAL;
 
 namespace Perivallo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200910143832_AddedCommentsTable")]
+    partial class AddedCommentsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,25 +152,6 @@ namespace Perivallo.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("Perivallo.Models.CommentLike", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CommentId");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CommentLikes");
                 });
 
             modelBuilder.Entity("Perivallo.Models.Friend", b =>
@@ -411,18 +394,6 @@ namespace Perivallo.Migrations
 
                     b.HasOne("Perivallo.Models.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Perivallo.Models.CommentLike", b =>
-                {
-                    b.HasOne("Perivallo.Models.Comment", "Comment")
-                        .WithMany("CommentLikes")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Perivallo.Models.User", "User")
-                        .WithMany("CommentLikes")
                         .HasForeignKey("UserId");
                 });
 

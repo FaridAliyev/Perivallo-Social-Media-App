@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Perivallo.Models
 {
-    public class PostLike
+    public class SavedPost
     {
         public int Id { get; set; }
         public string UserId { get; set; }

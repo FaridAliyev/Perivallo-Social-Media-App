@@ -61,7 +61,7 @@ namespace Perivallo.Controllers
             AccountVM model = new AccountVM()
             {
                 User = user,
-                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Where(p => p.UserId == user.Id).OrderByDescending(p => p.Id),
+                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Include(p=>p.SavedPosts).Include(p=>p.Comments).Where(p => p.UserId == user.Id).OrderByDescending(p => p.Id),
                 PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
                 CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
             };
@@ -333,14 +333,38 @@ namespace Perivallo.Controllers
             }
             List<PostTaggedUser> postTagged = _db.PostTaggedUsers.Where(p => p.UserId == user.Id).ToList();
             List<Post> posts = new List<Post>();
+            List<User> friends = new List<User>();
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted))
+            {
+                if (item.FriendFrom == user)
+                {
+                    friends.Add(item.FriendTo);
+                }
+                else if (item.FriendTo == user)
+                {
+                    friends.Add(item.FriendFrom);
+                }
+            }
+            bool isFriend = false;
+            foreach (User f in friends)
+            {
+                if (currentUser == f)
+                {
+                    isFriend = true;
+                }
+            }
+            if (user.Private && !isFriend && user != currentUser)
+            {
+                return NotFound();
+            }
             foreach (PostTaggedUser item in postTagged)
             {
-                posts.Add(_db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).FirstOrDefault(p=>p.Id==item.PostId));
+                posts.Add(_db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Include(p=>p.SavedPosts).Include(p=>p.Comments).FirstOrDefault(p=>p.Id==item.PostId));
             }
             AccountVM model = new AccountVM()
             {
                 User = user,
-                Posts = posts,
+                Posts = posts.OrderByDescending(p => p.Date),
                 PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
                 CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
             };
@@ -392,6 +416,30 @@ namespace Perivallo.Controllers
             int postCount = _db.Posts.Where(p => p.User == user).Count();
             ViewBag.PostCount = postCount;
             ViewBag.FriendsCount = friends.Count();
+            return View(model);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Saved()
+        {
+            User user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            List<Post> posts = new List<Post>();
+            List<SavedPost> savedPosts = _db.SavedPosts.Where(p => p.UserId == user.Id).ToList();
+            foreach (SavedPost item in savedPosts)
+            {
+                posts.Add(_db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Include(p=>p.SavedPosts).Include(p=>p.Comments).FirstOrDefault(p => p.Id == item.PostId));
+            }
+            AccountVM model = new AccountVM()
+            {
+                User = user,
+                Posts = posts.OrderByDescending(p=>p.Date),
+                PostTaggedUsers=_db.PostTaggedUsers.Include(p=>p.User),
+                CurrentUserRole = (await _userManager.GetRolesAsync(user))[0]
+            };
             return View(model);
         }
     }

@@ -39,3 +39,5 @@ E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Search\Index.cshtml.g.
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Search\Filter.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\Tagged.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\Friends.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\Saved.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Post\Details.cshtml.g.cs

@@ -47,15 +47,7 @@
                                         <div class="dropdown-content">
                                             @if (User.Identity.Name != Model.User.UserName)
                                             {
-                                                <a href="#" class="profile-dropdown-item">
-                                                    <div class="media">
-                                                        <i class="fas fa-ban"></i>
-                                                        <div class="media-content">
-                                                            <h3>Block</h3>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="profile-dropdown-item" data-toggle="modal" data-target="#user-modal" data-userid="3">
+                                                <div class="profile-dropdown-item" data-toggle="modal" data-target="#user-modal" data-userid="@Model.User.Id">
                                                     <div class="media">
                                                         <i class="far fa-flag"></i>
                                                         <div class="media-content">

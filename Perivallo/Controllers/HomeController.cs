@@ -51,7 +51,7 @@ namespace Perivallo.Controllers
             List<Post> posts = new List<Post>();
             foreach (User friend in friends)
             {
-                posts.AddRange(_db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Include(p => p.PostLikes).Where(p => p.User == friend));
+                posts.AddRange(_db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Include(p => p.PostLikes).Include(p=>p.SavedPosts).Include(p=>p.Comments).Where(p => p.User == friend));
             }
             List<User> suggestedfriends = new List<User>();
             bool isFriend = false;
@@ -92,6 +92,10 @@ namespace Perivallo.Controllers
                 {
                     return BadRequest();
                 }
+            }
+            if (string.IsNullOrEmpty(homeVM.Post.Text.Trim()) && string.IsNullOrEmpty(homeVM.Post.Link.Trim()) && postFiles.Length == 0)
+            {
+                return BadRequest();
             }
             Post post = homeVM.Post;
             post.Date = DateTime.Now;
@@ -187,7 +191,47 @@ namespace Perivallo.Controllers
             return newLikesCount;
         }
 
-        public async Task<IActionResult> DeletePost(int? id,string returnUrl)
+        public async Task<int> SavePost(int? id)
+        {
+            if (id == null)
+            {
+                return 0;
+            }
+            Post post = await _db.Posts.FindAsync(id);
+            if (post == null)
+            {
+                return 0;
+            }
+            User currentUser = await _userManager.GetUserAsync(User);
+            SavedPost saved = new SavedPost()
+            {
+                UserId = currentUser.Id,
+                PostId = (int)id
+            };
+            _db.SavedPosts.Add(saved);
+            await _db.SaveChangesAsync();
+            return 1;
+        }
+
+        public async Task<int> UnsavePost(int? id)
+        {
+            if (id == null)
+            {
+                return 0;
+            }
+            Post post = await _db.Posts.FindAsync(id);
+            if (post == null)
+            {
+                return 0;
+            }
+            User currentUser = await _userManager.GetUserAsync(User);
+            SavedPost saved = _db.SavedPosts.Where(p => p.UserId == currentUser.Id && p.PostId == id).FirstOrDefault();
+            _db.SavedPosts.Remove(saved);
+            await _db.SaveChangesAsync();
+            return 1;
+        }
+
+        public async Task<IActionResult> DeletePost(int? id)
         {
             if (id==null)
             {
@@ -200,7 +244,7 @@ namespace Perivallo.Controllers
             }
             User currentUser = await _userManager.GetUserAsync(User);
             string currentUserRole = (await _userManager.GetRolesAsync(currentUser))[0];
-            if (post.User!=currentUser)
+            if (post.UserId!=currentUser.Id)
             {
                 if (currentUserRole != "Admin" && currentUserRole!="Moderator")
                 {
@@ -228,7 +272,45 @@ namespace Perivallo.Controllers
                     _db.PostTaggedUsers.Remove(ptu);
                 }
             }
+            foreach (SavedPost sp in _db.SavedPosts)
+            {
+                if (sp.PostId==post.Id)
+                {
+                    _db.SavedPosts.Remove(sp);
+                }
+            }
+            foreach (Comment c in _db.Comments)
+            {
+                if (c.PostId == post.Id)
+                {
+                    _db.Comments.Remove(c);
+                }
+            }
             _db.Posts.Remove(post);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task<IActionResult> DeleteComment(int? id,string returnUrl)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Comment comment = await _db.Comments.FindAsync(id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            User currentUser = await _userManager.GetUserAsync(User);
+            string currentUserRole = (await _userManager.GetRolesAsync(currentUser))[0];
+            if (comment.UserId != currentUser.Id)
+            {
+                if (currentUserRole != "Admin" && currentUserRole != "Moderator")
+                {
+                    return NotFound();
+                }
+            }
+            _db.Comments.Remove(comment);
             await _db.SaveChangesAsync();
             return LocalRedirect(returnUrl);
         }

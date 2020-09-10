@@ -3647,6 +3647,7 @@ body {
 #post-details {
   padding-top: 100px;
   background: rgba(0, 0, 0, 0.6);
+  min-height: 100vh;
 }
 
 #post-details .container .row .feed-post {
@@ -4096,7 +4097,7 @@ body {
 }
 
 #post-details .container .row .feed-post .content-wrapper .comments-wrapper .comment {
-  padding: 16px 0;
+  padding-top: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4121,6 +4122,10 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+}
+
+#post-details .container .row .feed-post .content-wrapper .comments-wrapper .comment .comment-content {
+  width: 100%;
 }
 
 #post-details .container .row .feed-post .content-wrapper .comments-wrapper .comment .comment-content .comments-meta {

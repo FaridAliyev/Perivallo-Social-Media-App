@@ -65,7 +65,7 @@
                                             <div class="dropdown-content">
                                                 @if (User.Identity.Name == item.User.UserName || Model.CurrentUserRole == "Admin" || Model.CurrentUserRole == "Moderator")
                                                 {
-                                                    <a asp-controller="Home" asp-action="DeletePost" asp-route-id="@item.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="post-dropdown-item delete-post">
+                                                    <a asp-controller="Home" asp-action="DeletePost" asp-route-id="@item.Id" class="post-dropdown-item delete-post">
                                                         <div class="media">
                                                             <i class="far fa-trash-alt"></i>
                                                             <div class="media-content">
@@ -109,7 +109,7 @@
                                         @if (item.PostImages.Count() == 1)
                                         {
                                             <div class="post-image">
-                                                <a href="#">
+                                                <a asp-controller="Post" asp-action="Details" asp-route-id="@item.Id">
                                                     <img src="~/img/@item.PostImages.ElementAt(0).Image" alt="">
                                                 </a>
                                             </div>
@@ -121,7 +121,7 @@
                                                 {
                                                     <div class="item">
                                                         <div class="post-image">
-                                                            <a href="#">
+                                                            <a asp-controller="Post" asp-action="Details" asp-route-id="@item.Id">
                                                                 <img src="~/img/@pi.Image" alt="">
                                                             </a>
                                                         </div>
@@ -158,13 +158,31 @@
                                             }
                                         </div>
                                         <div class="comment">
-                                            <a href="#">
+                                            <a asp-controller="Post" asp-action="Details" asp-route-id="@item.Id">
                                                 <i class="far fa-comment"></i>
                                             </a>
                                         </div>
                                         <div class="bookmark">
-                                            <i class="far fa-bookmark prebookmark"></i>
-                                            <i class="fas fa-bookmark bookmarked"></i>
+                                            @{ bool saved = false;}
+
+                                            @foreach (SavedPost sp in item.SavedPosts)
+                                            {
+                                                @if (sp.UserId == Model.User.Id)
+                                                {
+                                                    saved = true;
+                                                    break;
+                                                }
+                                            }
+                                            @if (saved)
+                                            {
+                                                <i class="far fa-bookmark prebookmark" data-postid="@item.Id" style="display:none;"></i>
+                                                <i class="fas fa-bookmark bookmarked" data-postid="@item.Id" style="display:block;"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-bookmark prebookmark" data-postid="@item.Id" style="display:block;"></i>
+                                                <i class="fas fa-bookmark bookmarked" data-postid="@item.Id" style="display:none;"></i>
+                                            }
                                         </div>
                                     </div>
                                     <div class="post-info">
@@ -175,7 +193,7 @@
                                             </div>
                                             <div class="comments-count">
                                                 <i class="far fa-comment"></i>
-                                                <span>3</span>
+                                                <span>@item.Comments.Count()</span>
                                             </div>
                                         </div>
                                     </div>

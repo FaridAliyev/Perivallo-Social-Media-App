@@ -23,6 +23,9 @@ namespace Perivallo.Models
         public ICollection<Post> Posts { get; set; }
         public ICollection<PostTaggedUser> PostTaggedUsers { get; set; }
         public ICollection<PostLike> PostLikes { get; set; }
+        public ICollection<SavedPost> SavedPosts { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<CommentLike> CommentLikes { get; set; }
         public User()
         {
             Private = false;

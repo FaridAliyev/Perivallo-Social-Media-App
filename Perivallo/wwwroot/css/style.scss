@@ -2763,6 +2763,7 @@ body {
 #post-details {
     padding-top: 100px;
     background: rgba(0, 0, 0, 0.6);
+    min-height: 100vh;
     .container {
         .row {
             .feed-post {
@@ -3104,7 +3105,7 @@ body {
                             }
                         }
                         .comment {
-                            padding: 16px 0;
+                            padding-top: 10px;
                             display: flex;
                             align-items: flex-start;
                             .comment-left {
@@ -3122,6 +3123,7 @@ body {
                                 }
                             }
                             .comment-content {
+                                width: 100%;
                                 .comments-meta {
                                     position: relative;
                                     h4 {

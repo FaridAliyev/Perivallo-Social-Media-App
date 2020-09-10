@@ -13,18 +13,13 @@ namespace Perivallo.DAL
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-            {
-                relationship.DeleteBehavior = DeleteBehavior.Restrict;
-            }
-        }
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostImage> PostImages { get; set; }
         public DbSet<PostTaggedUser> PostTaggedUsers { get; set; }
         public DbSet<PostLike> PostLikes { get; set; }
         public DbSet<Friend> Friends { get; set; }
+        public DbSet<SavedPost> SavedPosts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<CommentLike> CommentLikes { get; set; }
     }
 }

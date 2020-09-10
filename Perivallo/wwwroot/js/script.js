@@ -312,13 +312,35 @@ $(document).ready(function () {
     });
 
     $('.prebookmark').click(function () {
-        $(this).next().show();
-        $(this).hide();
+        let savebtn = $(this);
+        let savedPostId = savebtn.data('postid');
+        $.ajax({
+            url: "/Home/SavePost?id=" + savedPostId,
+            type: "Get",
+            cache: true,
+            success: function (response) {
+                if (response != 0) {
+                    savebtn.next().show();
+                    savebtn.hide();
+                }
+            }
+        });
     });
 
     $('.bookmarked').click(function () {
-        $(this).prev().show();
-        $(this).hide();
+        let unsavebtn = $(this);
+        let unsavedPostId = unsavebtn.data('postid');
+        $.ajax({
+            url: "/Home/UnsavePost?id=" + unsavedPostId,
+            type: "Get",
+            cache: true,
+            success: function (response) {
+                if (response != 0) {
+                    unsavebtn.prev().show();
+                    unsavebtn.hide();
+                }
+            }
+        });
     });
 
     $('.post-owl-carousel').owlCarousel({
@@ -554,19 +576,35 @@ $(document).ready(function () {
 
     $('.comment-action').click(function () {
         if ($(this).hasClass('like') && !$(this).hasClass('like-active')) {
-            $(this).addClass('like-active');
-            $(this).next().removeClass('dislike-active');
+            let cmtlikebtn = $(this);
+            let likedCommentId = cmtlikebtn.data('commentid');
+            $.ajax({
+                url: "/Post/CommentLike?id=" + likedCommentId,
+                type: "Get",
+                cache: true,
+                success: function (response) {
+                    if (response != 0) {
+                        cmtlikebtn.addClass('like-active');
+                        cmtlikebtn.parent().prev().children().eq(0).children().eq(1).text(response);
+                    }
+                }
+            });
         }
         else if ($(this).hasClass('like') && $(this).hasClass('like-active')) {
-            $(this).removeClass('like-active');
-        }
-
-        if ($(this).hasClass('dislike') && !$(this).hasClass('dislike-active')) {
-            $(this).addClass('dislike-active');
-            $(this).prev().removeClass('like-active');
-        }
-        else if ($(this).hasClass('dislike') && $(this).hasClass('dislike-active')) {
-            $(this).removeClass('dislike-active');
+            let cmtdislikebtn = $(this);
+            let dislikedCommentId = cmtdislikebtn.data('commentid');
+            $.ajax({
+                url: "/Post/CommentDislike?id=" + dislikedCommentId,
+                type: "Get",
+                cache: true,
+                success: function (response) {
+                    if (response != -1) {
+                        cmtdislikebtn.removeClass('like-active');
+                        cmtdislikebtn.parent().prev().children().eq(0).children().eq(1).text(response);
+                    }
+                }
+            });
+            
         }
     });
 });

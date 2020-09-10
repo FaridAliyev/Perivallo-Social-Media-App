@@ -1,0 +1,413 @@
+﻿@model PostDetailsVM
+@using System.Globalization
+@{
+    ViewData["Title"] = "Post Details";
+}
+
+<main id="post-details">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-12">
+                <div class="feed-post">
+                    <div class="content-wrapper">
+                        <div class="post-card-header">
+                            <div class="user-block">
+                                <a class="pPL" asp-controller="Account" asp-action="Index" asp-route-username="@Model.Post.User.UserName">
+                                    <div class="profile-pic">
+                                        @if (@Model.Post.User.Avatar != null)
+                                        {
+                                            <img src="~/img/@Model.Post.User.Avatar" alt="Profile Picture">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                        }
+                                    </div>
+                                </a>
+                                <div class="user-info">
+                                    <span>
+                                        <a asp-controller="Account" asp-action="Index" asp-route-username="@Model.Post.User.UserName" class="username">@Model.Post.User.UserName</a>
+                                        @if (Model.Post.PostTaggedUsers.Count() > 0)
+                                        {
+                                            <span>, with</span>
+                                            @foreach (PostTaggedUser ptu in Model.PostTaggedUsers)
+                                            {
+                                                if (ptu.PostId == Model.Post.Id)
+                                                {
+                                                    <span>@@</span><a asp-controller="Account" asp-action="Index" asp-route-username="@ptu.User.UserName" class="tagged-user">@ptu.User.UserName</a>
+                                                }
+                                            }
+                                        }
+                                        @if (Model.Post.Location != null)
+                                        {
+                                            <span>, in</span> <span class="post-location">@Model.Post.Location</span>
+                                        }
+
+                                    </span>
+                                    @{CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+                                        string dt = Model.Post.Date.ToString("MMMM dd yyyy, ") + Model.Post.Date.ToString("t", culture);
+                                    }
+                                    <span class="time">@dt</span>
+                                </div>
+                            </div>
+                            <div class="post-dropdown">
+                                <div class="button">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </div>
+                                <div class="post-dropdown-menu">
+                                    <div class="dropdown-content">
+                                        @if (User.Identity.Name == Model.Post.User.UserName || Model.CurrentUserRole == "Admin" || Model.CurrentUserRole == "Moderator")
+                                        {
+                                            <a asp-controller="Home" asp-action="DeletePost" asp-route-id="@Model.Post.Id" class="post-dropdown-item delete-post">
+                                                <div class="media">
+                                                    <i class="far fa-trash-alt"></i>
+                                                    <div class="media-content">
+                                                        <h3>Delete</h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        }
+                                        @if (User.Identity.Name != Model.Post.User.UserName)
+                                        {
+                                            <div class="post-dropdown-item" data-toggle="modal"
+                                                 data-target="#post-modal" data-postid="@Model.Post.Id">
+                                                <div class="media">
+                                                    <i class="far fa-flag"></i>
+                                                    <div class="media-content">
+                                                        <h3>Report</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-card-body">
+                            @if (Model.Post.Text != null)
+                            {
+                                <div class="post-text">
+                                    <p>
+                                        @Model.Post.Text
+                                    </p>
+                                    @if (Model.Post.Link != null)
+                                    {
+                                        <a href="@Model.Post.Link">@Model.Post.Link</a>
+                                    }
+                                </div>
+                            }
+                            @if (Model.Post.PostImages.Count() > 0)
+                            {
+                                @if (Model.Post.PostImages.Count() == 1)
+                                {
+                                    <div class="post-image">
+                                        <a asp-controller="Post" asp-action="Details" asp-route-id="@Model.Post.Id">
+                                            <img src="~/img/@Model.Post.PostImages.ElementAt(0).Image" alt="">
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="owl-carousel owl-theme post-owl-carousel">
+                                        @foreach (PostImage pi in Model.Post.PostImages)
+                                        {
+                                            <div class="item">
+                                                <div class="post-image">
+                                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@Model.Post.Id">
+                                                        <img src="~/img/@pi.Image" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="post-card-footer">
+                            <div class="actions">
+                                <div class="like">
+                                    @{ bool liked = false;}
+
+                                    @foreach (PostLike pl in Model.Post.PostLikes)
+                                    {
+                                        @if (pl.User.UserName == User.Identity.Name)
+                                        {
+                                            liked = true;
+                                            break;
+                                        }
+                                    }
+                                    @if (liked)
+                                    {
+                                        <i class="far fa-heart prelike" data-postid="@Model.Post.Id" style="display:none;"></i>
+                                        <i class="fas fa-heart liked" data-postid="@Model.Post.Id" style="display:block;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-heart prelike" data-postid="@Model.Post.Id" style="display:block;"></i>
+                                        <i class="fas fa-heart liked" data-postid="@Model.Post.Id" style="display:none;"></i>
+                                    }
+                                </div>
+                                <div class="comment">
+                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@Model.Post.Id">
+                                        <i class="far fa-comment"></i>
+                                    </a>
+                                </div>
+                                <div class="bookmark">
+                                    @{ bool saved = false;}
+
+                                    @foreach (SavedPost sp in Model.Post.SavedPosts)
+                                    {
+                                        @if (sp.User.UserName == User.Identity.Name)
+                                        {
+                                            saved = true;
+                                            break;
+                                        }
+                                    }
+                                    @if (saved)
+                                    {
+                                        <i class="far fa-bookmark prebookmark" data-postid="@Model.Post.Id" style="display:none;"></i>
+                                        <i class="fas fa-bookmark bookmarked" data-postid="@Model.Post.Id" style="display:block;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-bookmark prebookmark" data-postid="@Model.Post.Id" style="display:block;"></i>
+                                        <i class="fas fa-bookmark bookmarked" data-postid="@Model.Post.Id" style="display:none;"></i>
+                                    }
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <div class="social-count">
+                                    <div class="likes-count">
+                                        <i class="far fa-heart"></i>
+                                        <span>@Model.Post.PostLikes.Count()</span>
+                                    </div>
+                                    <div class="comments-count">
+                                        <i class="far fa-comment"></i>
+                                        <span>@Model.Post.Comments.Count()</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-compose">
+                            <form method="post">
+                                <div class="control">
+                                    <textarea asp-for="@Model.Comment.Text" id="comment-publish" placeholder="Post a comment..."></textarea>
+                                </div>
+                                <div class="compose-controls">
+                                    @if (Model.User.Avatar == null)
+                                    {
+                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/@Model.User.Avatar" alt="Profile Picture">
+                                    }
+                                    <button type="submit" class="comment-post-button" disabled>Post Comment</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="comments-wrapper">
+                            <div class="comments-count">
+                                <h3>Comments (@Model.Post.Comments.Count())</h3>
+                            </div>
+                            @foreach (Comment comment in Model.Comments)
+                            {
+                                <div class="comment">
+                                    <div class="comment-left">
+                                        <div class="avatar-wrapper">
+                                            @if (comment.User.Avatar == null)
+                                            {
+                                                <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/img/@comment.User.Avatar" alt="Profile Picture">
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comments-meta">
+                                            <h4>
+                                                <a asp-controller="Account" asp-action="Index" asp-route-username="@comment.User.UserName" class="username">@comment.User.UserName</a>
+                                                @{
+                                                    string cmdt = comment.Date.ToString("MMM dd yyyy, ") + comment.Date.ToString("t", culture);
+                                                }
+                                                <small> · @cmdt</small>
+                                            </h4>
+                                            <p>@comment.Text</p>
+                                            <div class="comment-dropdown">
+                                                <div class="comment-dropdown-button">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </div>
+                                                <div class="comment-dropdown-menu">
+                                                    <div class="dropdown-content">
+                                                        @if (User.Identity.Name == comment.User.UserName || Model.CurrentUserRole == "Admin" || Model.CurrentUserRole == "Moderator")
+                                                        {
+                                                            <a asp-controller="Home" asp-action="DeleteComment" asp-route-id="@comment.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="comment-dropdown-item delete-comment">
+                                                                <div class="media">
+                                                                    <i class="far fa-trash-alt"></i>
+                                                                    <div class="media-content">
+                                                                        <h3>Delete</h3>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        }
+                                                        @if (User.Identity.Name != comment.User.UserName)
+                                                        {
+                                                            <div class="comment-dropdown-item" data-toggle="modal" data-target="#comment-modal" data-commentid="@comment.Id">
+                                                                <div class="media">
+                                                                    <i class="far fa-flag"></i>
+                                                                    <div class="media-content">
+                                                                        <h3>Report</h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment-stats-wrapper">
+                                            <div class="comment-stats">
+                                                <div class="likes">
+                                                    <i class="far fa-thumbs-up"></i>
+                                                    <span>@comment.CommentLikes.Count()</span>
+                                                </div>
+                                            </div>
+                                            <div class="comment-actions">
+                                                @{ bool commentLiked = false;}
+                                                @foreach (CommentLike cl in comment.CommentLikes)
+                                                {
+                                                    @if (cl.User.UserName == User.Identity.Name)
+                                                    {
+                                                        commentLiked = true;
+                                                        break;
+                                                    }
+                                                }
+                                                @if (commentLiked)
+                                                {
+                                                    <div class="comment-action like like-active" data-commentid="@comment.Id">
+                                                        <i class="far fa-thumbs-up"></i>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="comment-action like" data-commentid="@comment.Id">
+                                                        <i class="far fa-thumbs-up"></i>
+                                                    </div>
+                                                }
+                                                @*<div class="comment-action comment-icon">
+                                                        <i class="far fa-comment"></i>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="comment-modal" class="modal fade report-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Report Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="Tell us the reason...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary cm-send">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="post-modal" class="modal fade report-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Report Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="Tell us the reason...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary pm-send">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('.delete-post').click(function (e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this post!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("This post has been deleted!", {
+                            icon: "success",
+                        });
+                        location.href = $(this).attr('href');
+                    } else {
+                        swal("This post is safe!");
+                    }
+                });
+        });
+        $('.delete-comment').click(function (e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this comment!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("This comment has been deleted!", {
+                            icon: "success",
+                        });
+                        location.href = $(this).attr('href');
+                    } else {
+                        swal("This comment is safe!");
+                    }
+                });
+        });
+    </script>
+}

@@ -17,6 +17,8 @@
     <Compile Remove="Migrations\20200906212133_AddedFriendsTable.Designer.cs" />
     <Compile Remove="Migrations\20200909103131_AddedFriendsTable.cs" />
     <Compile Remove="Migrations\20200909103131_AddedFriendsTable.Designer.cs" />
+    <Compile Remove="Migrations\20200910143211_AddedCommentsTable.cs" />
+    <Compile Remove="Migrations\20200910143211_AddedCommentsTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
