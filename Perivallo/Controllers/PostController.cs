@@ -68,7 +68,7 @@ namespace Perivallo.Controllers
                 User = currentUser,
                 Post = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Include(p => p.SavedPosts).Include(p => p.Comments).FirstOrDefault(p => p.Id == id),
                 PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
-                Comments = _db.Comments.Include(c=>c.User).Include(c=>c.CommentLikes).Where(c => c.PostId == id).OrderByDescending(c => c.Date),
+                Comments = _db.Comments.Include(c=>c.User).Include(c=>c.CommentLikes).Where(c => c.PostId == id).OrderByDescending(c => c.CommentLikes.Count()),
                 CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
             };
             return View(model);
@@ -83,12 +83,25 @@ namespace Perivallo.Controllers
             {
                 return BadRequest();
             }
+            Post post = await _db.Posts.FindAsync(id);
             Comment comment = postDetailsVM.Comment;
             comment.Date = DateTime.Now;
             User currentUser = await _userManager.GetUserAsync(User);
             comment.UserId = currentUser.Id;
             comment.PostId = (int)id;
             _db.Comments.Add(comment);
+            if (currentUser.Id!=post.UserId)
+            {
+                Notification notification = new Notification()
+                {
+                    Date = DateTime.Now,
+                    NotificationFromId = currentUser.Id,
+                    NotificationToId = post.UserId,
+                    PostId = (int)id,
+                    NotificationTypeId = 3
+                };
+                _db.Notifications.Add(notification);
+            }
             await _db.SaveChangesAsync();
             return RedirectToAction("Details", "Post", new { id = id });
         }
@@ -110,6 +123,18 @@ namespace Perivallo.Controllers
                 UserId = currentUser.Id,
                 CommentId = (int)id
             };
+            if (currentUser.Id!=comment.UserId)
+            {
+                Notification notification = new Notification()
+                {
+                    Date = DateTime.Now,
+                    NotificationFromId = currentUser.Id,
+                    NotificationToId = comment.UserId,
+                    PostId = comment.PostId,
+                    NotificationTypeId = 2
+                };
+                _db.Notifications.Add(notification);
+            }
             _db.CommentLikes.Add(commentLike);
             await _db.SaveChangesAsync();
             int newLikesCount = _db.CommentLikes.Where(p => p.CommentId == id).Count();
@@ -129,6 +154,11 @@ namespace Perivallo.Controllers
             }
             User currentUser = await _userManager.GetUserAsync(User);
             CommentLike commentLike = _db.CommentLikes.Where(p => p.UserId == currentUser.Id && p.CommentId == id).FirstOrDefault();
+            if (currentUser.Id != comment.UserId)
+            {
+                Notification notification = _db.Notifications.Where(n => n.NotificationFromId == currentUser.Id && n.NotificationToId == comment.UserId && n.PostId == comment.PostId && n.NotificationTypeId == 2).FirstOrDefault();
+                _db.Notifications.Remove(notification);
+            }
             _db.CommentLikes.Remove(commentLike);
             await _db.SaveChangesAsync();
             int newLikesCount = _db.CommentLikes.Where(p => p.CommentId == id).Count();

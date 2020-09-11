@@ -39,7 +39,29 @@
                         <div class="head">
                             <h2 class="username">@Model.User.UserName</h2>
                             <div class="actions">
-                                <button type="button" class="action-btn follow-button">Follow</button>
+                                @if (Model.User.UserName != User.Identity.Name)
+                                {
+                                    if (ViewBag.IsFriend != 8)
+                                    {
+                                        if (ViewBag.OngoingRequest == 9)
+                                        {
+                                            <a asp-controller="Home" asp-action="RevertRequest" asp-route-id="@Model.User.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn requested-button">Requested</a>
+                                        }
+                                        else if (ViewBag.IncomingRequest == 10)
+                                        {
+                                            <a style="margin-right:5px" asp-controller="Home" asp-action="ConfirmRequest" asp-route-id="@Model.User.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn confirm-button">Confirm</a>
+                                            <a asp-controller="Home" asp-action="IgnoreRequest" asp-route-id="@Model.User.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn ignore-button">Ignore</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Home" asp-action="SendRequest" asp-route-id="@Model.User.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn follow-button">Add friend</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Home" asp-action="Unfriend" asp-route-id="@Model.User.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn follow-button">Unfriend</a>
+                                    }
+                                }
                                 <div class="profile-dropdown">
                                     <div class="profile-dropdown-button">
                                         <i class="fas fa-ellipsis-h"></i>
@@ -111,42 +133,40 @@
                 <div class="col-4 separator">
                     <div class="followed-by-wrapper">
                         <div class="box-heading">
-                            <h4>Followed By</h4>
+                            <h4>Friends with</h4>
                         </div>
-                        <div class="fb-cards-list">
-                            <div class="fb-card">
-                                <div class="fb-item">
-                                    <img src="img/profile-placeholder.png" alt="">
-                                    <div class="text-content">
-                                        <a class="username" href="#">_farid__aliyev_</a>
-                                        <span>48 mutual friend(s)</span>
-                                    </div>
-                                    <div class="button-wrapper">
-                                        <button type="button" class="action-btn follow-button">Follow</button>
-                                    </div>
-                                </div>
-                                <div class="fb-item">
-                                    <img src="img/profile-placeholder.png" alt="">
-                                    <div class="text-content">
-                                        <a class="username" href="#">_farid__aliyev_</a>
-                                        <span>48 mutual friend(s)</span>
-                                    </div>
-                                    <div class="button-wrapper">
-                                        <button type="button" class="action-btn follow-button">Follow</button>
-                                    </div>
-                                </div>
-                                <div class="fb-item">
-                                    <img src="img/profile-placeholder.png" alt="">
-                                    <div class="text-content">
-                                        <a class="username" href="#">_farid__aliyev_</a>
-                                        <span>48 mutual friend(s)</span>
-                                    </div>
-                                    <div class="button-wrapper">
-                                        <button type="button" class="action-btn follow-button">Follow</button>
-                                    </div>
+                        @if (Model.Friends.Count() > 0)
+                        {
+                            <div class="fb-cards-list">
+                                <div class="fb-card">
+                                    @foreach (User friend in Model.Friends)
+                                    {
+                                        <div class="fb-item">
+                                            @if (friend.Avatar == null)
+                                            {
+                                                <img src="~/img/profile-placeholder.png" alt="">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/img/@friend.Avatar" alt="">
+                                            }
+                                            <div class="text-content">
+                                                <a class="username" asp-controller="Account" asp-action="Index" asp-route-username="@friend.UserName">@friend.UserName</a>
+                                                <span>@friend.Name</span>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
-                        </div>
+                        }
+                        else if (Model.User.UserName != User.Identity.Name)
+                        {
+                            <h5 style="font-weight: normal">This user doesn't have any friends.</h5>
+                        }
+                        else
+                        {
+                            <h5 style="font-weight: normal">You don't have any friends.</h5>
+                        }
                     </div>
                     @if (Model.User.Private && ViewBag.IsFriend != 8 && User.Identity.Name != Model.User.UserName)
                     {
@@ -177,7 +197,8 @@
                                 </div>
                             </div>
                             <div class="photos">
-                                @{ int photoCount = 0;}
+                                @{ int photoCount = 0;
+                                    int photoStop = 0;}
                                 @foreach (Post item in Model.Posts)
                                 {
                                     @if (item.PostImages != null)
@@ -185,13 +206,25 @@
                                         photoCount++;
                                         @foreach (PostImage pi in item.PostImages)
                                         {
+                                            photoStop++;
                                             <img style="height: 86px!important" src="~/img/@pi.Image" alt="">
+                                            if (photoStop == 8)
+                                            {
+                                                break;
+                                            }
                                         }
                                     }
                                 }
                                 @if (photoCount == 0)
                                 {
-                                    <h5 style="font-weight: normal">This user hasn't posted any photos yet.</h5>
+                                    if (Model.User.UserName != User.Identity.Name)
+                                    {
+                                        <h5 style="font-weight: normal">This user hasn't posted any photos yet.</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5 style="font-weight: normal">You haven't posted any photos yet.</h5>
+                                    }
                                 }
                             </div>
                         </div>

@@ -58,90 +58,86 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="notification">
+                            <a asp-controller="Notification" asp-action="Index" class="notification">
                                 <i class="fas fa-bell nav-item-icon"></i>
-                                <!-- <i class="fas fa-circle new-icon"></i> -->
+                                @if (Model.FriendRequests.Count() > 0)
+                                {
+                                    <i class="fas fa-circle new-icon"></i>
+                                }
                             </a>
                             <ul class="notification-dropdown">
-                                <li class="follow-request-item">
-                                    <div class="follow-request-wrapper">
-                                        <div class="request-caption">
-                                            <h6>Follow Requests</h6>
+                                @if (Model.FriendRequests.Count() > 0)
+                                {
+                                    <li class="follow-request-item">
+                                        <div class="follow-request-wrapper">
+                                            <div class="request-caption">
+                                                <h6>Friend Requests(@Model.FriendRequests.Count())</h6>
+                                                <div class="button-wrapper">
+                                                    <a asp-controller="Home" asp-action="ConfirmAll" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn confirm-button">Confirm All</a>
+                                                    <a asp-controller="Home" asp-action="IgnoreAll" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn ignore-button">Ignore All</a>
+                                                </div>
+                                            </div>
+                                            @foreach (Friend item in Model.FriendRequests)
+                                            {
+                                                <div class="request-body">
+                                                    <a asp-controller="Account" asp-action="Index" asp-route-username="@item.FriendFrom.UserName">
+                                                        @if (item.FriendFrom.Avatar == null)
+                                                        {
+                                                            <img src="~/img/profile-placeholder.png" alt="Profile">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/img/@item.FriendFrom.Avatar" alt="Profile">
+                                                        }
+                                                    </a>
+                                                    <a asp-controller="Account" asp-action="Index" asp-route-username="@item.FriendFrom.UserName" class="username">@item.FriendFrom.UserName</a>
+                                                    <div class="action-buttons">
+                                                        <a asp-controller="Home" asp-action="ConfirmRequest" asp-route-id="@item.FriendFromId" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn confirm-button">Confirm</a>
+                                                        <a asp-controller="Home" asp-action="IgnoreRequest" asp-route-id="@item.FriendFromId" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn ignore-button">Ignore</a>
+                                                    </div>
+                                                </div>
+                                            }
                                         </div>
-                                        <div class="request-body">
-                                            <a href="#">
-                                                <img src="img/profile-placeholder.png" alt="Profile">
+                                    </li>
+                                }
+                                @if (Model.Notifications.Count() > 0)
+                                {
+                                    @foreach (Notification notification in Model.Notifications)
+                                    {
+                                        <li class="notification-item">
+                                            <a asp-controller="Post" asp-action="Details" asp-route-id="@notification.PostId">
+                                                <div class="notification-wrapper">
+                                                    <div class="noti-profile-pic">
+                                                        @if (notification.NotificationFrom.Avatar == null)
+                                                        {
+                                                            <img src="~/img/profile-placeholder.png" alt="Profile">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/img/@notification.NotificationFrom.Avatar" alt="Profile">
+                                                        }
+                                                    </div>
+                                                    <div class="text">
+                                                        <h6 class="username">@notification.NotificationFrom.UserName</h6>
+                                                        <p class="action">@notification.NotificationType.Text</p>
+                                                    </div>
+                                                </div>
                                             </a>
-                                            <a href="#" class="username">_farid__aliyev_</a>
-                                            <div class="action-buttons">
-                                                <button type="button"
-                                                        class="confirm-button action-btn">
-                                                    Confirm
-                                                </button>
-                                                <button type="button"
-                                                        class="ignore-button action-btn">
-                                                    Ignore
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="request-body">
-                                            <a href="#">
-                                                <img src="img/profile-placeholder.png" alt="Profile">
-                                            </a>
-                                            <a href="#" class="username">_farid__aliyev_</a>
-                                            <div class="action-buttons">
-                                                <button type="button"
-                                                        class="confirm-button action-btn">
-                                                    Confirm
-                                                </button>
-                                                <button type="button"
-                                                        class="ignore-button action-btn">
-                                                    Ignore
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notification-item">
-                                    <a href="#">
-                                        <div class="notification-wrapper">
-                                            <div class="noti-profile-pic">
-                                                <img src="img/profile-placeholder.png" alt="Profile">
-                                            </div>
-                                            <div class="text">
-                                                <h6 class="username">_farid__aliyev_</h6>
-                                                <p class="action">liked your photo</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-item">
-                                    <a href="#">
-                                        <div class="notification-wrapper">
-                                            <div class="noti-profile-pic">
-                                                <img src="img/profile-placeholder.png" alt="Profile">
-                                            </div>
-                                            <div class="text">
-                                                <h6 class="username">_farid__aliyev_</h6>
-                                                <p class="action">liked your photo</p>
-                                            </div>
-                                            <!-- <div class="image">
-                            <img src="img/profile-placeholder.png" alt="">
-                        </div> -->
-                                            <!-- <div class="button-wrapper">
-                            <button type="button" class="follow-button action-btn">Follow</button>
-                            <button type="button" class="following-button action-btn">Following</button>
-                            <button type="button" class="requested-button action-btn">Requested</button>
-                        </div> -->
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="see-all-item">
-                                    <a href="#" class="see-all">
-                                        See All <i class="fas fa-angle-double-right see-all-icon"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                                        </li>
+                                    }
+                                    <li class="see-all-item">
+                                        <a asp-controller="Notification" asp-action="Index" class="see-all">
+                                            See All <i class="fas fa-angle-double-right see-all-icon"></i>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li style="padding:10px;" class="notification-item text-center">
+                                        <h5 style="margin:0;">No notifications</h5>
+                                    </li>
+                                }
+                                </ul>
                             <div class="triangle"></div>
                         </li>
                         <li class="nav-item">

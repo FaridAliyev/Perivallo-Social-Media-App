@@ -1,0 +1,87 @@
+﻿@model NavbarVM
+@{
+    ViewData["Title"] = "Notifications";
+}
+
+<main id="notifications">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-12">
+                <div class="caption">
+                    <h3>Notifications</h3>
+                    <i class="fas fa-bell"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center n-row">
+            <div class="col-lg-6 col-12">
+                @if (Model.FriendRequests.Count() > 0)
+                {
+                        <div class="title-wrapper">
+                            <span class="fr-cap">Friend Requests(@Model.FriendRequests.Count())</span>
+                            <div class="button-wrapper">
+                                <a asp-controller="Home" asp-action="ConfirmAll" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn confirm-button">Confirm All</a>
+                                <a asp-controller="Home" asp-action="IgnoreAll" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn ignore-button">Ignore All</a>
+                            </div>
+                        </div>
+                        <ul class="fr-card">
+                            @foreach (Friend item in Model.FriendRequests)
+                            {
+                                <li class="fr-card-item">
+                                    <a asp-controller="Account" asp-action="Index" asp-route-username="@item.FriendFrom.UserName" class="avatar-wrapper">
+                                        @if (item.FriendFrom.Avatar == null)
+                                        {
+                                            <img src="~/img/profile-placeholder.png" alt="Profile">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/img/@item.FriendFrom.Avatar" alt="Profile">
+                                        }
+                                    </a>
+                                    <a asp-controller="Account" asp-action="Index" asp-route-username="@item.FriendFrom.UserName" class="username">@item.FriendFrom.UserName</a>
+                                    <div class="action-buttons">
+                                        <a asp-controller="Home" asp-action="ConfirmRequest" asp-route-id="@item.FriendFromId" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn confirm-button">Confirm</a>
+                                        <a asp-controller="Home" asp-action="IgnoreRequest" asp-route-id="@item.FriendFromId" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-btn ignore-button">Ignore</a>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                        }
+                        <span class="act-cap">Activity</span>
+                        @if (Model.Notifications.Count() > 0)
+                        {
+                            @foreach (Notification notification in Model.Notifications)
+                            {
+                                <div class="notification-card-wrapper">
+                                    <a asp-controller="Post" asp-action="Details" asp-route-id="@notification.PostId">
+                                        <div class="notification-card">
+                                            <div class="avatar-wrapper">
+                                                @if (notification.NotificationFrom.Avatar == null)
+                                                {
+                                                    <img src="~/img/profile-placeholder.png" alt="Profile">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/img/@notification.NotificationFrom.Avatar" alt="Profile">
+                                                }
+                                            </div>
+                                            <div class="notification-meta">
+                                                <p class="username">@notification.NotificationFrom.UserName</p>
+                                                <p class="action">@notification.NotificationType.Text</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="notification-card-wrapper text-center">
+                                <h5 style="margin:0;">No notifications</h5>
+                            </div>
+                        }
+                    </div>
+                </div>
+    </div>
+</main>
+

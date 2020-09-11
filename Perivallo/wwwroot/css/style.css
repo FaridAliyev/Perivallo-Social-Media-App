@@ -79,42 +79,39 @@ body {
 .action-btn {
   font-weight: 500;
   padding: 5px 9px;
-  outline: none !important;
   border-radius: 5px;
   text-align: center;
+  text-decoration: none !important;
 }
 
 .follow-button {
   background: #0095f6;
-  border: none !important;
-  color: rgba(var(--eca, 255, 255, 255), 1);
+  color: white !important;
 }
 
 .following-button {
   background: white;
   border: none;
-  border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
-  color: rgba(var(--f75, 38, 38, 38), 1);
+  border: 1px solid #dbdbdb !important;
+  color: #262626 !important;
 }
 
 .requested-button {
   background: white;
   border: none;
-  border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
-  color: rgba(var(--f75, 38, 38, 38), 1);
+  border: 1px solid #dbdbdb !important;
+  color: #262626 !important;
 }
 
 .confirm-button {
   background: #0095f6;
-  border: none !important;
-  color: rgba(var(--eca, 255, 255, 255), 1);
+  color: white !important;
 }
 
 .ignore-button {
   background: white;
-  border: none;
-  border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
-  color: rgba(var(--f75, 38, 38, 38), 1);
+  border: 1px solid #dbdbdb !important;
+  color: #262626 !important;
 }
 
 .post-dropdown-active {
@@ -436,8 +433,18 @@ body {
   padding: 10px;
 }
 
+#navbar .container .row .nav-items .navigation .nav-item .notification-dropdown .follow-request-item .follow-request-wrapper .request-caption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 #navbar .container .row .nav-items .navigation .nav-item .notification-dropdown .follow-request-item .follow-request-wrapper .request-caption h6 {
   font-weight: 600;
+}
+
+#navbar .container .row .nav-items .navigation .nav-item .notification-dropdown .follow-request-item .follow-request-wrapper .request-caption .button-wrapper {
+  margin-left: auto;
 }
 
 #navbar .container .row .nav-items .navigation .nav-item .notification-dropdown .follow-request-item .follow-request-wrapper .request-body {
@@ -4636,13 +4643,23 @@ body {
   margin-top: 10px;
 }
 
-#notifications .container .n-row .fr-cap {
+#notifications .container .n-row .title-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#notifications .container .n-row .title-wrapper .fr-cap {
   font-family: "Montserrat", sans-serif;
   color: #ff2400;
   font-size: 1rem;
-  margin-top: 10px;
-  margin-bottom: 3px;
   display: block;
+}
+
+#notifications .container .n-row .title-wrapper .button-wrapper {
+  margin-left: auto;
 }
 
 #notifications .container .n-row .fr-card {
@@ -4710,7 +4727,12 @@ body {
           box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card {
+#notifications .container .n-row .notification-card-wrapper a {
+  display: block;
+  text-decoration: none;
+}
+
+#notifications .container .n-row .notification-card-wrapper a .notification-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4722,17 +4744,13 @@ body {
           justify-content: center;
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card .avatar-wrapper {
+#notifications .container .n-row .notification-card-wrapper a .notification-card .avatar-wrapper {
   margin-right: 5px;
-}
-
-#notifications .container .n-row .notification-card-wrapper .notification-card .avatar-wrapper a {
-  display: block;
   height: 40px;
   width: 40px;
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card .avatar-wrapper a img {
+#notifications .container .n-row .notification-card-wrapper a .notification-card .avatar-wrapper img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -4740,12 +4758,12 @@ body {
      object-fit: cover;
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card .notification-meta {
+#notifications .container .n-row .notification-card-wrapper a .notification-card .notification-meta {
   margin-left: 5px;
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card .notification-meta .username {
-  text-decoration: none;
+#notifications .container .n-row .notification-card-wrapper a .notification-card .notification-meta .username {
+  margin: 0;
   font-size: 16px;
   color: #393a4f;
   font-size: 0.9rem;
@@ -4753,26 +4771,26 @@ body {
   line-height: 1.2;
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card .notification-meta .action {
+#notifications .container .n-row .notification-card-wrapper a .notification-card .notification-meta .action {
   margin: 0;
   color: #999;
   font-size: 0.8rem;
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card .image {
+#notifications .container .n-row .notification-card-wrapper a .notification-card .image {
   width: 50px;
   height: 50px;
   margin-left: auto;
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card .image img {
+#notifications .container .n-row .notification-card-wrapper a .notification-card .image img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-#notifications .container .n-row .notification-card-wrapper .notification-card .button-wrapper {
+#notifications .container .n-row .notification-card-wrapper a .notification-card .button-wrapper {
   margin-left: auto;
 }
 

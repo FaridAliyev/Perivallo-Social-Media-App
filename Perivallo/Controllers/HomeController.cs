@@ -46,8 +46,8 @@ namespace Perivallo.Controllers
                 {
                     friends.Add(item.FriendFrom);
                 }
-                friends.Add(currentUser);
             }
+            friends.Add(currentUser);
             List<Post> posts = new List<Post>();
             foreach (User friend in friends)
             {
@@ -106,6 +106,7 @@ namespace Perivallo.Controllers
             {
                 string[] taggedUsersIds = tagged.Split(",");
                 List<PostTaggedUser> postTaggedUsers = new List<PostTaggedUser>();
+                List<Notification> notifications = new List<Notification>();
                 foreach (string id in taggedUsersIds)
                 {
                     postTaggedUsers.Add(new PostTaggedUser
@@ -113,8 +114,17 @@ namespace Perivallo.Controllers
                         UserId=id,
                         Post=post
                     });
+                    notifications.Add(new Notification
+                    {
+                        Date=DateTime.Now,
+                        NotificationFromId=user.Id,
+                        NotificationToId=id,
+                        Post=post,
+                        NotificationTypeId=4
+                    });
                 }
                 post.PostTaggedUsers = postTaggedUsers;
+                post.Notifications = notifications;
             }
             foreach (IFormFile item in postFiles)
             {
@@ -166,6 +176,18 @@ namespace Perivallo.Controllers
                 UserId = currentUser.Id,
                 PostId = (int)id
             };
+            if (currentUser.Id!=post.UserId)
+            {
+                Notification notification = new Notification()
+                {
+                    Date = DateTime.Now,
+                    NotificationFromId = currentUser.Id,
+                    NotificationToId = post.UserId,
+                    PostId = (int)id,
+                    NotificationTypeId = 1
+                };
+                _db.Notifications.Add(notification);
+            }
             _db.PostLikes.Add(postLike);
             await _db.SaveChangesAsync();
             int newLikesCount = _db.PostLikes.Where(p => p.PostId == id).Count();
@@ -185,6 +207,11 @@ namespace Perivallo.Controllers
             }
             User currentUser = await _userManager.GetUserAsync(User);
             PostLike postLike = _db.PostLikes.Where(p => p.UserId == currentUser.Id && p.PostId == id).FirstOrDefault();
+            if (currentUser.Id!=post.UserId)
+            {
+                Notification notification = _db.Notifications.Where(n => n.NotificationFromId == currentUser.Id && n.NotificationToId == post.UserId && n.PostId == post.Id && n.NotificationTypeId == 1).FirstOrDefault();
+                _db.Notifications.Remove(notification);
+            }
             _db.PostLikes.Remove(postLike);
             await _db.SaveChangesAsync();
             int newLikesCount = _db.PostLikes.Where(p => p.PostId == id).Count();
@@ -290,6 +317,7 @@ namespace Perivallo.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
         }
+
         public async Task<IActionResult> DeleteComment(int? id,string returnUrl)
         {
             if (id == null)
@@ -311,6 +339,145 @@ namespace Perivallo.Controllers
                 }
             }
             _db.Comments.Remove(comment);
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
+        }
+
+        public async Task<IActionResult> SendRequest(string id, string returnUrl)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            User user = await _userManager.FindByIdAsync(id);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (user == null || user == currentUser)
+            {
+                return BadRequest();
+            }
+            Friend friend = new Friend()
+            {
+                FriendFromId = currentUser.Id,
+                FriendToId = user.Id
+            };
+            _db.Friends.Add(friend);
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
+        }
+
+        public async Task<IActionResult> RevertRequest(string id, string returnUrl)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            User user = await _userManager.FindByIdAsync(id);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (user == null|| user == currentUser)
+            {
+                return BadRequest();
+            }
+            Friend friend = _db.Friends.Where(f => f.FriendFromId == currentUser.Id && f.FriendToId == user.Id).FirstOrDefault();
+            _db.Friends.Remove(friend);
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
+        }
+
+        public async Task<IActionResult> Unfriend(string id, string returnUrl)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            User user = await _userManager.FindByIdAsync(id);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (user == null || user == currentUser)
+            {
+                return BadRequest();
+            }
+            foreach (Friend item in _db.Friends.Where(f=>f.Accepted))
+            {
+                if (item.FriendFromId==user.Id)
+                {
+                    if (item.FriendToId==currentUser.Id)
+                    {
+                        _db.Friends.Remove(item);
+                    }
+                }
+                else if (item.FriendToId == user.Id)
+                {
+                    if (item.FriendFromId==currentUser.Id)
+                    {
+                        _db.Friends.Remove(item);
+                    }
+                }
+            }
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
+        }
+
+        public async Task<IActionResult> ConfirmRequest(string id, string returnUrl)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            User user = await _userManager.FindByIdAsync(id);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (user == null || user == currentUser)
+            {
+                return BadRequest();
+            }
+            Friend friend = _db.Friends.Where(f => f.FriendFromId == user.Id && f.FriendToId == currentUser.Id).FirstOrDefault();
+            friend.Accepted = true;
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
+        }
+
+        public async Task<IActionResult> IgnoreRequest(string id, string returnUrl)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            User user = await _userManager.FindByIdAsync(id);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (user == null || user == currentUser)
+            {
+                return BadRequest();
+            }
+            Friend friend = _db.Friends.Where(f => f.FriendFromId == user.Id && f.FriendToId == currentUser.Id).FirstOrDefault();
+            _db.Friends.Remove(friend);
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
+        }
+
+        public async Task<IActionResult> ConfirmAll(string returnUrl)
+        {
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return BadRequest();
+            }
+            foreach (Friend item in _db.Friends.Where(f=>f.FriendToId==currentUser.Id&&!f.Accepted))
+            {
+                item.Accepted = true;
+            }
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
+        }
+
+        public async Task<IActionResult> IgnoreAll(string returnUrl)
+        {
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return BadRequest();
+            }
+            foreach (Friend item in _db.Friends.Where(f => f.FriendToId == currentUser.Id && !f.Accepted))
+            {
+                _db.Friends.Remove(item);
+            }
             await _db.SaveChangesAsync();
             return LocalRedirect(returnUrl);
         }

@@ -9,5 +9,7 @@ namespace Perivallo.ViewModels
     public class NavbarVM
     {
         public User User { get; set; }
+        public IEnumerable<Friend> FriendRequests { get; set; }
+        public IEnumerable<Notification> Notifications { get; set; }
     }
 }

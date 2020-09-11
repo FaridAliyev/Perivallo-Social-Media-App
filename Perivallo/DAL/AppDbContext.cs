@@ -21,5 +21,7 @@ namespace Perivallo.DAL
         public DbSet<SavedPost> SavedPosts { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<CommentLike> CommentLikes { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<NotificationType> NotificationTypes { get; set; }
     }
 }

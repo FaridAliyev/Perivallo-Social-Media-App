@@ -1,6 +1,5 @@
 
 $(window).on('load', function () {
-    $('body').css("overflowY","visible");
     $('.pageloader').remove();
     if ($('#regError').val() == 1) {
         $('#step-dot-2').click();
@@ -8,7 +7,6 @@ $(window).on('load', function () {
 });
 
 $(document).ready(function () {
-    $('body').css("overflowY","hidden");
     // navbar stuff
 
     let activeNow = $('.active-nav-item');
