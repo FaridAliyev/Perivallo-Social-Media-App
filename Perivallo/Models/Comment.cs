@@ -15,5 +15,6 @@ namespace Perivallo.Models
         public int PostId { get; set; }
         public virtual Post Post { get; set; }
         public ICollection<CommentLike> CommentLikes { get; set; }
+        public ICollection<CommentReport> CommentReports { get; set; }
     }
 }

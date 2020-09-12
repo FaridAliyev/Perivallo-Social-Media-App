@@ -207,7 +207,7 @@ namespace Perivallo.Controllers
             }
             User currentUser = await _userManager.GetUserAsync(User);
             PostLike postLike = _db.PostLikes.Where(p => p.UserId == currentUser.Id && p.PostId == id).FirstOrDefault();
-            if (currentUser.Id!=post.UserId)
+            if (currentUser.Id != post.UserId)
             {
                 Notification notification = _db.Notifications.Where(n => n.NotificationFromId == currentUser.Id && n.NotificationToId == post.UserId && n.PostId == post.Id && n.NotificationTypeId == 1).FirstOrDefault();
                 _db.Notifications.Remove(notification);
@@ -480,6 +480,78 @@ namespace Perivallo.Controllers
             }
             await _db.SaveChangesAsync();
             return LocalRedirect(returnUrl);
+        }
+
+        public async Task<int> ReportPost(int? id,string text)
+        {
+            if (id == null)
+            {
+                return 0;
+            }
+            Post post = await _db.Posts.FindAsync(id);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (post == null || currentUser.Id == post.UserId||string.IsNullOrEmpty(text.Trim()))
+            {
+                return 0;
+            }
+            PostReport report = new PostReport()
+            {
+                Date = DateTime.Now,
+                ReportFromId = currentUser.Id,
+                PostId = (int)id,
+                Reason=text
+            };
+            _db.PostReports.Add(report);
+            await _db.SaveChangesAsync();
+            return 1;
+        }
+
+        public async Task<int> ReportComment(int? id, string text)
+        {
+            if (id == null)
+            {
+                return 0;
+            }
+            Comment comment = await _db.Comments.FindAsync(id);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (comment == null || currentUser.Id == comment.UserId || string.IsNullOrEmpty(text.Trim()))
+            {
+                return 0;
+            }
+            CommentReport report = new CommentReport()
+            {
+                Date = DateTime.Now,
+                ReportFromId = currentUser.Id,
+                CommentId = (int)id,
+                Reason = text
+            };
+            _db.CommentReports.Add(report);
+            await _db.SaveChangesAsync();
+            return 1;
+        }
+
+        public async Task<int> ReportUser(string id, string text)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return 0;
+            }
+            User user = await _userManager.FindByIdAsync(id);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (user == null || currentUser.Id == user.Id || string.IsNullOrEmpty(text.Trim()))
+            {
+                return 0;
+            }
+            UserReport report = new UserReport()
+            {
+                Date = DateTime.Now,
+                ReportFromId = currentUser.Id,
+                ReportToId = id,
+                Reason = text
+            };
+            _db.UserReports.Add(report);
+            await _db.SaveChangesAsync();
+            return 1;
         }
     }
 }

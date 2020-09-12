@@ -484,21 +484,24 @@ $(document).ready(function () {
         let button = $(event.relatedTarget);
         let commentId = button.data('commentid');
         let modal = $(this);
-        modal.find('.cm-send').attr('data-commentid', commentId);
+        modal.find('input').val("");
+        modal.find('.cm-send').val(commentId);
     });
 
     $('#post-modal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget);
         let postId = button.data('postid');
         let modal = $(this);
-        modal.find('.pm-send').attr('data-postid', postId);
+        modal.find('input').val("");
+        modal.find('.pm-send').val(postId);
     });
 
     $('#user-modal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget);
         let userId = button.data('userid');
         let modal = $(this);
-        modal.find('.um-send').attr('data-userid', userId);
+        modal.find('input').val("");
+        modal.find('.um-send').val(userId);
     });
 
     // settings
@@ -604,5 +607,56 @@ $(document).ready(function () {
             });
             
         }
+    });
+
+    $('.pm-send').click(function () {
+        let prBtn = $(this);
+        let repPostId = prBtn.val();
+        let reason = prBtn.parent().prev().children().eq(0).children().eq(0).children().eq(0).children().eq(0).children().eq(0).val();
+        $.ajax({
+            data: { id: repPostId, text: reason },
+            url: "/Home/ReportPost",
+            type: "Get",
+            cache: true,
+            success: function (response) {
+                if (response != 0) {
+                    $('#post-modal').modal('hide');
+                }
+            }
+        });
+    });
+
+    $('.cm-send').click(function () {
+        let crBtn = $(this);
+        let repCommentId = crBtn.val();
+        let reason = crBtn.parent().prev().children().eq(0).children().eq(0).children().eq(0).children().eq(0).children().eq(0).val();
+        $.ajax({
+            data: { id: repCommentId, text: reason },
+            url: "/Home/ReportComment",
+            type: "Get",
+            cache: true,
+            success: function (response) {
+                if (response != 0) {
+                    $('#comment-modal').modal('hide');
+                }
+            }
+        });
+    });
+
+    $('.um-send').click(function () {
+        let urBtn = $(this);
+        let repUserId = urBtn.val();
+        let reason = urBtn.parent().prev().children().eq(0).children().eq(0).children().eq(0).children().eq(0).children().eq(0).val();
+        $.ajax({
+            data: { id: repUserId, text: reason },
+            url: "/Home/ReportUser",
+            type: "Get",
+            cache: true,
+            success: function (response) {
+                if (response != 0) {
+                    $('#user-modal').modal('hide');
+                }
+            }
+        });
     });
 });

@@ -20,5 +20,6 @@ namespace Perivallo.Models
         public ICollection<SavedPost> SavedPosts { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Notification> Notifications { get; set; }
+        public ICollection<PostReport> PostReports { get; set; }
     }
 }

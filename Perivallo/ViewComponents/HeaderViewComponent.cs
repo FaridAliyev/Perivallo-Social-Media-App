@@ -27,7 +27,7 @@ namespace Perivallo.ViewComponents
             NavbarVM model = new NavbarVM()
             {
                 FriendRequests = _db.Friends.Include(f => f.FriendFrom).Where(f => f.FriendToId == currentUser.Id && !f.Accepted),
-                Notifications=_db.Notifications.Include(n=>n.NotificationFrom).Include(n=>n.Post).Include(n=>n.NotificationType).Where(n=>n.NotificationToId==currentUser.Id).OrderByDescending(n=>n.Date)
+                Notifications=_db.Notifications.Include(n=>n.NotificationFrom).Include(n=>n.Post).Include(n=>n.NotificationType).Where(n=>n.NotificationToId==currentUser.Id).OrderByDescending(n=>n.Date).Take(20)
             };
             if (User.Identity.IsAuthenticated)
             {

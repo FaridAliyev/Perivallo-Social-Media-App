@@ -290,16 +290,34 @@ namespace Perivallo.Controllers
                     friends.Add(item.FriendFrom);
                 }
             }
-            ViewBag.FriendsCount = friends.Count();
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => !f.Accepted))
+            {
+                if (item.FriendFrom == currentUser)
+                {
+                    if (item.FriendTo == user)
+                    {
+                        ViewBag.OngoingRequest = 9;
+                    }
+                }
+                else if (item.FriendTo == currentUser)
+                {
+                    if (item.FriendFrom == user)
+                    {
+                        ViewBag.IncomingRequest = 10;
+                    }
+                }
+            }
             AccountVM model = new AccountVM()
             {
                 User = user,
-                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostImages).Where(p => p.UserId == user.Id),
+                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Include(p => p.SavedPosts).Include(p => p.Comments).Where(p => p.UserId == user.Id),
                 PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
+                Friends = friends.Take(6),
                 CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
             };
             int postCount = _db.Posts.Where(p => p.User == user).Count();
             ViewBag.PostCount = postCount;
+            ViewBag.FriendsCount = friends.Count();
             foreach (User f in friends)
             {
                 if (currentUser == f)
