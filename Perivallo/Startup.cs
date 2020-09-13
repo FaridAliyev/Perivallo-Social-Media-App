@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Perivallo.DAL;
+using Perivallo.Hubs;
 using Perivallo.Models;
 
 namespace Perivallo
@@ -25,6 +26,7 @@ namespace Perivallo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSignalR();
 
             services.AddIdentity<User, IdentityRole>(identityOptions =>
             {
@@ -57,6 +59,10 @@ namespace Perivallo
             app.UseStaticFiles();
             app.UseAuthentication();
 
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chathub");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

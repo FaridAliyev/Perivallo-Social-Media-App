@@ -26,6 +26,8 @@ namespace Perivallo.Models
         public ICollection<SavedPost> SavedPosts { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<CommentLike> CommentLikes { get; set; }
+        public ICollection<Message> Messages { get; set; }
+        public ICollection<ChatUser> ChatUsers { get; set; }
         public User()
         {
             Private = false;

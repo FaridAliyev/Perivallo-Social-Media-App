@@ -42,3 +42,6 @@ E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\Friends.cshtml
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\Saved.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Post\Details.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Notification\Index.cshtml.g.cs
+E:\Projects\Perivallo\bin\Debug\netcoreapp2.1\libman.json
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Chat\Index.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Chat\Dm.cshtml.g.cs

@@ -51,12 +51,24 @@
                                 </a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a href="#">
-                                <i class="fas fa-envelope nav-item-icon"></i>
-                                <!-- <i class="fas fa-circle new-icon"></i> -->
-                            </a>
-                        </li>
+                        @if (controller == "Chat")
+                        {
+                            <li class="nav-item active-nav-item">
+                                <a asp-controller="Chat" asp-action="Index">
+                                    <i class="fas fa-envelope nav-item-icon"></i>
+                                    <!-- <i class="fas fa-circle new-icon"></i> -->
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Chat" asp-action="Index">
+                                    <i class="fas fa-envelope nav-item-icon"></i>
+                                    <!-- <i class="fas fa-circle new-icon"></i> -->
+                                </a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a asp-controller="Notification" asp-action="Index" class="notification">
                                 <i class="fas fa-bell nav-item-icon"></i>
@@ -137,7 +149,7 @@
                                         <h5 style="margin:0;">No notifications</h5>
                                     </li>
                                 }
-                                </ul>
+                            </ul>
                             <div class="triangle"></div>
                         </li>
                         <li class="nav-item">

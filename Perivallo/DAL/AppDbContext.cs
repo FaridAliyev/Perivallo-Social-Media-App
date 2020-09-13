@@ -26,5 +26,9 @@ namespace Perivallo.DAL
         public DbSet<UserReport> UserReports { get; set; }
         public DbSet<PostReport> PostReports { get; set; }
         public DbSet<CommentReport> CommentReports { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<ChatUser> ChatUsers { get; set; }
+        public DbSet<Message> Messages { get; set; }
+
     }
 }

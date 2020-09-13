@@ -129,6 +129,36 @@ namespace Perivallo.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Perivallo.Models.Chat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Chats");
+                });
+
+            modelBuilder.Entity("Perivallo.Models.ChatUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ChatId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ChatUsers");
+                });
+
             modelBuilder.Entity("Perivallo.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -213,6 +243,29 @@ namespace Perivallo.Migrations
                     b.HasIndex("FriendToId");
 
                     b.ToTable("Friends");
+                });
+
+            modelBuilder.Entity("Perivallo.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ChatId");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Text");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Perivallo.Models.Notification", b =>
@@ -513,6 +566,18 @@ namespace Perivallo.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Perivallo.Models.ChatUser", b =>
+                {
+                    b.HasOne("Perivallo.Models.Chat", "Chat")
+                        .WithMany("ChatUsers")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Perivallo.Models.User", "User")
+                        .WithMany("ChatUsers")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("Perivallo.Models.Comment", b =>
                 {
                     b.HasOne("Perivallo.Models.Post", "Post")
@@ -558,6 +623,18 @@ namespace Perivallo.Migrations
                     b.HasOne("Perivallo.Models.User", "FriendTo")
                         .WithMany()
                         .HasForeignKey("FriendToId");
+                });
+
+            modelBuilder.Entity("Perivallo.Models.Message", b =>
+                {
+                    b.HasOne("Perivallo.Models.Chat", "Chat")
+                        .WithMany("Messages")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Perivallo.Models.User", "User")
+                        .WithMany("Messages")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Perivallo.Models.Notification", b =>

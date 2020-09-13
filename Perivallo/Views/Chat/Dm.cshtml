@@ -1,0 +1,148 @@
+﻿@model ChatVM
+@{
+    ViewData["Title"] = "DM";
+}
+
+<main id="chat">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="view-wrapper">
+                    <div class="left-side-wrapper">
+                        <div class="box-heading">
+                            <div class="content-wrapper">
+                                <h2>Direct</h2>
+                                <div class="icon-wrapper" data-toggle="modal" data-target="#chat-modal">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div class="content-wrapper">
+                                <ul class="chat-list">
+                                    @foreach (ChatUser item in Model.CurrentChats)
+                                    {
+                                        <li class="chat-list-item">
+                                            <a asp-controller="Chat" asp-action="Dm" asp-route-id="@item.ChatId">
+                                                <div class="chat-card-wrapper">
+                                                    <div class="avatar-wrapper">
+                                                        @if (item.User.Avatar == null)
+                                                        {
+                                                            <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/img/@item.User.Avatar" alt="Profile Picture">
+                                                        }
+                                                    </div>
+                                                    <div class="profile-meta">
+                                                        <h4 class="username">@item.User.UserName</h4>
+                                                        <p>@item.User.Name</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-side-wrapper">
+                        <div class="box-heading">
+                            <div class="content-wrapper">
+                                <a asp-controller="Account" asp-action="Index" asp-route-username="@Model.CurrentChatFriend.UserName" class="avatar-wrapper">
+                                    @if (Model.CurrentChatFriend.Avatar == null)
+                                    {
+                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/@Model.CurrentChatFriend.Avatar" alt="Profile Picture">
+                                    }
+                                </a>
+                                <div class="current-chat-info">
+                                    <a asp-controller="Account" asp-action="Index" asp-route-username="@Model.CurrentChatFriend.UserName" class="username">@Model.CurrentChatFriend.UserName</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div class="messages-wrapper">
+                                <ul class="messages-list">
+                                    @foreach (Message message in Model.Messages)
+                                    {
+                                        <li class="message-item">
+                                            <div class="message-sender">
+                                                <h4 class="username">@message.User.UserName</h4>
+                                            </div>
+                                            <div class="message-body">
+                                                <span class="message-time">@message.Date</span>
+                                                <div class="message-text">
+                                                    @message.Text
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="box-footer">
+                                <form style="width: 100%" method="post">
+                                    <div class="chat-action">
+
+                                        <div class="control">
+                                            <textarea name="message" id="chat-input" rows="1" placeholder="Message..."></textarea>
+                                        </div>
+                                        <div class="message-send-button-wrapper">
+                                            <input type="hidden" name="chatId" value="@Model.Chat.Id" />
+                                            <button type="submit">Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="chat-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Chat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post">
+                    <div class="modal-body text-center">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <select class="js-example-basic-single" name="friend" style="width: 100%">
+                                        @foreach (User friend in Model.Friends)
+                                        {
+                                            <option value="@friend.Id">@friend.UserName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+}
+
