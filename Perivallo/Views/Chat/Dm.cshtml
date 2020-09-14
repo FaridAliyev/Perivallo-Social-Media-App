@@ -75,7 +75,7 @@
                                                 <h4 class="username">@message.User.UserName</h4>
                                             </div>
                                             <div class="message-body">
-                                                <span class="message-time">@message.Date</span>
+                                                <span class="message-time">@message.Date.ToString("dd/MM/yyyy hh:mm")</span>
                                                 <div class="message-text">
                                                     @message.Text
                                                 </div>
@@ -85,14 +85,13 @@
                                 </ul>
                             </div>
                             <div class="box-footer">
-                                <form style="width: 100%" method="post">
+                                <form onsubmit="sendMessage(event)" style="width: 100%">
                                     <div class="chat-action">
-
                                         <div class="control">
                                             <textarea name="message" id="chat-input" rows="1" placeholder="Message..."></textarea>
                                         </div>
                                         <div class="message-send-button-wrapper">
-                                            <input type="hidden" name="chatId" value="@Model.Chat.Id" />
+                                            <input type="hidden" name="roomId" value="@Model.Chat.Id" />
                                             <button type="submit">Send</button>
                                         </div>
                                     </div>
@@ -139,10 +138,81 @@
 </main>
 
 @section Scripts{
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        
+        var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+            connection.on("ReceiveMessage", function (data) {
+                console.log(data);
+                var msgItem = $("<li>").addClass('message-item');
+                var msgSender = $("<div>").addClass('message-sender');
+                var msgBody = $("<div>").addClass('message-body');
+                var msgUsername = $("<h4>").addClass('username');
+                var msgDate = $("<span>").addClass('message-time');
+                var msgText = $("<div>").addClass('message-text');
+                msgUsername.text(data.name);
+                msgSender.append(msgUsername);
+                msgDate.text(data.date);
+                msgText.text(data.text);
+                msgBody.append(msgDate, msgText)
+                msgItem.append(msgSender, msgBody);
+                $('.messages-list').append(msgItem);
+                var messageBody = document.querySelector('.messages-list');
+                messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+            });
+
+            var _connectionId = '';
+
+
+            var joinRoom = function () {
+                var url = '/Chandle/JoinRoom/' + _connectionId + '/@Model.Chat.Id';
+                axios.post(url, null)
+                    .then(res => {
+                        console.log("Joined Room!", res);
+                    })
+                    .catch(err => {
+                        console.log("Failed", err);
+                    })
+            }
+
+
+            connection.start()
+                .then(function () {
+                    connection.invoke('getConnectionId')
+                        .then(function (connectionId) {
+                            _connectionId = connectionId;
+                            joinRoom();
+                        })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+
+
+            var sendMessage = function (event) {
+                event.preventDefault();
+                var data = new FormData(event.target);
+                if ($('#chat-input').val()=='') {
+                    return;
+                }
+                $('#chat-input').val('');
+                $('.message-send-button-wrapper').hide();
+                axios.post('/Chandle/SendMessage', data)
+                    .then(res => {
+                        console.log("Message Sent!");
+                    })
+                    .catch(err => {
+                        console.log("Failed to send message");
+                    })
+            }
+
         $(document).ready(function () {
             $('.js-example-basic-single').select2();
+            var messageBody = document.querySelector('.messages-list');
+            messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
         });
+
     </script>
 }
 

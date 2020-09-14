@@ -77,7 +77,7 @@ using Perivallo.ViewModels;
             WriteLiteral("\r\n<nav id=\"navbar\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-3\">\r\n                <div class=\"logo\">\r\n                    ");
             EndContext();
             BeginContext(183, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "acc1a4108291424e8e1f6c39c7b9d63f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b086c4f7250416bba6d1cf37de00fe2", async() => {
                 BeginContext(227, 9, true);
                 WriteLiteral("Perivallo");
                 EndContext();
@@ -101,7 +101,7 @@ using Perivallo.ViewModels;
             WriteLiteral("\r\n                </div>\r\n            </div>\r\n            <div class=\"col-5\">\r\n                <div class=\"search-bar\">\r\n                    ");
             EndContext();
             BeginContext(381, 754, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a5c57bdf570d47798265a3f485052850", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "357b972e59ae458088360ebe8c2a2702", async() => {
                 BeginContext(424, 704, true);
                 WriteLiteral(@"
                         <div class=""form-group justify-content-center"">
@@ -167,7 +167,7 @@ using Perivallo.ViewModels;
             WriteLiteral("                            <li class=\"nav-item active-nav-item\">\r\n                                ");
             EndContext();
             BeginContext(1866, 161, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "969a5ff42f3c4ce8a3afecf25f508afa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "48b41bdcca5f428291395be70a37a8a0", async() => {
                 BeginContext(1910, 113, true);
                 WriteLiteral("\r\n                                    <i class=\"fas fa-home nav-item-icon\"></i>\r\n                                ");
                 EndContext();
@@ -201,7 +201,7 @@ using Perivallo.ViewModels;
             WriteLiteral("                            <li class=\"nav-item\">\r\n                                ");
             EndContext();
             BeginContext(2231, 161, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7ab789acf7d345b4970c06c44668a79b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a5e10b44d76b4b578ca05a62b918969f", async() => {
                 BeginContext(2275, 113, true);
                 WriteLiteral("\r\n                                    <i class=\"fas fa-home nav-item-icon\"></i>\r\n                                ");
                 EndContext();
@@ -242,7 +242,7 @@ using Perivallo.ViewModels;
             WriteLiteral("                            <li class=\"nav-item active-nav-item\">\r\n                                ");
             EndContext();
             BeginContext(2634, 250, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6a8a75520f034cc5a0b5b0ce5b759975", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e5cdfb20d9c7427ea09c824c876991f1", async() => {
                 BeginContext(2678, 202, true);
                 WriteLiteral("\r\n                                    <i class=\"fas fa-envelope nav-item-icon\"></i>\r\n                                    <!-- <i class=\"fas fa-circle new-icon\"></i> -->\r\n                                ");
                 EndContext();
@@ -276,7 +276,7 @@ using Perivallo.ViewModels;
             WriteLiteral("                            <li class=\"nav-item\">\r\n                                ");
             EndContext();
             BeginContext(3088, 250, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a611a01673464c6c8d02c7b9cb553f49", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f697b98840bd4ea3981164e6bc743f36", async() => {
                 BeginContext(3132, 202, true);
                 WriteLiteral("\r\n                                    <i class=\"fas fa-envelope nav-item-icon\"></i>\r\n                                    <!-- <i class=\"fas fa-circle new-icon\"></i> -->\r\n                                ");
                 EndContext();
@@ -308,7 +308,7 @@ using Perivallo.ViewModels;
             WriteLiteral("                        <li class=\"nav-item\">\r\n                            ");
             EndContext();
             BeginContext(3477, 400, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bc4cfdbec1504944b8a9d15fc652211a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c43d33eaf8da4598bb53be22f4e6224a", async() => {
                 BeginContext(3550, 77, true);
                 WriteLiteral("\r\n                                <i class=\"fas fa-bell nav-item-icon\"></i>\r\n");
                 EndContext();
@@ -372,7 +372,7 @@ using Perivallo.ViewModels;
             WriteLiteral(")</h6>\r\n                                                <div class=\"button-wrapper\">\r\n                                                    ");
             EndContext();
             BeginContext(4508, 195, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "62575a4b8c944c3d85ba26b98082419e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6e39fe7e25514cda921446a790c02a40", async() => {
                 BeginContext(4688, 11, true);
                 WriteLiteral("Confirm All");
                 EndContext();
@@ -410,7 +410,7 @@ using Perivallo.ViewModels;
             WriteLiteral("\r\n                                                    ");
             EndContext();
             BeginContext(4757, 192, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8a2e902d457d43eeb2060e4d6e7a1535", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "03ebf580bcab46689cc69ed764e3a1b5", async() => {
                 BeginContext(4935, 10, true);
                 WriteLiteral("Ignore All");
                 EndContext();
@@ -457,7 +457,7 @@ using Perivallo.ViewModels;
             WriteLiteral("                                                <div class=\"request-body\">\r\n                                                    ");
             EndContext();
             BeginContext(5326, 778, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81238f0b5e5942f0a9a550c3c3edd176", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "183cc358c3494180a171ccffff3eb2ff", async() => {
                 BeginContext(5420, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();
@@ -471,7 +471,7 @@ using Perivallo.ViewModels;
                 WriteLiteral("                                                            ");
                 EndContext();
                 BeginContext(5635, 55, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "cd4eccf336874be2ab346a4e2d00ba9d", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "b2ceba5e9f664d149b8c08f306ebbe3b", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -500,7 +500,7 @@ using Perivallo.ViewModels;
                 WriteLiteral("                                                            ");
                 EndContext();
                 BeginContext(5932, 55, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "11a6b58bb29b4b8389b46baa4172a252", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "3325424e2b2a4258bd0f8568a5889f8a", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -566,7 +566,7 @@ AddHtmlAttributeValue("", 5948, item.FriendFrom.Avatar, 5948, 23, false);
             WriteLiteral("\r\n                                                    ");
             EndContext();
             BeginContext(6158, 140, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "64c16e016a2341d2b1e3bc244024bbc8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8e96a1e1906d433a86fc2c2a42670192", async() => {
                 BeginContext(6270, 24, false);
 #line 105 "E:\Projects\Perivallo\Views\Shared\Components\Header\Default.cshtml"
                                                                                                                                                               Write(item.FriendFrom.UserName);
@@ -608,7 +608,7 @@ AddHtmlAttributeValue("", 5948, item.FriendFrom.Avatar, 5948, 23, false);
             WriteLiteral("\r\n                                                    <div class=\"action-buttons\">\r\n                                                        ");
             EndContext();
             BeginContext(6438, 229, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "666237ee089d4da1ba2725870699041e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d0e4ee25e48b472fb7c3b3bb288d2dbc", async() => {
                 BeginContext(6656, 7, true);
                 WriteLiteral("Confirm");
                 EndContext();
@@ -655,7 +655,7 @@ AddHtmlAttributeValue("", 5948, item.FriendFrom.Avatar, 5948, 23, false);
             WriteLiteral("\r\n                                                        ");
             EndContext();
             BeginContext(6725, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef396b3339af428b82bf99fe2a13fa1d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4257dd4af20415f8eb20d4a6a8f2993", async() => {
                 BeginContext(6941, 6, true);
                 WriteLiteral("Ignore");
                 EndContext();
@@ -734,7 +734,7 @@ AddHtmlAttributeValue("", 5948, item.FriendFrom.Avatar, 5948, 23, false);
             WriteLiteral("                                        <li class=\"notification-item\">\r\n                                            ");
             EndContext();
             BeginContext(7600, 1440, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c51aefad18604d8197250950b1343f83", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5dfe6e070ef54209affc887ea016a7ab", async() => {
                 BeginContext(7682, 170, true);
                 WriteLiteral("\r\n                                                <div class=\"notification-wrapper\">\r\n                                                    <div class=\"noti-profile-pic\">\r\n");
                 EndContext();
@@ -748,7 +748,7 @@ AddHtmlAttributeValue("", 5948, item.FriendFrom.Avatar, 5948, 23, false);
                 WriteLiteral("                                                            ");
                 EndContext();
                 BeginContext(8079, 55, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "b6281e0290534d5694e5f31feb96f645", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c6291c4aa87842099841d3de4788be32", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -777,7 +777,7 @@ AddHtmlAttributeValue("", 5948, item.FriendFrom.Avatar, 5948, 23, false);
                 WriteLiteral("                                                            ");
                 EndContext();
                 BeginContext(8376, 69, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "6cd774f0e43f4962ab9c72e8ecdaaaf9", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "286b68241c4342e39f8988ba4a7ee985", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -871,7 +871,7 @@ AddHtmlAttributeValue("", 8392, notification.NotificationFrom.Avatar, 8392, 37, 
             WriteLiteral("                                    <li class=\"see-all-item\">\r\n                                        ");
             EndContext();
             BeginContext(9231, 222, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "334e06eebd6542f9ab4a7834c25d4e9a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "74e9acc161a940a88678fb00bbf26633", async() => {
                 BeginContext(9299, 150, true);
                 WriteLiteral("\r\n                                            See All <i class=\"fas fa-angle-double-right see-all-icon\"></i>\r\n                                        ");
                 EndContext();
@@ -914,7 +914,7 @@ AddHtmlAttributeValue("", 8392, notification.NotificationFrom.Avatar, 8392, 37, 
             WriteLiteral("                            </ul>\r\n                            <div class=\"triangle\"></div>\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            ");
             EndContext();
             BeginContext(10070, 693, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a6a7fd523ef841f2ba9c968883a72713", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11974687986646019dcb478697f9be3a", async() => {
                 BeginContext(10158, 61, true);
                 WriteLiteral("\r\n                                <div class=\"profile-pic\">\r\n");
                 EndContext();
@@ -928,7 +928,7 @@ AddHtmlAttributeValue("", 8392, notification.NotificationFrom.Avatar, 8392, 37, 
                 WriteLiteral("                                        ");
                 EndContext();
                 BeginContext(10367, 58, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0d32f30e6a324be5a7cff63eeef31a63", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "f06e76f3f70e41e8903bb86dec7ea17d", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -964,7 +964,7 @@ AddHtmlAttributeValue("", 10383, Model.User.Avatar, 10383, 18, false);
                 WriteLiteral("                                        ");
                 EndContext();
                 BeginContext(10587, 63, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "3caf5bf8ce854daa92e8024a94f1ec3d", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "eb8dc9a973484d7f82861f2160940d9d", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

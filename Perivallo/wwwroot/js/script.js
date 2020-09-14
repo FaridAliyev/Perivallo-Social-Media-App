@@ -559,9 +559,6 @@ $(document).ready(function () {
         }
     });
 
-    // var messageBody = document.querySelector('.messages-list');
-    // messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
-
     // comments
 
     $('#comment-publish').keyup(function () {

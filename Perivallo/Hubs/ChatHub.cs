@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Perivallo.Hubs
 {
-    public class ChatHub:Hub
+    public class ChatHub : Hub
     {
+        public string GetConnectionId() =>
+            Context.ConnectionId;
     }
 }

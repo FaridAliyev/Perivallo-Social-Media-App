@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Perivallo.DAL;
+using Perivallo.Hubs;
 using Perivallo.Models;
 using Perivallo.ViewModels;
 
@@ -222,5 +224,7 @@ namespace Perivallo.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Dm", "Chat", new { id = chatId });
         }
+
+        
     }
 }

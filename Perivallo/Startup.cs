@@ -61,8 +61,9 @@ namespace Perivallo
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/chathub");
+                routes.MapHub<ChatHub>("/chatHub");
             });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
