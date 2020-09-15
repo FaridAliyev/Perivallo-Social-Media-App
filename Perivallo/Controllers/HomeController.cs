@@ -36,7 +36,7 @@ namespace Perivallo.Controllers
                 model.User = currentUser;
             }
             List<User> friends = new List<User>();
-            foreach (Friend item in _db.Friends.Include(f=>f.FriendTo).Include(f=>f.FriendFrom).Where(f=>f.Accepted))
+            foreach (Friend item in _db.Friends.Include(f=>f.FriendTo).Include(f=>f.FriendFrom).Where(f=>f.Accepted&&!f.FriendFrom.Deleted&&!f.FriendTo.Deleted))
             {
                 if (item.FriendFrom==currentUser)
                 {
@@ -55,7 +55,7 @@ namespace Perivallo.Controllers
             }
             List<User> suggestedfriends = new List<User>();
             bool isFriend = false;
-            foreach (User u in _db.Users.Include(u=>u.Posts))
+            foreach (User u in _db.Users.Include(u=>u.Posts).Where(u=>!u.Deleted))
             {
                 isFriend = false;
                 foreach (User f in friends)
@@ -70,7 +70,7 @@ namespace Perivallo.Controllers
                     suggestedfriends.Add(u);
                 }
             }
-            model.Users = _db.Users;
+            model.Users = _db.Users.Where(u=>!u.Deleted);
             model.Posts = posts.OrderByDescending(f=>f.Date);
             model.Role = (await _userManager.GetRolesAsync(currentUser))[0];
             model.SuggestedUsers = suggestedfriends.OrderByDescending(s=>s.Posts.Count());

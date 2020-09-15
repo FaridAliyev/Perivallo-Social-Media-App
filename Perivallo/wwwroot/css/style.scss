@@ -4307,11 +4307,9 @@ body {
                                 .message-item {
                                     display: flex;
                                     align-items: flex-start;
+                                    margin-bottom: 10px;
                                     &:first-child {
                                         margin-top: auto;
-                                    }
-                                    &:not(:first-child){
-                                        margin-top: 10px;
                                     }
                                     .message-sender {
                                         margin-right: 20px;
@@ -4331,8 +4329,9 @@ body {
                                             text-align: right;
                                         }
                                         .message-text {
-                                            color: #fafafa;
-                                            background-color: #5082c3;
+                                            
+                                            color: #242529;
+                                            background-color: rgb(212, 218, 231);
                                             position: relative;
                                             display: block;
                                             width: auto;
@@ -4350,6 +4349,26 @@ body {
                                                 border-left: 5px solid transparent;
                                                 border-right: 5px solid transparent;
                                                 left: -5px;
+                                                border-top: 5px solid rgb(212, 218, 231);
+                                            }
+                                        }
+                                    }
+                                }
+                                .is-sent{
+                                    flex-direction: row-reverse;
+                                    .message-sender{
+                                        margin-left: 20px;
+                                    }
+                                    .message-body{
+                                        .message-time{
+                                            text-align: left;
+                                        }
+                                        .message-text{
+                                            color: #fafafa;
+                                            background-color: #5082c3;
+                                            &::before{
+                                                right: -5px;
+                                                left: auto;
                                                 border-top: 5px solid #5082c3;
                                             }
                                         }

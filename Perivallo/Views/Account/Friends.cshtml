@@ -57,7 +57,7 @@
                                             }
                                             else
                                             {
-                                                <a href="#" class="profile-dropdown-item">
+                                                <a asp-controller="Account" asp-action="Saved" class="profile-dropdown-item">
                                                     <div class="media">
                                                         <i class="far fa-bookmark"></i>
                                                         <div class="media-content">
@@ -114,24 +114,38 @@
                 </div>
             </div>
             <div class="row f-row">
-                @foreach (User item in Model.Friends)
+                @if (Model.Friends.Count() > 0)
                 {
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <a asp-controller="Account" asp-action="Index" asp-route-username="@item.UserName" class="follower-item">
-                            <div class="avatar-wrapper">
-                                @if (item.Avatar == null)
-                                {
-                                    <img src="~/img/profile-placeholder.png" alt="Profile Picture">
-                                }
-                                else
-                                {
-                                    <img src="~/img/@item.Avatar" alt="Profile Picture">
-                                }
-                            </div>
-                            <h3 class="username">@item.UserName</h3>
-                            <p class="name">@item.Name</p>
-                        </a>
-                    </div>
+                    @foreach (User item in Model.Friends)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <a asp-controller="Account" asp-action="Index" asp-route-username="@item.UserName" class="follower-item">
+                                <div class="avatar-wrapper">
+                                    @if (item.Avatar == null)
+                                    {
+                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/@item.Avatar" alt="Profile Picture">
+                                    }
+                                </div>
+                                <h3 class="username">@item.UserName</h3>
+                                <p class="name">@item.Name</p>
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    if (Model.User.UserName == User.Identity.Name)
+                    {
+                        <h1>You have no friends :(</h1>
+                    }
+                    else
+                    {
+                        <h1>This user have no friends.</h1>
+                    }
                 }
             </div>
         </div>

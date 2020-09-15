@@ -104,7 +104,7 @@
                         </div>
                         <div class="stats">
                             <span>@ViewBag.PostCount Posts</span>
-                            @if (Model.User.Private && ViewBag.IsFriend!=8 && User.Identity.Name != Model.User.UserName)
+                            @if (Model.User.Private && ViewBag.IsFriend!=8 && User.Identity.Name != Model.User.UserName&&Model.CurrentUserRole!="Admin"&& Model.CurrentUserRole != "Moderator")
                             {
                                 <span>@ViewBag.FriendsCount Friends</span>
                             }
@@ -168,7 +168,7 @@
                             <h5 style="font-weight: normal">You don't have any friends.</h5>
                         }
                     </div>
-                    @if (Model.User.Private && ViewBag.IsFriend != 8 && User.Identity.Name != Model.User.UserName)
+                    @if (Model.User.Private && ViewBag.IsFriend != 8 && User.Identity.Name != Model.User.UserName&&Model.CurrentUserRole!="Admin"&& Model.CurrentUserRole != "Moderator")
                     {
 
                     }
@@ -231,7 +231,7 @@
                     }
                 </div>
                 <div class="col-lg-8 col-md-12">
-                    @if (Model.User.Private && ViewBag.IsFriend != 8 && User.Identity.Name != Model.User.UserName)
+                    @if (Model.User.Private && ViewBag.IsFriend != 8 && User.Identity.Name != Model.User.UserName && Model.CurrentUserRole != "Admin" && Model.CurrentUserRole != "Moderator")
                     {
                         <div class="private-profile">
                             <i class="fas fa-lock"></i>

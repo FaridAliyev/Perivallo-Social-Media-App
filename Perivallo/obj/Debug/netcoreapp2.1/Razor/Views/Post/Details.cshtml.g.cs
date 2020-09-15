@@ -95,7 +95,7 @@ using System.Globalization;
                                 ");
             EndContext();
             BeginContext(483, 766, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d9af2d8bdd6464c878f31e572277b53", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "849632888ce44d63889bf235d7826ad7", async() => {
                 BeginContext(589, 65, true);
                 WriteLiteral("\r\n                                    <div class=\"profile-pic\">\r\n");
                 EndContext();
@@ -109,7 +109,7 @@ using System.Globalization;
                 WriteLiteral("                                            ");
                 EndContext();
                 BeginContext(820, 63, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7b4cfd1e735f4f2c9d89b41feac7ddb3", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7a73224739d2450ba697b8ff59c0af1f", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -145,7 +145,7 @@ AddHtmlAttributeValue("", 836, Model.Post.User.Avatar, 836, 23, false);
                 WriteLiteral("                                            ");
                 EndContext();
                 BeginContext(1061, 63, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "83b5304e592b4d4c89ce1fda5ac629c6", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7d15983670a54ffe9c0ee57941cd10b6", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -205,7 +205,7 @@ AddHtmlAttributeValue("", 836, Model.Post.User.Avatar, 836, 23, false);
             WriteLiteral("\r\n                                <div class=\"user-info\">\r\n                                    <span>\r\n                                        ");
             EndContext();
             BeginContext(1392, 140, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ed4f76a458894ac5a49777da42667bbe", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e05822e06ed64d47ab02432a964e44d2", async() => {
                 BeginContext(1504, 24, false);
 #line 29 "E:\Projects\Perivallo\Views\Post\Details.cshtml"
                                                                                                                                                   Write(Model.Post.User.UserName);
@@ -270,7 +270,7 @@ AddHtmlAttributeValue("", 836, Model.Post.User.Avatar, 836, 23, false);
             WriteLiteral("@</span>");
             EndContext();
             BeginContext(2075, 129, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "62010dc4db0c49e1ad7718137c1e368f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3609b4c4e09848ba8b4d908ad1f8a15c", async() => {
                 BeginContext(2183, 17, false);
 #line 37 "E:\Projects\Perivallo\Views\Post\Details.cshtml"
                                                                                                                                                                          Write(ptu.User.UserName);
@@ -392,7 +392,7 @@ AddHtmlAttributeValue("", 836, Model.Post.User.Avatar, 836, 23, false);
             WriteLiteral("                                            ");
             EndContext();
             BeginContext(3712, 593, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3429181c5b2146ebba22e6cfb91423b8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "088b519d2198444c86c0718f4065bfdd", async() => {
                 BeginContext(3830, 471, true);
                 WriteLiteral(@"
                                                 <div class=""media"">
@@ -560,12 +560,12 @@ WriteAttributeValue("", 5854, Model.Post.Link, 5854, 16, false);
             WriteLiteral("                                    <div class=\"post-image\">\r\n                                        ");
             EndContext();
             BeginContext(6315, 234, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97adbbdc200c485b8142adeef1788f8f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "02e2acb1ea5b46fab266393945f3c621", async() => {
                 BeginContext(6391, 46, true);
                 WriteLiteral("\r\n                                            ");
                 EndContext();
                 BeginContext(6437, 66, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "6f0327ed7a5e45ca987cd2b92a0a4878", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2ddf2a44c4b14bdfae5f958fafb67712", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -642,12 +642,12 @@ AddHtmlAttributeValue("", 6453, Model.Post.PostImages.ElementAt(0).Image, 6453, 
             WriteLiteral("                                            <div class=\"item\">\r\n                                                <div class=\"post-image\">\r\n                                                    ");
             EndContext();
             BeginContext(7118, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "44dd672e66324b3caaf3b630db9eebb9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ab167c8c613347db8852c365794f5fe7", async() => {
                 BeginContext(7194, 58, true);
                 WriteLiteral("\r\n                                                        ");
                 EndContext();
                 BeginContext(7252, 34, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f651f61f360477889642b30f1bf606a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "782d046c3f8a4350a77859abac75669e", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -827,7 +827,7 @@ AddHtmlAttributeValue("", 7268, pi.Image, 7268, 9, false);
             WriteLiteral("                                </div>\r\n                                <div class=\"comment\">\r\n                                    ");
             EndContext();
             BeginContext(9198, 190, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "14c605cf139a4d25b392e20f417081a7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "84f8412589b747e48704d4b289e73e40", async() => {
                 BeginContext(9274, 110, true);
                 WriteLiteral("\r\n                                        <i class=\"far fa-comment\"></i>\r\n                                    ");
                 EndContext();
@@ -990,12 +990,12 @@ AddHtmlAttributeValue("", 7268, pi.Image, 7268, 9, false);
             WriteLiteral("</span>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"post-compose\">\r\n                            ");
             EndContext();
             BeginContext(11690, 988, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1a9125439835452fac2b133661f09426", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "95073373d3d44d3581894befa2e826dd", async() => {
                 BeginContext(11710, 93, true);
                 WriteLiteral("\r\n                                <div class=\"control\">\r\n                                    ");
                 EndContext();
                 BeginContext(11803, 104, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "24b864cc270a49c3ac94d2b0d9dcd8b5", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "21df41a6e7d44aa7967833dd425d929f", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper>();
@@ -1029,7 +1029,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 WriteLiteral("                                        ");
                 EndContext();
                 BeginContext(12161, 63, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "69d1fbcbfdf247408943999c3cdeace4", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "abe8e816ef1745059ef97cf0c59cef15", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1058,7 +1058,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 WriteLiteral("                                        ");
                 EndContext();
                 BeginContext(12386, 58, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2e4b242438314753b01647729042f6ed", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "328d41048f91430a8b594d41bc9db3c4", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1139,7 +1139,7 @@ AddHtmlAttributeValue("", 12402, Model.User.Avatar, 12402, 18, false);
             WriteLiteral("                                                ");
             EndContext();
             BeginContext(13412, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "99abf3e190e44f7b8a79a6cd23ab20e7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "28d0f02519c84685b9dc4c9ff2f56a9c", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1168,7 +1168,7 @@ AddHtmlAttributeValue("", 12402, Model.User.Avatar, 12402, 18, false);
             WriteLiteral("                                                ");
             EndContext();
             BeginContext(13669, 60, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "360e98f5f32847b8ab31192da414f2b7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "e6bb48fbcd7048339fe12d04ad066e20", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1207,7 +1207,7 @@ AddHtmlAttributeValue("", 13685, comment.User.Avatar, 13685, 20, false);
                                                 ");
             EndContext();
             BeginContext(14104, 134, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "abfda7184bf24a3db7a9d2577dc76e3d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e24d9c70df6b4dae9c2030f44c4fad3a", async() => {
                 BeginContext(14213, 21, false);
 #line 231 "E:\Projects\Perivallo\Views\Post\Details.cshtml"
                                                                                                                                                        Write(comment.User.UserName);
@@ -1295,7 +1295,7 @@ AddHtmlAttributeValue("", 13685, comment.User.Avatar, 13685, 20, false);
             WriteLiteral("                                                            ");
             EndContext();
             BeginContext(15455, 808, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0c86267a7de448788c42f58b2916de42", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c519712186634050b6d2711afc9c76d4", async() => {
                 BeginContext(15676, 583, true);
                 WriteLiteral(@"
                                                                 <div class=""media"">

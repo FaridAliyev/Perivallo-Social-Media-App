@@ -68,7 +68,7 @@ using Perivallo.ViewModels;
             WriteLiteral("\r\n<main id=\"search\">\r\n    <div class=\"container\">\r\n        <div class=\"row justify-content-center\">\r\n            <div class=\"col-lg-6 col-12\">\r\n                <div class=\"sp-search-wrapper\">\r\n                    ");
             EndContext();
             BeginContext(291, 305, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1c809327d7844c039380c7d66e9094f3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c57863f8f217437d93d4657ec5cbcb36", async() => {
                 BeginContext(321, 268, true);
                 WriteLiteral(@"
                         <input type=""text"" name=""search"" placeholder=""Search..."" autocomplete=""off"">
@@ -122,7 +122,7 @@ using Perivallo.ViewModels;
             WriteLiteral("                        <div class=\"search-res-card-wrapper\">\r\n                            <div class=\"search-res-card\">\r\n                                <div class=\"avatar-wrapper\">\r\n                                    ");
             EndContext();
             BeginContext(1197, 601, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "afc74d7a8cdd442dbeb5537259a05077", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "56c6d7bd02404f51b84c82928b8e2ffc", async() => {
                 BeginContext(1280, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();
@@ -136,7 +136,7 @@ using Perivallo.ViewModels;
                 WriteLiteral("                                            ");
                 EndContext();
                 BeginContext(1436, 55, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ec4d7a9ef8164c1b8fc2f71e7bbd0cf3", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d510bf5112214533ba658b797c9a6fb9", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -165,7 +165,7 @@ using Perivallo.ViewModels;
                 WriteLiteral("                                            ");
                 EndContext();
                 BeginContext(1669, 44, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "957d65815d3f4f038e981659867f8a9f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "cf0505fbb6624e53ac8744a94ba59353", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -231,7 +231,7 @@ AddHtmlAttributeValue("", 1685, item.Avatar, 1685, 12, false);
             WriteLiteral("\r\n                                </div>\r\n                                <div class=\"search-res-meta\">\r\n                                    ");
             EndContext();
             BeginContext(1939, 118, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d0af6dcbe3684914ab52d67496613155", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "592459600da945ea8ca43996d0af28d9", async() => {
                 BeginContext(2040, 13, false);
 #line 42 "E:\Projects\Perivallo\Views\Search\Filter.cshtml"
                                                                                                                                    Write(item.Username);

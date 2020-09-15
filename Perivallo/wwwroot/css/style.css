@@ -5680,14 +5680,11 @@ body {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  margin-bottom: 10px;
 }
 
 #chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .message-item:first-child {
   margin-top: auto;
-}
-
-#chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .message-item:not(:first-child) {
-  margin-top: 10px;
 }
 
 #chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .message-item .message-sender {
@@ -5713,8 +5710,8 @@ body {
 }
 
 #chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .message-item .message-body .message-text {
-  color: #fafafa;
-  background-color: #5082c3;
+  color: #242529;
+  background-color: #d4dae7;
   position: relative;
   display: block;
   width: auto;
@@ -5734,6 +5731,32 @@ body {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   left: -5px;
+  border-top: 5px solid #d4dae7;
+}
+
+#chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .is-sent {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+#chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .is-sent .message-sender {
+  margin-left: 20px;
+}
+
+#chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .is-sent .message-body .message-time {
+  text-align: left;
+}
+
+#chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .is-sent .message-body .message-text {
+  color: #fafafa;
+  background-color: #5082c3;
+}
+
+#chat .container .row .view-wrapper .right-side-wrapper .box-content .messages-wrapper .messages-list .is-sent .message-body .message-text::before {
+  right: -5px;
+  left: auto;
   border-top: 5px solid #5082c3;
 }
 

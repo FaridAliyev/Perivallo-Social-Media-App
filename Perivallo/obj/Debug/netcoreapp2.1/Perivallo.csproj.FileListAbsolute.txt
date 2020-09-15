@@ -45,3 +45,10 @@ E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Notification\Index.csh
 E:\Projects\Perivallo\bin\Debug\netcoreapp2.1\libman.json
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Chat\Index.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Chat\Dm.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Shared\_AdminLayout.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\_ViewImports.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\_ViewStart.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Dashboard\Index.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Shared\Components\Navbar\Default.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Shared\Components\Sidebar\Default.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Report\PostReports.cshtml.g.cs

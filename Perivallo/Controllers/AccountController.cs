@@ -46,7 +46,7 @@ namespace Perivallo.Controllers
             }
             User currentUser = await _userManager.GetUserAsync(User);
             List<User> friends = new List<User>();
-            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted))
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted&&!f.FriendFrom.Deleted&&!f.FriendTo.Deleted))
             {
                 if (item.FriendFrom == user)
                 {
@@ -57,7 +57,7 @@ namespace Perivallo.Controllers
                     friends.Add(item.FriendFrom);
                 }
             }
-            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => !f.Accepted))
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => !f.Accepted&&!f.FriendFrom.Deleted&&!f.FriendTo.Deleted))
             {
                 if (item.FriendFrom == currentUser)
                 {
@@ -77,7 +77,7 @@ namespace Perivallo.Controllers
             AccountVM model = new AccountVM()
             {
                 User = user,
-                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Include(p=>p.SavedPosts).Include(p=>p.Comments).Where(p => p.UserId == user.Id).OrderByDescending(p => p.Id),
+                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).ThenInclude(p=>p.User).Include(p => p.PostImages).Include(p=>p.SavedPosts).Include(p=>p.Comments).Where(p => p.UserId == user.Id).OrderByDescending(p => p.Id),
                 PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
                 Friends=friends.Take(6),
                 CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
@@ -279,7 +279,7 @@ namespace Perivallo.Controllers
             }
             User currentUser = await _userManager.GetUserAsync(User);
             List<User> friends = new List<User>();
-            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted))
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted && !f.FriendFrom.Deleted && !f.FriendTo.Deleted))
             {
                 if (item.FriendFrom == user)
                 {
@@ -290,7 +290,7 @@ namespace Perivallo.Controllers
                     friends.Add(item.FriendFrom);
                 }
             }
-            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => !f.Accepted))
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => !f.Accepted && !f.FriendFrom.Deleted && !f.FriendTo.Deleted))
             {
                 if (item.FriendFrom == currentUser)
                 {
@@ -310,7 +310,7 @@ namespace Perivallo.Controllers
             AccountVM model = new AccountVM()
             {
                 User = user,
-                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Include(p => p.SavedPosts).Include(p => p.Comments).Where(p => p.UserId == user.Id),
+                Posts = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).ThenInclude(p => p.User).Include(p => p.PostImages).Include(p => p.SavedPosts).Include(p => p.Comments).Where(p => p.UserId == user.Id),
                 PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
                 Friends = friends.Take(6),
                 CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
@@ -370,7 +370,7 @@ namespace Perivallo.Controllers
             List<PostTaggedUser> postTagged = _db.PostTaggedUsers.Where(p => p.UserId == user.Id).ToList();
             List<Post> posts = new List<Post>();
             List<User> friends = new List<User>();
-            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted))
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted&&!f.FriendFrom.Deleted&&!f.FriendTo.Deleted))
             {
                 if (item.FriendFrom == user)
                 {
@@ -388,6 +388,10 @@ namespace Perivallo.Controllers
                 {
                     isFriend = true;
                 }
+            }
+            if ((await _userManager.GetRolesAsync(currentUser))[0]=="Admin"|| (await _userManager.GetRolesAsync(currentUser))[0] == "Moderator")
+            {
+                isFriend = true;
             }
             if (user.Private && !isFriend && user != currentUser)
             {
@@ -421,7 +425,7 @@ namespace Perivallo.Controllers
                 return NotFound();
             }
             List<User> friends = new List<User>();
-            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted))
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted && !f.FriendFrom.Deleted && !f.FriendTo.Deleted))
             {
                 if (item.FriendFrom == user)
                 {
@@ -439,6 +443,10 @@ namespace Perivallo.Controllers
                 {
                     isFriend = true;
                 }
+            }
+            if ((await _userManager.GetRolesAsync(currentUser))[0] == "Admin" || (await _userManager.GetRolesAsync(currentUser))[0] == "Moderator")
+            {
+                isFriend = true;
             }
             if (user.Private&&!isFriend&&user!=currentUser)
             {

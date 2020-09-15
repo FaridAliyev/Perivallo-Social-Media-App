@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -52,11 +53,12 @@ namespace Perivallo.Controllers
             };
             _db.Messages.Add(msg);
             await _db.SaveChangesAsync();
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
             await _hub.Clients.Group(roomId.ToString()).SendAsync("ReceiveMessage", new
             {
                 Text = msg.Text,
                 Name = currentUser.UserName,
-                Date = msg.Date.ToString("dd/mm/yyyy hh:mm")
+                Date = msg.Date.ToString("g",culture)
             });
             return Ok();
         }

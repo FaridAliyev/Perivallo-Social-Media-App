@@ -1,4 +1,5 @@
 ﻿@model ChatVM
+@using System.Globalization
 @{
     ViewData["Title"] = "DM";
 }
@@ -65,22 +66,40 @@
                                 </div>
                             </div>
                         </div>
+                        @{ CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");}
                         <div class="box-content">
                             <div class="messages-wrapper">
                                 <ul class="messages-list">
                                     @foreach (Message message in Model.Messages)
                                     {
-                                        <li class="message-item">
-                                            <div class="message-sender">
-                                                <h4 class="username">@message.User.UserName</h4>
-                                            </div>
-                                            <div class="message-body">
-                                                <span class="message-time">@message.Date.ToString("dd/MM/yyyy hh:mm")</span>
-                                                <div class="message-text">
-                                                    @message.Text
+                                        @if (message.User.UserName == User.Identity.Name)
+                                        {
+                                            <li class="message-item is-sent">
+                                                <div class="message-sender">
+                                                    <h4 class="username">@message.User.UserName</h4>
                                                 </div>
-                                            </div>
-                                        </li>
+                                                <div class="message-body">
+                                                    <span class="message-time">@message.Date.ToString("g",culture)</span>
+                                                    <div class="message-text">
+                                                        @message.Text
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="message-item">
+                                                <div class="message-sender">
+                                                    <h4 class="username">@message.User.UserName</h4>
+                                                </div>
+                                                <div class="message-body">
+                                                    <span class="message-time">@message.Date.ToString("g", culture)</span>
+                                                    <div class="message-text">
+                                                        @message.Text
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
                                     }
                                 </ul>
                             </div>
@@ -96,6 +115,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <input type="hidden" id="crntUser" value="@User.Identity.Name" />
                             </div>
                         </div>
                     </div>
@@ -146,6 +166,9 @@
             connection.on("ReceiveMessage", function (data) {
                 console.log(data);
                 var msgItem = $("<li>").addClass('message-item');
+                if (data.name==$('#crntUser').val()) {
+                    msgItem.addClass('is-sent');
+                }
                 var msgSender = $("<div>").addClass('message-sender');
                 var msgBody = $("<div>").addClass('message-body');
                 var msgUsername = $("<h4>").addClass('username');

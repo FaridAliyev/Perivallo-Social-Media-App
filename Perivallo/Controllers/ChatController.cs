@@ -43,7 +43,7 @@ namespace Perivallo.Controllers
                 }
             }
             List<User> friends = new List<User>();
-            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted))
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted && !f.FriendFrom.Deleted && !f.FriendTo.Deleted))
             {
                 bool hasChat = false;
                 if (item.FriendFrom == currentUser)

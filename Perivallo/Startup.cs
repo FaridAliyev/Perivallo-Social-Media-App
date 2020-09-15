@@ -67,6 +67,11 @@ namespace Perivallo
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                name: "areas",
+                template: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+                );
+
+                routes.MapRoute(
                     "default", "{controller=Home}/{action=Index}/{Id?}"
                 );
             });

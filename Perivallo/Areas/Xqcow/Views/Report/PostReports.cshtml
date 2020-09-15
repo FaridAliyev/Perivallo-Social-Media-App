@@ -1,0 +1,112 @@
+﻿@model IEnumerable<PostReport>
+@{
+    ViewData["Title"] = "Post Reports";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Post Reports</h4>
+                <p class="card-description">
+                    Here you can see all the post reports
+                </p>
+                <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Reporter
+                                </th>
+                                <th>
+                                    Reason
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count() > 0)
+                            {
+                                @foreach (PostReport item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.ReportFrom.UserName
+                                        </td>
+                                        <td>
+                                            @item.Reason
+                                        </td>
+                                        <td>
+                                            <a asp-area="" asp-controller="Post" asp-action="Details" asp-route-id="@item.PostId" class="btn btn-success btn-icon-text">
+                                                See Post
+                                                <i class="mdi mdi-account-card-details btn-icon-append"></i>
+                                            </a>
+                                            <a asp-action="DeletePostReport" asp-route-id="@item.Id" class="btn btn-warning btn-icon-text">
+                                                Delete Report
+                                                <i class="mdi mdi-delete btn-icon-append"></i>
+                                            </a>
+                                            @if (item.Post.User.UserName != User.Identity.Name)
+                                            {
+                                                @if (item.Post.User.Deleted)
+                                                {
+                                                    <a asp-action="UnbanUser" asp-route-id="@item.Post.UserId" class="btn btn-primary btn-icon-text">
+                                                        Unban Post Owner
+                                                        <i class="mdi mdi-account-check btn-icon-append"></i>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="BanUser" asp-route-id="@item.Post.UserId" class="btn btn-danger btn-icon-text delete-user">
+                                                        Ban Post Owner
+                                                        <i class="mdi mdi-block-helper btn-icon-append"></i>
+                                                    </a>
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        <h1>No reports.</h1>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+
+        $('.delete-user').click(function (e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will be able to recover this user!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("The user has been deleted!", {
+                            icon: "success",
+                        });
+                        location.href = $(this).attr('href');
+                    } else {
+                        swal("The user is safe!");
+                    }
+                });
+        })
+    </script>
+}
