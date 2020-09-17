@@ -52,3 +52,10 @@ E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Dashboard\
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Shared\Components\Navbar\Default.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Shared\Components\Sidebar\Default.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Report\PostReports.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Report\CommentReports.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Report\UserReports.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Index.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Edit.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\AdminUsers.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\NormalUsers.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Blocked.cshtml.g.cs

@@ -25,7 +25,7 @@
                     @foreach (UserVM item in Model)
                     {
                         <div class="search-res-card-wrapper">
-                            <div class="search-res-card">
+                            <div style="justify-content: center" class="search-res-card">
                                 <div class="avatar-wrapper">
                                     <a asp-controller="Account" asp-action="Index" asp-route-username="@item.Username">
                                         @if (item.Avatar == null)
@@ -38,12 +38,9 @@
                                         }
                                     </a>
                                 </div>
-                                <div class="search-res-meta">
+                                <div style="margin-left: 15px;" class="search-res-meta">
                                     <a asp-controller="Account" asp-action="Index" asp-route-username="@item.Username" class="username">@item.Username</a>
                                     <p class="name">@item.Name</p>
-                                </div>
-                                <div class="button-wrapper">
-                                    <button type="button" class="action-btn follow-button">Follow</button>
                                 </div>
                             </div>
                         </div>

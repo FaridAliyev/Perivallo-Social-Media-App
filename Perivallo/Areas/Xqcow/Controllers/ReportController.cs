@@ -44,7 +44,7 @@ namespace Perivallo.Areas.Xqcow.Controllers
             return RedirectToAction("PostReports");
         }
 
-        public async Task<IActionResult> BanUser(string id)
+        public async Task<IActionResult> BanUser(string id, string returnUrl)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -52,15 +52,16 @@ namespace Perivallo.Areas.Xqcow.Controllers
             }
             User currentUser = await _userManager.GetUserAsync(User);
             User user = await _userManager.FindByIdAsync(id);
-            if (user==null || user==currentUser)
+            if (user == null || user == currentUser || (await _userManager.GetRolesAsync(user))[0] == "Admin")
             {
                 return NotFound();
             }
             user.Deleted = true;
             await _userManager.UpdateAsync(user);
-            return RedirectToAction("PostReports");
+            return LocalRedirect(returnUrl);
         }
-        public async Task<IActionResult> UnbanUser(string id)
+
+        public async Task<IActionResult> UnbanUser(string id, string returnUrl)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -74,7 +75,51 @@ namespace Perivallo.Areas.Xqcow.Controllers
             }
             user.Deleted = false;
             await _userManager.UpdateAsync(user);
-            return RedirectToAction("PostReports");
+            return LocalRedirect(returnUrl);
+        }
+
+        public IActionResult CommentReports()
+        {
+            var model = _db.CommentReports.Include(p => p.ReportFrom).Include(p => p.Comment).ThenInclude(p => p.User).OrderByDescending(p => p.Date);
+            return View(model);
+        }
+
+        public async Task<IActionResult> DeleteCommentReport(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            CommentReport report = await _db.CommentReports.FindAsync(id);
+            if (report == null)
+            {
+                return NotFound();
+            }
+            _db.CommentReports.Remove(report);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("CommentReports");
+        }
+
+        public IActionResult UserReports()
+        {
+            var model = _db.UserReports.Include(p => p.ReportFrom).Include(p => p.ReportTo).OrderByDescending(p => p.Date);
+            return View(model);
+        }
+
+        public async Task<IActionResult> DeleteUserReport(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            UserReport report = await _db.UserReports.FindAsync(id);
+            if (report == null)
+            {
+                return NotFound();
+            }
+            _db.UserReports.Remove(report);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("UserReports");
         }
     }
 }

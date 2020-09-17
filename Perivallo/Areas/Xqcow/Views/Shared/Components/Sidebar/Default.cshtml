@@ -3,7 +3,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" asp-area="Xqcow" asp-controller="Dashboard">
+            <a class="nav-link" asp-area="Xqcow" asp-controller="Dashboard" asp-action="Index">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -33,11 +33,11 @@
                 </a>
                 <div class="collapse" id="auth">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
+                        <li class="nav-item"> <a class="nav-link" asp-area="Xqcow" asp-controller="Acc" asp-action="Index"> Active Users </a></li>
+                        <li class="nav-item"> <a class="nav-link" asp-area="Xqcow" asp-controller="Acc" asp-action="AdminUsers"> Admins </a></li>
+                        <li class="nav-item"> <a class="nav-link" asp-area="Xqcow" asp-controller="Acc" asp-action="Moderators"> Moderators </a></li>
+                        <li class="nav-item"> <a class="nav-link" asp-area="Xqcow" asp-controller="Acc" asp-action="NormalUsers"> Normal Users </a></li>
+                        <li class="nav-item"> <a class="nav-link" asp-area="Xqcow" asp-controller="Acc" asp-action="Blocked"> Deleted Users </a></li>
                     </ul>
                 </div>
             </li>

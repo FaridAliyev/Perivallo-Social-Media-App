@@ -259,7 +259,15 @@ namespace Perivallo.Controllers
             {
                 currentUser.PasswordHash = _userManager.PasswordHasher.HashPassword(currentUser, user.Password);
             }
-            await _userManager.UpdateAsync(currentUser);
+            IdentityResult identityResult = await _userManager.UpdateAsync(currentUser);
+            if (!identityResult.Succeeded)
+            {
+                foreach (var error in identityResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(user);
+            }
             await _signInManager.SignInAsync(currentUser, true);
             return RedirectToAction("Index", new { username = currentUser.UserName });
         }
