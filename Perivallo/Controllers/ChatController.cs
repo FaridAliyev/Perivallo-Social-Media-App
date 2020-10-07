@@ -85,7 +85,6 @@ namespace Perivallo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ActionName("Index")]
         public async Task<IActionResult> CreateChat()
         {
             string id = Request.Form["friend"];

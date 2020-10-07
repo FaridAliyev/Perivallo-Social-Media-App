@@ -70,8 +70,9 @@ namespace Perivallo.Controllers
                     suggestedfriends.Add(u);
                 }
             }
+            ViewBag.FpCount = posts.Count();
             model.Users = _db.Users.Where(u=>!u.Deleted);
-            model.Posts = posts.OrderByDescending(f=>f.Date);
+            model.Posts = posts.OrderByDescending(f=>f.Date).Take(10);
             model.Role = (await _userManager.GetRolesAsync(currentUser))[0];
             model.SuggestedUsers = suggestedfriends.OrderByDescending(s=>s.Posts.Count());
             return View(model);
@@ -93,9 +94,12 @@ namespace Perivallo.Controllers
                     return BadRequest();
                 }
             }
-            if (string.IsNullOrEmpty(homeVM.Post.Text.Trim()) && string.IsNullOrEmpty(homeVM.Post.Link.Trim()) && postFiles.Length == 0)
+            if (homeVM.Post!=null)
             {
-                return BadRequest();
+                if (string.IsNullOrEmpty(homeVM.Post.Text) && string.IsNullOrEmpty(homeVM.Post.Link) && postFiles.Length == 0)
+                {
+                    return BadRequest();
+                }
             }
             Post post = homeVM.Post;
             post.Date = DateTime.Now;
@@ -552,6 +556,37 @@ namespace Perivallo.Controllers
             _db.UserReports.Add(report);
             await _db.SaveChangesAsync();
             return 1;
+        }
+
+        public async Task<IActionResult> Load(int skip)
+        {
+            User currentUser = await _userManager.GetUserAsync(User);
+            List<User> friends = new List<User>();
+            foreach (Friend item in _db.Friends.Include(f => f.FriendTo).Include(f => f.FriendFrom).Where(f => f.Accepted && !f.FriendFrom.Deleted && !f.FriendTo.Deleted))
+            {
+                if (item.FriendFrom == currentUser)
+                {
+                    friends.Add(item.FriendTo);
+                }
+                else if (item.FriendTo == currentUser)
+                {
+                    friends.Add(item.FriendFrom);
+                }
+            }
+            friends.Add(currentUser);
+            List<Post> posts = new List<Post>();
+            foreach (User friend in friends)
+            {
+                posts.AddRange(_db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).ThenInclude(p=>p.User).Include(p => p.PostImages).Include(p => p.PostLikes).Include(p => p.SavedPosts).Include(p => p.Comments).Where(p => p.User == friend));
+            }
+            HomeVM model = new HomeVM()
+            {
+                Role = (await _userManager.GetRolesAsync(currentUser))[0],
+                Posts = posts.OrderByDescending(f => f.Date).Skip(skip).Take(10),
+                User=currentUser
+            };
+            
+            return PartialView("_FeedPostPartial", model);
         }
     }
 }

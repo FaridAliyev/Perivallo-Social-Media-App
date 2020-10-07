@@ -64,7 +64,7 @@ using Perivallo.ViewModels;
             WriteLiteral("\r\n<main id=\"search\">\r\n    <div class=\"container\">\r\n        <div class=\"row justify-content-center\">\r\n            <div class=\"col-lg-6 col-12\">\r\n                <div class=\"sp-search-wrapper\">\r\n                    ");
             EndContext();
             BeginContext(257, 305, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4a83f43fea85470b95493bdac51ffdcc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d05dda634c3243029239a790cbd57655", async() => {
                 BeginContext(287, 268, true);
                 WriteLiteral(@"
                         <input type=""text"" name=""search"" placeholder=""Search..."" autocomplete=""off"">

@@ -59,3 +59,5 @@ E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Edit.c
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\AdminUsers.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\NormalUsers.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Blocked.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Moderators.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_FeedPostPartial.cshtml.g.cs

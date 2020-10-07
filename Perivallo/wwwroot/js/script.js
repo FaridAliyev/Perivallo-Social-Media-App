@@ -656,4 +656,30 @@ $(document).ready(function () {
             }
         });
     });
+
+    let feedPostSkip = 10;
+    let feedPostCount = $("#fp-count").val();
+
+    $("#fp-load").click(function () {
+        $.ajax({
+            url: "/Home/Load?skip=" + feedPostSkip,
+            type: "Get",
+            success: function (response) {
+                let previous_height = $(window).scrollTop();
+                $(".feed-posts-wrapper").append(response);
+                $(window).scrollTop(previous_height);
+                
+                $('.post-owl-carousel').owlCarousel({
+                    items: 1,
+                    dots: true
+                });
+                feedPostSkip += 10;
+                if (feedPostSkip >= feedPostCount) {
+                    $("#fp-load").remove();
+                }
+                
+            }
+        });
+    });
+
 });

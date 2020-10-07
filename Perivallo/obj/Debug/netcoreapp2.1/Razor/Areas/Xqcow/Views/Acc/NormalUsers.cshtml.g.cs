@@ -164,7 +164,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("\r\n                                            </td>\r\n                                            <td>\r\n                                                ");
             EndContext();
             BeginContext(2377, 363, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b4e439d3373045678b4244e1e1f9dcfb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "514077d917644968bc040301e308f634", async() => {
                 BeginContext(2510, 226, true);
                 WriteLiteral("\r\n                                                    See User\r\n                                                    <i class=\"mdi mdi-account-card-details btn-icon-append\"></i>\r\n                                                ");
                 EndContext();
@@ -213,7 +213,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("                                                    ");
             EndContext();
             BeginContext(2921, 307, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34184f1596444c5493e2f2bdd5725256", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "49431d11a5f24765a8ae86427f43bcc5", async() => {
                 BeginContext(3004, 220, true);
                 WriteLiteral("\r\n                                                        Edit\r\n                                                        <i class=\"mdi mdi-pencil btn-icon-append\"></i>\r\n                                                    ");
                 EndContext();
@@ -249,7 +249,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("\r\n                                                    ");
             EndContext();
             BeginContext(3282, 444, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "41f9abb78f6e4f30a1995529b8ae92ef", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6f282990053846f2ade2bf7f7dcfa8fe", async() => {
                 BeginContext(3500, 222, true);
                 WriteLiteral("\r\n                                                        Delete\r\n                                                        <i class=\"mdi mdi-delete btn-icon-append\"></i>\r\n                                                    ");
                 EndContext();
