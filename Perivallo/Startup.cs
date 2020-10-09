@@ -36,6 +36,8 @@ namespace Perivallo
                 identityOptions.Password.RequireUppercase = true;
                 identityOptions.Password.RequireNonAlphanumeric = false;
 
+                identityOptions.SignIn.RequireConfirmedEmail = true;
+
                 identityOptions.User.RequireUniqueEmail = true;
 
                 identityOptions.Lockout.MaxFailedAccessAttempts = 5;
@@ -58,6 +60,7 @@ namespace Perivallo
 
             app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseStatusCodePagesWithRedirects("/Error/{0}");
 
             app.UseSignalR(routes =>
             {

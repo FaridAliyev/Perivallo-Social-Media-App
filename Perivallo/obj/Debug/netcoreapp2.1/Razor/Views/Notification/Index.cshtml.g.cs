@@ -107,7 +107,7 @@ using Perivallo.ViewModels;
             WriteLiteral(")</span>\r\n                            <div class=\"button-wrapper\">\r\n                                ");
             EndContext();
             BeginContext(830, 195, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f8f848660b6041459ecc8685a0d9123f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ac7bf7155e8244488503672da634197e", async() => {
                 BeginContext(1010, 11, true);
                 WriteLiteral("Confirm All");
                 EndContext();
@@ -145,7 +145,7 @@ using Perivallo.ViewModels;
             WriteLiteral("\r\n                                ");
             EndContext();
             BeginContext(1059, 192, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d9ae713ea904419b8aa0087baaee954", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ce5bd29eff049feb636e5b845fab597", async() => {
                 BeginContext(1237, 10, true);
                 WriteLiteral("Ignore All");
                 EndContext();
@@ -192,7 +192,7 @@ using Perivallo.ViewModels;
             WriteLiteral("                                <li class=\"fr-card-item\">\r\n                                    ");
             EndContext();
             BeginContext(1569, 657, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd49a1e1f3d5492b84e63d72c001ba3a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6054d0f369bf4504ad7a65c8d42bb953", async() => {
                 BeginContext(1686, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();
@@ -206,7 +206,7 @@ using Perivallo.ViewModels;
                 WriteLiteral("                                            ");
                 EndContext();
                 BeginContext(1853, 55, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d3ef2dc43a314a4c9258b10b981cf3cd", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ed1e5376e409497db8b4815b4cb5ace0", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -235,7 +235,7 @@ using Perivallo.ViewModels;
                 WriteLiteral("                                            ");
                 EndContext();
                 BeginContext(2086, 55, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "f29b3850d3174b258002d83148bc59e2", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "5251377bb2574a0fb65cd6c5be42eeb0", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -302,7 +302,7 @@ AddHtmlAttributeValue("", 2102, item.FriendFrom.Avatar, 2102, 23, false);
             WriteLiteral("\r\n                                    ");
             EndContext();
             BeginContext(2264, 140, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "21463826aedc4107acaaadcaf66acfed", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b28b43ac3c54576bb81016d6455db5b", async() => {
                 BeginContext(2376, 24, false);
 #line 41 "E:\Projects\Perivallo\Views\Notification\Index.cshtml"
                                                                                                                                               Write(item.FriendFrom.UserName);
@@ -344,7 +344,7 @@ AddHtmlAttributeValue("", 2102, item.FriendFrom.Avatar, 2102, 23, false);
             WriteLiteral("\r\n                                    <div class=\"action-buttons\">\r\n                                        ");
             EndContext();
             BeginContext(2512, 229, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a9d90a09379e4514a185661882c6bc8b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "550c931e59d64cc3b17c72f8594aea2f", async() => {
                 BeginContext(2730, 7, true);
                 WriteLiteral("Confirm");
                 EndContext();
@@ -391,7 +391,7 @@ AddHtmlAttributeValue("", 2102, item.FriendFrom.Avatar, 2102, 23, false);
             WriteLiteral("\r\n                                        ");
             EndContext();
             BeginContext(2783, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1a6ae59e3c62455481524aa10c599f09", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "20d601d488eb48a2a16017852f14d0da", async() => {
                 BeginContext(2999, 6, true);
                 WriteLiteral("Ignore");
                 EndContext();
@@ -470,7 +470,7 @@ AddHtmlAttributeValue("", 2102, item.FriendFrom.Avatar, 2102, 23, false);
             WriteLiteral("                                <div class=\"notification-card-wrapper\">\r\n                                    ");
             EndContext();
             BeginContext(3565, 1310, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f5338b0838bd44eeb03ea7b62c30a287", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "190106ef400e466fbcdab1aa45fc2133", async() => {
                 BeginContext(3647, 149, true);
                 WriteLiteral("\r\n                                        <div class=\"notification-card\">\r\n                                            <div class=\"avatar-wrapper\">\r\n");
                 EndContext();
@@ -484,7 +484,7 @@ AddHtmlAttributeValue("", 2102, item.FriendFrom.Avatar, 2102, 23, false);
                 WriteLiteral("                                                    ");
                 EndContext();
                 BeginContext(3999, 55, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "b6facc9e42ac4bbdbbd82b7b57af220f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "6f4c4d77b6ef4a7196cf49151b04441f", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -513,7 +513,7 @@ AddHtmlAttributeValue("", 2102, item.FriendFrom.Avatar, 2102, 23, false);
                 WriteLiteral("                                                    ");
                 EndContext();
                 BeginContext(4264, 69, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "486b7f0643954f20b20abd57270c215e", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "22e01590a6654d78bf82042aa58fa078", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

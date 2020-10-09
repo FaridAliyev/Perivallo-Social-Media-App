@@ -68,7 +68,7 @@ namespace Perivallo.Controllers
                 User = currentUser,
                 Post = _db.Posts.Include(p => p.User).Include(p => p.PostTaggedUsers).Include(p => p.PostLikes).Include(p => p.PostImages).Include(p => p.SavedPosts).Include(p => p.Comments).FirstOrDefault(p => p.Id == id),
                 PostTaggedUsers = _db.PostTaggedUsers.Include(p => p.User),
-                Comments = _db.Comments.Include(c=>c.User).Include(c=>c.CommentLikes).Where(c => c.PostId == id).OrderByDescending(c => c.CommentLikes.Count()),
+                Comments = _db.Comments.Include(c=>c.User).Include(c=>c.CommentLikes).Include(c=>c.Replies).Where(c => c.PostId == id).OrderByDescending(c => c.CommentLikes.Count()),
                 CurrentUserRole = (await _userManager.GetRolesAsync(currentUser))[0]
             };
             return View(model);
@@ -84,6 +84,10 @@ namespace Perivallo.Controllers
                 return BadRequest();
             }
             Post post = await _db.Posts.FindAsync(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
             Comment comment = postDetailsVM.Comment;
             comment.Date = DateTime.Now;
             User currentUser = await _userManager.GetUserAsync(User);
@@ -104,6 +108,44 @@ namespace Perivallo.Controllers
             }
             await _db.SaveChangesAsync();
             return RedirectToAction("Details", "Post", new { id = id });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PostReply(int? commentId, string reply)
+        {
+            if (string.IsNullOrEmpty(reply.Trim()))
+            {
+                return BadRequest();
+            }
+            Comment comment = await _db.Comments.FindAsync(commentId);
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            Reply newReply = new Reply()
+            {
+                Text = reply,
+                Date = DateTime.Now,
+                UserId = currentUser.Id,
+                CommentId = (int)commentId
+            };
+            _db.Replies.Add(newReply);
+            if (currentUser.Id != comment.UserId)
+            {
+                Notification notification = new Notification()
+                {
+                    Date = DateTime.Now,
+                    NotificationFromId = currentUser.Id,
+                    NotificationToId = comment.UserId,
+                    PostId = comment.PostId,
+                    NotificationTypeId = 5
+                };
+                _db.Notifications.Add(notification);
+            }
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Details", "Post", new { id = comment.PostId });
         }
 
         public async Task<int> CommentLike(int? id)

@@ -6506,6 +6506,167 @@ body {
   margin: 0 5px;
 }
 
+#error {
+  padding-top: 100px;
+  min-height: 100vh;
+  background: #F6F6F6;
+}
+
+#error .container .row {
+  padding-top: 70px;
+}
+
+#error .container .row .error-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#verification {
+  min-height: calc(100vh - 55px);
+  background: #f4f4f4;
+}
+
+#verification .outer-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 125px;
+}
+
+#verification .outer-panel .outer-panel-inner {
+  width: 100%;
+}
+
+#verification .outer-panel .outer-panel-inner .process-title {
+  max-width: 840px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#verification .outer-panel .outer-panel-inner .process-title h2 {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400 !important;
+  font-size: 1.2rem;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: none;
+          animation-fill-mode: none;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  -webkit-animation-name: fadeInUp;
+          animation-name: fadeInUp;
+}
+
+#verification .outer-panel .outer-panel-inner .process-panel-wrapper {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 20px 0;
+  color: #344258;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: none;
+          animation-fill-mode: none;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  -webkit-animation-name: fadeInLeft;
+          animation-name: fadeInLeft;
+}
+
+#verification .outer-panel .outer-panel-inner .process-panel-wrapper .row .content-wrapper {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+#verification .outer-panel .outer-panel-inner .process-panel-wrapper .row .content-wrapper img {
+  display: block;
+  max-width: 120px;
+  margin: 0 auto;
+}
+
+#verification .outer-panel .outer-panel-inner .process-panel-wrapper .row .content-wrapper .success-text {
+  text-align: center;
+  margin: 12px auto;
+  max-width: 370px;
+}
+
+#verification .outer-panel .outer-panel-inner .process-panel-wrapper .row .content-wrapper .success-text h3 {
+  margin: 0;
+  font-weight: 500;
+  color: #393a4f;
+  font-size: 1rem;
+}
+
+#verification .outer-panel .outer-panel-inner .process-panel-wrapper .row .content-wrapper .success-text p {
+  margin: 0;
+  font-size: .9rem;
+  color: #999;
+}
+
+#verification .outer-panel .outer-panel-inner .process-panel-wrapper .row .content-wrapper .success-text a {
+  text-decoration: none;
+  margin: 20px auto 0 auto;
+  max-width: 280px;
+  border: 1.4px solid #5596e6;
+  color: #5596e6;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  border-radius: 1000px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: .8rem;
+  font-weight: 500;
+  padding: 10px 22px;
+  background-color: #fff;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+#verification .outer-panel .outer-panel-inner .process-panel-wrapper .row .content-wrapper .success-text a:hover {
+  border-color: #5596e6;
+  background: #5596e6;
+  color: #fff;
+  -webkit-box-shadow: 0 14px 26px -12px rgba(85, 150, 230, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(85, 150, 230, 0.2);
+          box-shadow: 0 14px 26px -12px rgba(85, 150, 230, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(85, 150, 230, 0.2);
+}
+
 @media (max-width: 991px) {
   #navbar .container .row .search-bar {
     display: none;

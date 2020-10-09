@@ -296,11 +296,79 @@
                                                         <i class="far fa-thumbs-up"></i>
                                                     </div>
                                                 }
-                                                @*<div class="comment-action comment-icon">
-                                                        <i class="far fa-comment"></i>
-                                                    </div>*@
+                                                <div class="comment-action comment-icon">
+                                                    <i class="far fa-comment"></i>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="comment-reply-wrapper">
+                                            <form method="post" asp-controller="Post" asp-action="PostReply">
+                                                <input type="hidden" name="commentId" value="@comment.Id" />
+                                                <input type="text" name="reply" class="reply-publish" placeholder="Reply to this comment..." autocomplete="off">
+                                                <button type="submit" disabled><i class="fas fa-reply"></i></button>
+                                            </form>
+                                        </div>
+                                        @if (comment.Replies.Count() > 0)
+                                        {
+                                            <div class="nested-replies">
+                                                <a class="header">
+                                                    <span>@comment.Replies.Count() replies</span>
+                                                </a>
+                                                <div class="nested-comments">
+                                                    @foreach (Reply reply in comment.Replies)
+                                                    {
+                                                        <div class="nested-comment">
+                                                            <div class="comment-left">
+                                                                <div class="avatar-wrapper">
+                                                                    @if (reply.User.Avatar == null)
+                                                                    {
+                                                                        <img src="~/img/profile-placeholder.png" alt="Profile Picture">
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img src="~/img/@reply.User.Avatar" alt="Profile Picture">
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div class="comment-content">
+                                                                <div class="comments-meta">
+                                                                    <h4>
+                                                                        <a asp-controller="Account" asp-action="Index" asp-route-username="@reply.User.UserName" class="username">@reply.User.UserName</a>
+                                                                        @{
+                                                                            string rdt = reply.Date.ToString("MMM dd yyyy, ") + reply.Date.ToString("t", culture);
+                                                                        }
+                                                                        <small> · @rdt</small>
+                                                                    </h4>
+                                                                    <p>
+                                                                        @reply.Text
+                                                                    </p>
+                                                                    @if (User.Identity.Name == reply.User.UserName || Model.CurrentUserRole == "Admin" || Model.CurrentUserRole == "Moderator")
+                                                                    {
+                                                                        <div class="comment-dropdown">
+                                                                            <div class="comment-dropdown-button">
+                                                                                <i class="fas fa-ellipsis-h"></i>
+                                                                            </div>
+                                                                            <div class="comment-dropdown-menu">
+                                                                                <div class="dropdown-content">
+                                                                                    <a asp-controller="Home" asp-action="DeleteReply" asp-route-id="@reply.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="comment-dropdown-item delete-reply">
+                                                                                        <div class="media">
+                                                                                            <i class="far fa-trash-alt"></i>
+                                                                                            <div class="media-content">
+                                                                                                <h3>Delete</h3>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             }
@@ -389,6 +457,7 @@
                     }
                 });
         });
+
         $('.delete-comment').click(function (e) {
             e.preventDefault();
             swal({
@@ -406,6 +475,27 @@
                         location.href = $(this).attr('href');
                     } else {
                         swal("This comment is safe!");
+                    }
+                });
+        });
+
+        $('.delete-reply').click(function (e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this reply!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("This reply has been deleted!", {
+                            icon: "success",
+                        });
+                        location.href = $(this).attr('href');
+                    } else {
+                        swal("This reply is safe!");
                     }
                 });
         });

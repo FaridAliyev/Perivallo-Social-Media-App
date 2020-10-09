@@ -61,3 +61,6 @@ E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Normal
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Blocked.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Acc\Moderators.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_FeedPostPartial.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Error\HttpStatusCodeHandler.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\EmailVerification.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\VerifyEmail.cshtml.g.cs

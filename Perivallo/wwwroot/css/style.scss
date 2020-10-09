@@ -3399,9 +3399,6 @@ body {
                                         position: absolute;
                                         right: 8px;
                                         top: 7px;
-                                        i{
-
-                                        }
                                     }
                                 }
                             }
@@ -4949,6 +4946,130 @@ body {
         }
     }
 }
+
+// error page
+
+#error{
+    padding-top: 100px;
+    min-height: 100vh;
+    background: #F6F6F6;
+    .container{
+        .row{
+            padding-top: 70px;
+            .error-wrapper{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+// verification
+
+#verification{
+    min-height: calc(100vh - 55px);
+    background: #f4f4f4;
+    .outer-panel{
+        display: flex;
+        align-items: center;
+        padding-top: 125px;
+        .outer-panel-inner{
+            width: 100%;
+            .process-title{
+                max-width: 840px;
+                margin: 0 auto;
+                text-align: center;
+                h2 {
+                    margin: 0;
+                    font-family: "Montserrat", sans-serif;
+                    font-weight: 400 !important;
+                    font-size: 1.2rem;
+                    animation-duration: 0.5s;
+                    animation-timing-function: ease;
+                    animation-delay: 0s;
+                    animation-iteration-count: 1;
+                    animation-direction: normal;
+                    animation-fill-mode: none;
+                    animation-play-state: running;
+                    animation-name: fadeInUp;
+                }
+            }
+            .process-panel-wrapper{
+                max-width: 540px;
+                margin: 0 auto;
+                padding: 20px 0;
+                color: #344258;
+                animation-duration: 0.5s;
+                animation-timing-function: ease;
+                animation-delay: 0s;
+                animation-iteration-count: 1;
+                animation-direction: normal;
+                animation-fill-mode: none;
+                animation-play-state: running;
+                animation-name: fadeInLeft;
+                
+                    .row{
+                        .content-wrapper{
+                            width: 100%;
+                            background: #fff;
+                            border: 1px solid #e8e8e8;
+                            border-radius: 8px;
+                            padding: 30px;
+                            img{
+                                display: block;
+                                max-width: 120px;
+                                margin: 0 auto;
+                            }
+                            .success-text{
+                                text-align: center;
+                                margin: 12px auto;
+                                max-width: 370px;
+                                h3{
+                                    margin: 0;
+                                    font-weight: 500;
+                                    color: #393a4f;
+                                    font-size: 1rem;
+                                }
+                                p{
+                                    margin: 0;
+                                    font-size: .9rem;
+                                    color: #999;
+                                }
+                                a{
+                                    text-decoration: none;
+                                    margin: 20px auto 0 auto;
+                                    max-width: 280px;
+                                    border: 1.4px solid #5596e6;
+                                    color: #5596e6;
+                                    padding-left: 1.5em;
+                                    padding-right: 1.5em;
+                                    border-radius: 1000px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    font-size: .8rem;
+                                    font-weight: 500;
+                                    padding: 10px 22px;
+                                    background-color: #fff;
+                                    transition: all .3s;
+                                    &:hover{
+                                        border-color: #5596e6;
+                                        background: #5596e6;
+                                        color: #fff;
+                                        box-shadow: 0 14px 26px -12px rgba(85,150,230,0.42),0 4px 23px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(85,150,230,0.2);
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+        }
+    }
+}
+
+
 
 @media (max-width: 991px) {
     #navbar {

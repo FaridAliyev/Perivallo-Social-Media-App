@@ -71,7 +71,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("\r\n<nav class=\"sidebar sidebar-offcanvas\" id=\"sidebar\">\r\n    <ul class=\"nav\">\r\n        <li class=\"nav-item\">\r\n            ");
             EndContext();
             BeginContext(139, 216, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "04609b647c8c43b0b7062c57f303cfac", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1c4129d0f6e4c41afd966aac1707113", async() => {
                 BeginContext(222, 129, true);
                 WriteLiteral("\r\n                <i class=\"mdi mdi-home menu-icon\"></i>\r\n                <span class=\"menu-title\">Dashboard</span>\r\n            ");
                 EndContext();
@@ -108,7 +108,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
                     <li class=""nav-item""> ");
             EndContext();
             BeginContext(856, 102, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b8b3ecea3028450e984cdf380cf60a8c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7c688949b0904f92af9b4455b70fd96d", async() => {
                 BeginContext(942, 12, true);
                 WriteLiteral("Post Reports");
                 EndContext();
@@ -135,7 +135,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("</li>\r\n                    <li class=\"nav-item\"> ");
             EndContext();
             BeginContext(1007, 108, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "424d93438a074a5cbc533d819d3f4dd1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7384e53d2e0a408886adabc0dbfcf020", async() => {
                 BeginContext(1096, 15, true);
                 WriteLiteral("Comment Reports");
                 EndContext();
@@ -162,7 +162,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("</li>\r\n                    <li class=\"nav-item\"> ");
             EndContext();
             BeginContext(1164, 102, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0eb24728d0b141fda4ce1759b5d1f2fd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "96342be6663f4a5da5e78706bb1bc335", async() => {
                 BeginContext(1250, 12, true);
                 WriteLiteral("User Reports");
                 EndContext();
@@ -206,7 +206,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
                         <li class=""nav-item""> ");
             EndContext();
             BeginContext(1885, 95, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ae73e498fd32401ca3f46b49e41e1a01", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b0db2afddc334894bb85bdf2758f4b30", async() => {
                 BeginContext(1962, 14, true);
                 WriteLiteral(" Active Users ");
                 EndContext();
@@ -233,7 +233,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("</li>\r\n                        <li class=\"nav-item\"> ");
             EndContext();
             BeginContext(2033, 94, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d67067a694f8499baba68c413e99a1df", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c7de0c86c8924d569d37d2dc3beaa316", async() => {
                 BeginContext(2115, 8, true);
                 WriteLiteral(" Admins ");
                 EndContext();
@@ -260,7 +260,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("</li>\r\n                        <li class=\"nav-item\"> ");
             EndContext();
             BeginContext(2180, 98, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c85480164819472a8bdafa0d124e090e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "53ded9b418bc44c382c819e56ed33fc2", async() => {
                 BeginContext(2262, 12, true);
                 WriteLiteral(" Moderators ");
                 EndContext();
@@ -287,7 +287,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("</li>\r\n                        <li class=\"nav-item\"> ");
             EndContext();
             BeginContext(2331, 101, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a16aebd4cf345e5addb3910d1a4455b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3ef9c2f692c495e91305cdcdbfd9852", async() => {
                 BeginContext(2414, 14, true);
                 WriteLiteral(" Normal Users ");
                 EndContext();
@@ -314,7 +314,7 @@ using Perivallo.Areas.Xqcow.ViewModels;
             WriteLiteral("</li>\r\n                        <li class=\"nav-item\"> ");
             EndContext();
             BeginContext(2485, 98, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "77cf434313d24fe38ad200ce357b7e5f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aeaacf9eb240e0870738f510bae970", async() => {
                 BeginContext(2564, 15, true);
                 WriteLiteral(" Deleted Users ");
                 EndContext();

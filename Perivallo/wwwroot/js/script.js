@@ -606,6 +606,23 @@ $(document).ready(function () {
         }
     });
 
+    $('.comment-actions .comment-icon').click(function () {
+        $(this).closest('.comment-stats-wrapper').next().toggleClass('comment-reply-active');
+    });
+
+    $('.reply-publish').keyup(function () {
+        if ($(this).val().trim() == "") {
+            $(this).next().attr("disabled", true);
+            $(this).next().css('opacity', '0.8');
+        }
+        else {
+            $(this).next().removeAttr("disabled");
+            $(this).next().css('opacity', '1');
+        }
+    });
+
+    // additional
+
     $('.pm-send').click(function () {
         let prBtn = $(this);
         let repPostId = prBtn.val();

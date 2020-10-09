@@ -347,6 +347,31 @@ namespace Perivallo.Controllers
             return LocalRedirect(returnUrl);
         }
 
+        public async Task<IActionResult> DeleteReply(int? id, string returnUrl)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Reply reply = await _db.Replies.FindAsync(id);
+            if (reply == null)
+            {
+                return NotFound();
+            }
+            User currentUser = await _userManager.GetUserAsync(User);
+            string currentUserRole = (await _userManager.GetRolesAsync(currentUser))[0];
+            if (reply.UserId != currentUser.Id)
+            {
+                if (currentUserRole != "Admin" && currentUserRole != "Moderator")
+                {
+                    return NotFound();
+                }
+            }
+            _db.Replies.Remove(reply);
+            await _db.SaveChangesAsync();
+            return LocalRedirect(returnUrl);
+        }
+
         public async Task<IActionResult> SendRequest(string id, string returnUrl)
         {
             if (string.IsNullOrEmpty(id))

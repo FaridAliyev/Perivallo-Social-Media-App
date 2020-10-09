@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -131,8 +133,42 @@ namespace Perivallo.Controllers
                 return View(register);
             }
             await _userManager.AddToRoleAsync(user, Helpers.Extensions.Role.User.ToString());
-            await _signInManager.SignInAsync(user, true);
-            return RedirectToAction("Index", "Home");
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var link = Url.Action(nameof(VerifyEmail), "Account", new { userId = user.Id, code },Request.Scheme,Request.Host.ToString());
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("perivalloapp@gmail.com", "Perivallo");
+            mail.To.Add(new MailAddress(user.Email));
+            mail.Subject = "Verify your email";
+            mail.Body = $"<a href=\"{link}\">Verify Email</a>";
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential("perivalloapp@gmail.com", "mybstwrk@prvll");
+            smtp.Send(mail);
+            //await _signInManager.SignInAsync(user, true);
+            return RedirectToAction("EmailVerification");
+        }
+
+        public async Task<IActionResult> VerifyEmail(string userId, string code)
+        {
+            User user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                return View();
+            }
+            return NotFound();
+        }
+
+        public IActionResult EmailVerification()
+        {
+            return View();
         }
 
         public IActionResult Login()
