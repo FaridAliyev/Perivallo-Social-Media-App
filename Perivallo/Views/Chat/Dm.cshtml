@@ -164,7 +164,6 @@
         
         var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
             connection.on("ReceiveMessage", function (data) {
-                console.log(data);
                 var msgItem = $("<li>").addClass('message-item');
                 if (data.name==$('#crntUser').val()) {
                     msgItem.addClass('is-sent');
@@ -192,10 +191,10 @@
                 var url = '/Chandle/JoinRoom/' + _connectionId + '/@Model.Chat.Id';
                 axios.post(url, null)
                     .then(res => {
-                        console.log("Joined Room!", res);
+                        
                     })
                     .catch(err => {
-                        console.log("Failed", err);
+                        
                     })
             }
 
@@ -209,7 +208,7 @@
                         })
                 })
                 .catch(function (err) {
-                    console.log(err);
+                    
                 })
 
 
@@ -223,10 +222,10 @@
                 $('.message-send-button-wrapper').hide();
                 axios.post('/Chandle/SendMessage', data)
                     .then(res => {
-                        console.log("Message Sent!");
+                        
                     })
                     .catch(err => {
-                        console.log("Failed to send message");
+                        
                     })
             }
 

@@ -13,8 +13,6 @@ namespace Perivallo.ViewModels
         public string Name { get; set; }
         [Required, StringLength(50)]
         public string Username { get; set; }
-        [Required, EmailAddress, DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
         [StringLength(200)]
         public string About { get; set; }
         [DataType(DataType.Password)]

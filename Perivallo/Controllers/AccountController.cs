@@ -249,7 +249,6 @@ namespace Perivallo.Controllers
             {
                 Name = user.Name,
                 Username = user.UserName,
-                Email = user.Email,
                 Avatar = user.Avatar,
                 Cover = user.Cover,
                 About = user.About,
@@ -287,12 +286,21 @@ namespace Perivallo.Controllers
             }
 
             currentUser.Name = user.Name;
-            currentUser.Email = user.Email;
             currentUser.About = user.About;
             currentUser.Private = user.Private;
             currentUser.UserName = user.Username;
             if (user.Password != null)
             {
+                var passwordValidator = new PasswordValidator<User>();
+                var valResult = await passwordValidator.ValidateAsync(_userManager, null, user.Password);
+                if (!valResult.Succeeded)
+                {
+                    foreach (var err in valResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, err.Description);
+                    }
+                    return View(user);
+                }
                 currentUser.PasswordHash = _userManager.PasswordHasher.HashPassword(currentUser, user.Password);
             }
             IdentityResult identityResult = await _userManager.UpdateAsync(currentUser);
