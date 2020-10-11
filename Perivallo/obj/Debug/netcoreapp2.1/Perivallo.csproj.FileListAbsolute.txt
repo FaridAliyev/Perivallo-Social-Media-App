@@ -64,3 +64,4 @@ E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_FeedPostPartia
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Error\HttpStatusCodeHandler.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\EmailVerification.cshtml.g.cs
 E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Views\Account\VerifyEmail.cshtml.g.cs
+E:\Projects\Perivallo\obj\Debug\netcoreapp2.1\Razor\Areas\Xqcow\Views\Shared\_ApUserSearch.cshtml.g.cs

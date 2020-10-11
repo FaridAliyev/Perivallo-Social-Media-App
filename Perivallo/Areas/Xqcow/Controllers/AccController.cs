@@ -210,5 +210,27 @@ namespace Perivallo.Areas.Xqcow.Controllers
             await _userManager.UpdateAsync(user);
             return RedirectToAction("Blocked");
         }
+
+        public async Task<IActionResult> Search(string term)
+        {
+            List<User> users = _userManager.Users.Where(u=>!u.Deleted).ToList();
+            List<ApUserVM> model = new List<ApUserVM>();
+            foreach (User user in users)
+            {
+                if (user.UserName.Contains(term) || user.Email.Contains(term) || user.Name.Contains(term))
+                {
+                    model.Add(new ApUserVM
+                    {
+                        Id = user.Id,
+                        Name = user.Name,
+                        Username = user.UserName,
+                        Email = user.Email,
+                        Deleted=user.Deleted,
+                        Role = (await _userManager.GetRolesAsync(user))[0]
+                    });
+                }
+            }
+            return PartialView("_ApUserSearch", model);
+        }
     }
 }

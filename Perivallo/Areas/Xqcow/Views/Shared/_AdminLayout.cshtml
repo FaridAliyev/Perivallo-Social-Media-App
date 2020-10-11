@@ -66,7 +66,28 @@
     <script src="~/admin/js/jquery.dataTables.js"></script>
     <script src="~/admin/js/dataTables.bootstrap4.js"></script>
     <!-- End custom js for this page-->
-
+    <script>
+        let controller = $('#ctrl').val();
+        if (controller=="Acc") {
+            $('.search-field').keyup(function () {
+                let field = $(this);
+                let term = field.val();
+                if (term == "") {
+                    field.next().children().eq(0).empty();
+                }
+                if (term.length > 0) {
+                    $.ajax({
+                        url: "/Xqcow/" + controller + "/Search?term=" + term,
+                        type: "Get",
+                        success: function (response) {
+                            field.next().children().eq(0).empty();
+                            field.next().children().eq(0).append(response);
+                        }
+                    });
+                }
+            });
+        }
+    </script>
     @RenderSection("Scripts", false)
 </body>
 

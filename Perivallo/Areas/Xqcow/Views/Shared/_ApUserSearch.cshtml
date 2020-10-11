@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ApUserVM>
+
+@foreach (ApUserVM item in Model)
+{
+    @if (User.Identity.Name != item.Username)
+    {
+        <tr>
+            <td>
+                @item.Username
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Role
+            </td>
+            <td>
+                <a asp-area="" asp-controller="Account" asp-action="Index" asp-route-username="@item.Username" class="btn btn-success btn-icon-text">
+                    See User
+                    <i class="mdi mdi-account-card-details btn-icon-append"></i>
+                </a>
+                @if (item.Role != "Admin")
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-icon-text">
+                        Edit
+                        <i class="mdi mdi-pencil btn-icon-append"></i>
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+}
+
