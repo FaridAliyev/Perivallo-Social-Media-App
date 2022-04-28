@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANyKKG2UkpkqKDk5QjycC5AAAAAACAAAAAAAQZgAAAAEAACAAAAD2k5+l58NxSRoUmnhTcTqclnGjGekNAsfpNL/VzXHU4AAAAAAOgAAAAAIAACAAAADqVRL1I6tx00e7MbOfAbsONlMvJc2QbdBvma4Ma2o/kyAAAACytEPq09eCa73y8QgH+ISVkoXngSXIp9+84GfXBH1iSUAAAAA18Et0aP8Fl++GnuvzU0aJSPfUMyIRFYWsWttnKY5i+GUwYLPsz/qcS0wT/CPDBApXw6GT3hkd2af3VCayvzam</EncryptedPassword>
+    <_PublishTargetUrl>ftp://perivallo.somee.com/www.perivallo.somee.com</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.json">
+      <publishTime>08/30/2021 00:32:11</publishTime>
+    </File>
+    <File Include="dotnet-aspnet-codegenerator-design.dll">
+      <publishTime>09/24/2019 19:57:52</publishTime>
+    </File>
+    <File Include="libman.json">
+      <publishTime>09/13/2020 13:38:45</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Connections.Abstractions.dll">
+      <publishTime>07/26/2018 18:17:04</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.dll">
+      <publishTime>12/06/2018 23:21:56</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.Abstractions.dll">
+      <publishTime>09/20/2018 15:08:28</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.ApiExplorer.dll">
+      <publishTime>09/20/2018 15:08:26</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.Core.dll">
+      <publishTime>09/20/2018 15:08:26</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.Cors.dll">
+      <publishTime>09/20/2018 15:08:22</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.DataAnnotations.dll">
+      <publishTime>09/20/2018 15:08:30</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.dll">
+      <publishTime>09/20/2018 15:08:28</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.Formatters.Json.dll">
+      <publishTime>09/20/2018 15:08:30</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.Localization.dll">
+      <publishTime>09/20/2018 15:08:22</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.Razor.dll">
+      <publishTime>09/20/2018 15:08:28</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.RazorPages.dll">
+      <publishTime>09/20/2018 15:08:24</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.TagHelpers.dll">
+      <publishTime>09/20/2018 15:08:22</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Mvc.ViewFeatures.dll">
+      <publishTime>09/20/2018 15:08:22</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.IISIntegration.dll">
+      <publishTime>12/06/2018 23:21:38</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.Core.dll">
+      <publishTime>07/26/2018 18:17:10</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.dll">
+      <publishTime>07/26/2018 18:17:00</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.Https.dll">
+      <publishTime>07/26/2018 18:17:06</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll">
+      <publishTime>07/26/2018 18:17:06</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll">
+      <publishTime>07/26/2018 18:17:08</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.CSharp.Workspaces.dll">
+      <publishTime>04/30/2018 16:29:02</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.Workspaces.dll">
+      <publishTime>04/30/2018 16:29:04</publishTime>
+    </File>
+    <File Include="Microsoft.DotNet.PlatformAbstractions.dll">
+      <publishTime>05/15/2018 21:01:34</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
+      <publishTime>10/11/2019 22:28:10</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Design.dll">
+      <publishTime>10/11/2019 22:26:02</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.dll">
+      <publishTime>10/11/2019 22:26:00</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Relational.dll">
+      <publishTime>10/11/2019 22:24:58</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.SqlServer.dll">
+      <publishTime>10/11/2019 22:28:58</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.DependencyModel.dll">
+      <publishTime>05/15/2018 21:01:34</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.BrowserLink.dll">
+      <publishTime>06/07/2018 00:26:52</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
+      <publishTime>09/24/2019 19:57:20</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
+      <publishTime>09/24/2019 19:57:24</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.dll">
+      <publishTime>09/24/2019 19:57:28</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
+      <publishTime>09/24/2019 19:57:26</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
+      <publishTime>09/24/2019 19:57:22</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
+      <publishTime>09/24/2019 19:57:20</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
+      <publishTime>09/24/2019 19:57:30</publishTime>
+    </File>
+    <File Include="NuGet.Frameworks.dll">
+      <publishTime>04/24/2018 21:27:10</publishTime>
+    </File>
+    <File Include="Perivallo.deps.json">
+      <publishTime>08/30/2021 01:24:45</publishTime>
+    </File>
+    <File Include="Perivallo.dll">
+      <publishTime>08/30/2021 01:24:40</publishTime>
+    </File>
+    <File Include="Perivallo.pdb">
+      <publishTime>08/30/2021 01:24:40</publishTime>
+    </File>
+    <File Include="Perivallo.runtimeconfig.json">
+      <publishTime>10/12/2020 01:15:38</publishTime>
+    </File>
+    <File Include="Perivallo.Views.dll">
+      <publishTime>08/30/2021 01:24:42</publishTime>
+    </File>
+    <File Include="Perivallo.Views.pdb">
+      <publishTime>08/30/2021 01:24:42</publishTime>
+    </File>
+    <File Include="Remotion.Linq.dll">
+      <publishTime>02/06/2018 22:25:00</publishTime>
+    </File>
+    <File Include="runtimes/unix/lib/netcoreapp2.0/System.Security.Principal.Windows.dll">
+      <publishTime>09/18/2018 19:38:10</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp2.0/System.Security.Principal.Windows.dll">
+      <publishTime>09/18/2018 19:38:10</publishTime>
+    </File>
+    <File Include="System.Composition.AttributedModel.dll">
+      <publishTime>11/05/2016 04:55:42</publishTime>
+    </File>
+    <File Include="System.Composition.Convention.dll">
+      <publishTime>11/05/2016 04:55:42</publishTime>
+    </File>
+    <File Include="System.Composition.Hosting.dll">
+      <publishTime>11/05/2016 04:55:42</publishTime>
+    </File>
+    <File Include="System.Composition.Runtime.dll">
+      <publishTime>11/05/2016 04:55:44</publishTime>
+    </File>
+    <File Include="System.Composition.TypedParts.dll">
+      <publishTime>11/05/2016 04:55:46</publishTime>
+    </File>
+    <File Include="System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>09/18/2018 19:38:16</publishTime>
+    </File>
+    <File Include="System.Interactive.Async.dll">
+      <publishTime>11/21/2016 14:05:54</publishTime>
+    </File>
+    <File Include="System.IO.Pipelines.dll">
+      <publishTime>11/29/2018 15:39:14</publishTime>
+    </File>
+    <File Include="System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>09/18/2018 19:38:10</publishTime>
+    </File>
+    <File Include="System.Security.Principal.Windows.dll">
+      <publishTime>09/18/2018 19:38:10</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>08/30/2021 01:24:45</publishTime>
+    </File>
+    <File Include="wwwroot/admin/css/maps/style.css.map">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/css/style.css">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/.DS_Store">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/.DS_Store">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Black.eot">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Black.ttf">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Black.woff">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Black.woff2">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Bold.eot">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Bold.ttf">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Bold.woff">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Bold.woff2">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Light.eot">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Light.ttf">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Light.woff">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Light.woff2">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Medium.eot">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Medium.ttf">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Medium.woff">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Medium.woff2">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Regular.eot">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Regular.ttf">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Regular.woff">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/fonts/Roboto/Roboto-Regular.woff2">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/.DS_Store">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/auth/.DS_Store">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/auth/lockscreen-bg.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/auth/login-bg.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/auth/register-bg.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/.DS_Store">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face1.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face10.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face11.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face12.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face13.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face14.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face15.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face16.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face17.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face18.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face19.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face2.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face20.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face21.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face22.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face23.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face24.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face25.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face26.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face27.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face3.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face4.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face5.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face6.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face7.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face8.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/faces/face9.jpg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/favicon.png">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/logo-mini.svg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/images/logo.svg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/.DS_Store">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/chart.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/Chart.min.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/dashboard.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/data-table.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/dataTables.bootstrap4.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/documentation.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/file-upload.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/hoverable-collapse.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/jquery.dataTables.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/off-canvas.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/tabs.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/js/template.js">
+      <publishTime>09/15/2020 20:47:48</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/.DS_Store">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/base/bootstrap.min.js.map">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/base/vendor.bundle.base.css">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/base/vendor.bundle.base.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/chart.js/Chart.min.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/datatables.net/jquery.dataTables.js">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/mdi/css/materialdesignicons.min.css">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/mdi/css/materialdesignicons.min.css.map">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/mdi/fonts/materialdesignicons-webfont.eot">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/mdi/fonts/materialdesignicons-webfont.svg">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/mdi/fonts/materialdesignicons-webfont.ttf">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/mdi/fonts/materialdesignicons-webfont.woff">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/admin/vendors/mdi/fonts/materialdesignicons-webfont.woff2">
+      <publishTime>04/13/2020 08:38:32</publishTime>
+    </File>
+    <File Include="wwwroot/css/partials/_variables.scss">
+      <publishTime>08/01/2020 20:30:26</publishTime>
+    </File>
+    <File Include="wwwroot/css/style.css">
+      <publishTime>10/10/2020 02:23:17</publishTime>
+    </File>
+    <File Include="wwwroot/css/style.css.map">
+      <publishTime>10/10/2020 02:23:17</publishTime>
+    </File>
+    <File Include="wwwroot/css/style.scss">
+      <publishTime>10/10/2020 02:23:16</publishTime>
+    </File>
+    <File Include="wwwroot/img/404-not-found-png.png">
+      <publishTime>10/09/2020 16:31:29</publishTime>
+    </File>
+    <File Include="wwwroot/img/Bonfire.jpg">
+      <publishTime>08/18/2020 01:24:31</publishTime>
+    </File>
+    <File Include="wwwroot/img/check.png">
+      <publishTime>10/10/2020 01:38:50</publishTime>
+    </File>
+    <File Include="wwwroot/img/cog.png">
+      <publishTime>09/01/2020 17:21:20</publishTime>
+    </File>
+    <File Include="wwwroot/img/cover.png">
+      <publishTime>08/22/2020 13:36:59</publishTime>
+    </File>
+    <File Include="wwwroot/img/favicon.png">
+      <publishTime>08/13/2020 02:19:42</publishTime>
+    </File>
+    <File Include="wwwroot/img/Greeting.jpg">
+      <publishTime>08/18/2020 01:16:53</publishTime>
+    </File>
+    <File Include="wwwroot/img/Journey.jpg">
+      <publishTime>08/18/2020 01:26:59</publishTime>
+    </File>
+    <File Include="wwwroot/img/logo-aqua.png">
+      <publishTime>08/13/2020 02:06:41</publishTime>
+    </File>
+    <File Include="wwwroot/img/logo-blue.png">
+      <publishTime>08/13/2020 02:03:23</publishTime>
+    </File>
+    <File Include="wwwroot/img/logo-white.png">
+      <publishTime>08/13/2020 02:07:21</publishTime>
+    </File>
+    <File Include="wwwroot/img/mailbox.svg">
+      <publishTime>10/10/2020 00:50:08</publishTime>
+    </File>
+    <File Include="wwwroot/img/profile-placeholder.png">
+      <publishTime>07/30/2020 21:50:20</publishTime>
+    </File>
+    <File Include="wwwroot/img/security-shield.png">
+      <publishTime>09/02/2020 15:35:50</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery.js">
+      <publishTime>10/12/2020 01:51:13</publishTime>
+    </File>
+    <File Include="wwwroot/js/script.js">
+      <publishTime>10/08/2020 21:15:47</publishTime>
+    </File>
+    <File Include="wwwroot/lib/microsoft/signalr/dist/browser/signalr.js">
+      <publishTime>09/13/2020 13:38:48</publishTime>
+    </File>
+    <File Include="wwwroot/lib/microsoft/signalr/dist/browser/signalr.min.js">
+      <publishTime>09/13/2020 13:38:49</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

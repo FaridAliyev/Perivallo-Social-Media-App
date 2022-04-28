@@ -74,7 +74,7 @@ namespace Perivallo.Controllers
             model.Users = _db.Users.Where(u=>!u.Deleted);
             model.Posts = posts.OrderByDescending(f=>f.Date).Take(10);
             model.Role = (await _userManager.GetRolesAsync(currentUser))[0];
-            model.SuggestedUsers = suggestedfriends.OrderByDescending(s=>s.Posts.Count());
+            model.SuggestedUsers = suggestedfriends.OrderByDescending(s=>s.Posts.Count()).Take(6);
             return View(model);
         }
 
